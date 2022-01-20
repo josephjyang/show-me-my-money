@@ -1,7 +1,7 @@
 FROM node:12 AS build-stage
 
 WORKDIR /frontend-react
-COPY ../frontend-react/. .
+COPY frontend-react/. .
 
 ENV REACT_APP_BASE_URL=https://show-me-my-money.herokuapp.com/
 
@@ -17,7 +17,7 @@ ENV SQLALCHEMY_ECHO=True
 EXPOSE 8000
 
 WORKDIR /var/www
-COPY . .
+COPY backend-flask/ .
 COPY --from=build-stage /frontend-react/build/* app/static/
 
 RUN pip install -r requirements.txt
