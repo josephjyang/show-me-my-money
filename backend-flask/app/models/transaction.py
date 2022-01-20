@@ -55,3 +55,10 @@ class Transaction(db.Model):
             'payee': self.payee.to_dict(),
             'creator': self.creator.to_dict()
         }
+    
+    
+    def test_dict(self):
+        return {
+            'id': self.id,
+            'details': self.details
+        }

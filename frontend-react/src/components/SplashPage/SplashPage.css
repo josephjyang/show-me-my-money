@@ -1,0 +1,123 @@
+
+#homepage-header {
+    font-size: 40px;
+    font-weight: 500;
+    margin: 55px 0 31px 0;
+}
+
+#homepage-signup-button {
+    font-size: 23px;
+    color: #fff;
+    background-color: #d24b03;
+    border-color: transparent;
+    display: inline-block;
+    margin: 4px 0 50px 0;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 11px 32px 12px;
+    line-height: 1.2;
+}
+
+#homepage-footer {
+    margin-top: 10px;
+    background-color: #fff;
+    border-top: 1px solid #e8e8e8;
+    padding: 50px 0;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    display: flex;
+
+}
+
+.footer-nav-div {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 400px;
+    min-width: 140px;
+    max-width: 180px;
+}
+
+.footer-nav-div li {
+    margin-top: 0;
+    text-align: -webkit-match-parent;
+}
+
+.footer-nav-div a {
+    line-height: 24px;
+    color: #8b8b94;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-decoration: none;
+    align-content: stretch;
+}
+
+a {
+    background-color: transparent;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.footer-link:hover {
+    background-color: #eeeeee;
+    color: #8b8b94;
+}
+
+li {
+    float: none;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}
+
+li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+ul {
+    list-style-type: disc;
+    display: block;
+    margin-top: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.nav-footer-header{
+    font-weight: 700;
+    color: #8b8b94;
+    margin: 2px 0 8px 15px;
+}
+
+.nav-footer-list{
+    width: 151px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.footer-container {
+    width: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: inline-block;
+}

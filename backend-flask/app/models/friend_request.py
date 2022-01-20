@@ -53,3 +53,12 @@ class FriendRequest(db.Model):
         "User", 
         foreign_keys=[recipient_id],
         backref="friend_requests_received")
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'sender_id': self.sender_id,
+            'recipient_id': self.recipient_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

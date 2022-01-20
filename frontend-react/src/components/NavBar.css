@@ -1,0 +1,57 @@
+#splash-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    border-bottom: 1px #0056ac solid;
+    background-color: green;
+}
+
+#splash-nav > ul {
+    list-style-type: none;
+    color:rgb(220, 220, 220);
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+#splash-nav li {
+    margin: 10px;
+}
+
+#smmm-logo {
+    width: 200px;
+}
+
+#splash-nav a:link, a:visited {
+    text-decoration: none;
+    color:rgb(220, 220, 220);
+}
+
+#signup {
+    border: 2px rgb(210, 210, 210) solid;
+    border-radius: 5px;
+    padding: 5px 11px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: white;
+    animation: smooth .25s ease-in-out;
+    cursor: pointer;
+}
+
+#signup:hover {
+    border: 2px white solid;
+}
+
+#ymtl-container-home{
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}

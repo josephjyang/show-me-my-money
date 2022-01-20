@@ -6,7 +6,9 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+import User from './components/UserPage/User';
+import SplashPage from './components/SplashPage';
+import HomePage from './components/HomePage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -26,8 +28,11 @@ function App() {
 
     return (
         <BrowserRouter>
-            <NavBar />
             <Switch>
+                <Route path='/' exact={true}>
+                    <NavBar />
+                    <SplashPage />
+                </Route>
                 <Route path='/login' exact={true}>
                     <LoginForm />
                 </Route>
@@ -40,8 +45,8 @@ function App() {
                 <ProtectedRoute path='/users/:userId' exact={true}>
                     <User />
                 </ProtectedRoute>
-                <ProtectedRoute path='/' exact={true}>
-                    <h1>My Home Page</h1>
+                <ProtectedRoute path='/home' exact={true}>
+                    <HomePage />
                 </ProtectedRoute>
             </Switch>
         </BrowserRouter>

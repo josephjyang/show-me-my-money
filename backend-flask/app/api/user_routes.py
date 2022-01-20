@@ -13,7 +13,16 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-@login_required
+# @login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>/friends')
+@login_required
+def get_all_friends(id):
+    user = User.query.get(id)
+    results = User.query.filter(User.id == user.id).all()
+    obj = {'tasks': [task.to_dict() for task in results]}
+    return {'tasks': [task.to_dict() for task in results]}

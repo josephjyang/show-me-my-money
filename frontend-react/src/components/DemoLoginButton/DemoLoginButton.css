@@ -1,0 +1,13 @@
+#demo-login {
+    border: 2px rgb(210, 210, 210) solid;
+    border-radius: 5px;
+    padding: 4px 11px;
+    font-size: 15px;
+    background-color: transparent;
+    color:rgb(220, 220, 220);
+}
+
+#demo-login:hover {
+    border: 2px white solid;
+    cursor:pointer;
+}

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 16cd650ccedf
+Revision ID: 91f00524adba
 Revises: 
-Create Date: 2022-01-19 23:20:26.692820
+Create Date: 2022-01-20 08:17:05.562402
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '16cd650ccedf'
+revision = '91f00524adba'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,8 +43,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('friends',
-    sa.Column('user1_id', sa.Integer(), nullable=True),
-    sa.Column('user2_id', sa.Integer(), nullable=True),
+    sa.Column('user1_id', sa.Integer(), nullable=False),
+    sa.Column('user2_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user1_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['user2_id'], ['users.id'], )
     )
