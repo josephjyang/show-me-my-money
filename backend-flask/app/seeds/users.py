@@ -58,6 +58,17 @@ def seed_users():
         profile_pic="https://m.media-amazon.com/images/M/MV5BMzA5ZWM5ZjctNTNiZi00NjJkLTkwY2QtZDhhZWUzZWUyMTA0XkEyXkFqcGdeQXVyOTExNDkxMjk@._V1_.jpg"
     )
 
+    rod.friends.append(jerry)
+    rod.friends.append(marcee)
+    rod.friends.append(dorothy)
+
+    jerry.friends.append(marcee)
+    jerry.friends.append(dorothy)
+
+    marcee.friends.append(dorothy)
+
+    ray.friends.append(tyson)
+
     db.session.add(demo)
     db.session.add(rod)
     db.session.add(jerry)

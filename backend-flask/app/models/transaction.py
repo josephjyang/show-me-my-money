@@ -2,55 +2,6 @@ from .db import db
 from sqlalchemy.sql import func
 
 
-user_create_transactions = db.Table(
-    "user_create_transactions",
-    db.Column(
-        "user_id",
-        db.Integer,
-        db.ForeignKey("users.id"),
-        primary_key=True
-    ),
-    db.Column(
-        "transaction_id",
-        db.Integer,
-        db.ForeignKey("transactions.id"),
-        primary_key=True
-    )
-)
-
-user_send_transactions = db.Table(
-    "user_send_transactions",
-    db.Column(
-        "user_id",
-        db.Integer,
-        db.ForeignKey("users.id"),
-        primary_key=True
-    ),
-    db.Column(
-        "transaction_id",
-        db.Integer,
-        db.ForeignKey("transactions.id"),
-        primary_key=True
-    )
-)
-
-user_receive_transactions = db.Table(
-    "user_receive_transactions",
-    db.Column(
-        "user_id",
-        db.Integer,
-        db.ForeignKey("users.id"),
-        primary_key=True
-    ),
-    db.Column(
-        "transaction_id",
-        db.Integer,
-        db.ForeignKey("transactions.id"),
-        primary_key=True
-    )
-)
-
-
 class Transaction(db.Model):
     __tablename__ = 'transactions'
 
@@ -59,7 +10,7 @@ class Transaction(db.Model):
     payee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     creator_id = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    amount = db.Column(db.Numeric(precision=2), nullable=False)
+    amount = db.Column(db.Numeric(precision=9, scale=2), nullable=False)
     details = db.Column(db.Text, nullable=False)
     paid = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -68,18 +19,23 @@ class Transaction(db.Model):
     
     payer = db.relationship(
         "User", 
-        secondary=user_send_transactions,
-        back_populates="transactions_sent")
+        foreign_keys=[payer_id],
+        backref="transactions_sent")
     payee = db.relationship(
         "User", 
-        secondary=user_receive_transactions,
-        back_populates="transactions_received")
+        foreign_keys=[payee_id],
+        backref="transactions_received")
     creator = db.relationship(
         "User",
-        secondary=user_create_transactions,
-        back_populates="transactions_created")
+        foreign_keys=[creator_id],
+        backref="transactions_created")
     comments = db.relationship(
         "Comment",
+        back_populates="transaction",
+        cascade="all, delete"
+    )
+    likes = db.relationship(
+        "Like",
         back_populates="transaction",
         cascade="all, delete"
     )

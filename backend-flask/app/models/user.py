@@ -2,8 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-from .friend_request import user_receive_friend_requests, user_send_friend_requests
-from .transaction import user_send_transactions, user_create_transactions, user_receive_transactions
+
 
 friends = db.Table(
     "friends",
@@ -31,41 +30,46 @@ class User(db.Model, UserMixin):
         primaryjoin=(friends.c.user1_id == id),
         secondaryjoin=(friends.c.user2_id == id)
     )
-    transactions_sent = db.relationship(
-        "Transaction", 
-        secondary=user_send_transactions,
-        back_populates="payer",
-        cascade="all, delete"
-        )
-    transactions_received = db.relationship(
-        "Transaction", 
-        secondary=user_receive_transactions,
-        back_populates="payee",
-        cascade="all, delete"
-        )
-    transactions_created = db.relationship(
-        "Transaction", 
-        secondary=user_create_transactions,
-        back_populates="creator",
-        cascade="all, delete"
-        )
-    friend_requests_sent = db.relationship(
-        "FriendRequest",
-        secondary=user_send_friend_requests,
-        back_populates="sender",
-        cascade="all, delete"
-        )
-    friend_requests_received = db.relationship(
-        "FriendRequest", 
-        secondary=user_receive_friend_requests,
-        back_populates="recipient",
-        cascade="all, delete"
-        )
+    # transactions_sent = db.relationship(
+    #     "Transaction", 
+    #     foreign_keys=[payer_id],
+    #     back_populates="payer",
+    #     cascade="all, delete"
+    #     )
+    # transactions_received = db.relationship(
+    #     "Transaction", 
+    #     foreign_keys=[payee_id],
+    #     back_populates="payee",
+    #     cascade="all, delete"
+    #     )
+    # transactions_created = db.relationship(
+    #     "Transaction", 
+    #     foreign_keys=[creator_id],
+    #     back_populates="creator",
+    #     cascade="all, delete"
+    #     )
+    # friend_requests_sent = db.relationship(
+    #     "FriendRequest",
+    #     foreign_keys=[sender_id],
+    #     back_populates="sender",
+    #     cascade="all, delete"
+    #     )
+    # friend_requests_received = db.relationship(
+    #     "FriendRequest", 
+    #     foreign_keys=[recipient_id],
+    #     back_populates="recipient",
+    #     cascade="all, delete"
+    #     )
     comments = db.relationship(
         "Comment",
         back_populates="user",
         cascade="all, delete"
-    )    
+    )
+    likes = db.relationship(
+        "Like",
+        back_populates="user",
+        cascade="all, delete"
+    )
 
     @property
     def password(self):
