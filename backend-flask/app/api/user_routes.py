@@ -20,9 +20,12 @@ def user(id):
 
 
 @user_routes.route('/<int:id>/friends')
-@login_required
+# @login_required
 def get_all_friends(id):
     user = User.query.get(id)
-    results = User.query.filter(User.id == user.id).all()
-    obj = {'tasks': [task.to_dict() for task in results]}
-    return {'tasks': [task.to_dict() for task in results]}
+    following = {friend.id: friend.to_dict_friends()
+                 for friend in user.following}
+    followed = {friend.id: friend.to_dict_friends()
+                for friend in user.followed}
+    friends = { **following, **followed }
+    return {'friends': friends}
