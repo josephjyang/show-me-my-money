@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsers } from '../../store/users';
 import './Search.css'
 
 const filterUsers = (users, query) => {
@@ -17,6 +18,7 @@ const filterUsers = (users, query) => {
 };
 
 const SearchBar = ({ setFriend, friend }) => {
+    const user = useSelector(state => state.session.user);
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
     console.log(users)
@@ -25,6 +27,14 @@ const SearchBar = ({ setFriend, friend }) => {
     const [searchQuery, setSearchQuery] = useState(query || '');
     const filteredUsers = filterUsers(users, searchQuery);
     
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (user) {
+            dispatch(getUsers());
+        }
+    }, [dispatch, user])
+
+
     return (
         <>
             <form
@@ -42,7 +52,6 @@ const SearchBar = ({ setFriend, friend }) => {
                     onInput={(e) => setSearchQuery(e.target.value)}
                     type="text"
                     id="header-search"
-                    placeholder="Search users"
                     name="s"
                 />
             </form>
@@ -52,7 +61,7 @@ const SearchBar = ({ setFriend, friend }) => {
                         <img className="user-card-pic" src={user.profile_pic} alt="user profile" />
                         <div className="user-card-info">
                                 <div>{user.first_name} {user.last_name}</div>
-                                <div>{user.username}</div>
+                                <div>@{user.username}</div>
                         </div>
                     </div>
                 ))}
