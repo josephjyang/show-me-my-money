@@ -30,6 +30,24 @@ def new_transaction():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@transaction_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_transaction(id):
+    transaction = Transaction.query.get(id)
+    form = TransactionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        transaction.payer_id = form.payer_id.data
+        transaction.payee_id = form.payee_id.data
+        transaction.amount = form.amount.data
+        transaction.details = form.details.data
+        transaction.paid = form.paid.data
+        db.session.add(transaction)
+        db.session.commit()
+        return transaction.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 @transaction_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_transaction(id):
