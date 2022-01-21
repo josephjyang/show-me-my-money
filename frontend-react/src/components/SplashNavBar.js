@@ -27,9 +27,6 @@ const SplashNavBar = () => {
                 <li>
                     <DemoLoginButton />
                 </li>
-                <li>
-                    <LogoutButton />
-                </li>
             </ul>
         </nav>
     );
