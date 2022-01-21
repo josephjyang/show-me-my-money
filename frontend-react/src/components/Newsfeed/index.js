@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
@@ -9,6 +10,7 @@ import './Newsfeed.css'
 function Newsfeed() {
     const user = useSelector(state => state.session.user);
     const transactions = useSelector(state => state.transactions)
+    const history = useHistory();
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -50,7 +52,9 @@ function Newsfeed() {
                         {(transaction.creator_id === user.id) &&
                         (
                             <div className="transaction-icons">
-                                <i className="fas fa-edit"></i>
+                                <i className="fas fa-edit" onClick={() => {
+                                    history.push(`/transactions/${transaction.id}/edit`)
+                                }}></i>
                                 <i className="fas fa-trash" onClick={() => deleteTrans(transaction)}></i>
                             </div>
                         )}

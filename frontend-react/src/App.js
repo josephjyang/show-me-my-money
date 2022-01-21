@@ -48,6 +48,9 @@ function App() {
                         <ProtectedRoute path='/pay'>
                             <TransactionForm />
                         </ProtectedRoute>
+                        <ProtectedRoute path='/transactions/:transactionId/edit'>
+                            <TransactionForm />
+                        </ProtectedRoute>
                     </Switch>
                 )}
             </>

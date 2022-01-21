@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { createTransaction } from "../../store/transactions";
 import SearchBar from "../Search";
 import './TransactionForm.css';
 
 const TransactionForm = () => {
+    const user = useSelector(state => state.session.user);
+    const transactions = useSelector(state => state.transactions)
+    const {transactionId} = useParams();
+    let transaction
+    if (transactionId) transaction = transactions[transactionId]
+    console.log(transaction);
     const [backErrors, setBackErrors] = useState([]);
     const [errors, setErrors] = useState({});
-    const [friend, setFriend] = useState('');
-    const [amount, setAmount] = useState('');
-    const [details, setDetails] = useState('');
-    const [isPayment, setIsPayment] = useState(true);
-    const user = useSelector(state => state.session.user);
+    const [friend, setFriend] = useState(transactionId ? transaction.creator_id === transaction.payer_id ? transaction.payee : transaction.payer : '');
+    const [amount, setAmount] = useState(transactionId ? transaction.amount : '');
+    const [details, setDetails] = useState(transactionId ? transaction.details : '');
+    // const [isPayment, setIsPayment] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -27,13 +32,21 @@ const TransactionForm = () => {
         let payer_id = user.id;
         let payee_id = friend.id;
 
+        if (transaction) {
+            transaction.payer_id = payer_id;
+            transaction.payee_id = payee_id;
+            transaction.amount = amount;
+            transaction.details = details;
+            transaction.paid = true
+        }
+
         const newTransaction = {
             payer_id,
             payee_id,
             creator_id: user.id,
             amount,
             details,
-            paid: isPayment
+            paid: true
         }
         const data = await dispatch(createTransaction(newTransaction));
         if (data.errors) setBackErrors(data.errors)
@@ -55,7 +68,7 @@ const TransactionForm = () => {
             creator_id: user.id,
             amount,
             details,
-            paid: isPayment
+            paid: false
         }
         const data = await dispatch(createTransaction(newTransaction));
         if (data.errors) setBackErrors(data.errors)
@@ -114,11 +127,11 @@ const TransactionForm = () => {
                 />
             </div>
             <button type="button" onClick={async (e) => {
-                await setIsPayment(true);
+                // await setIsPayment(true);
                 submitPayment(e)
                 }}>Pay</button>
             <button type="button" onClick={async (e) => {
-                await setIsPayment(false);
+                // await setIsPayment(false);
                 submitRequest(e)
             }}>Request</button>
         </div>

@@ -56,6 +56,19 @@ export const deleteTransaction = transaction => async dispatch => {
     }
 }
 
+export const updateTransaction = transaction => async dispatch => {
+    const res = await fetch(`/api/transactions/${transaction.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(transaction)
+    });
+    const data = await res.json();
+    if (res.ok) {
+        dispatch(addTransaction(data))
+        return data
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -65,6 +78,9 @@ export default function reducer(state = initialState, action) {
                 transactions[transaction.id] = transaction
             })
             return { ...state, ...transactions }
+        case ADD_TRANSACTION:
+            newState[action.transaction.id] = action.transaction
+            return newState;
         case REMOVE_TRANSACTION:
             delete newState[action.transaction.id]
             return newState;
