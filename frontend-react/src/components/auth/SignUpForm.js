@@ -45,7 +45,7 @@ const SignUpForm = () => {
     const updateUsername = (e) => {
         setUsername(e.target.value);
         if (e.target.value.length > 40) errors.username = "Username must be 40 characters or fewer"
-        else if (e.target.value.length <= 5) errors.username = "Username must be at least five characters"
+        else if (e.target.value.length < 5) errors.username = "Username must be at least five characters"
         else delete errors.username
     };
 
