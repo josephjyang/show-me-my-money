@@ -3,9 +3,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import DemoLoginButton from './DemoLoginButton';
-import './NavBar.css'
+import './SplashNavBar.css'
 
-const NavBar = () => {
+const SplashNavBar = () => {
     return (
         <nav id="splash-nav">
             <ul>
@@ -35,4 +35,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default SplashNavBar;

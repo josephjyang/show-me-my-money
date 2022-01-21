@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import './HomePage.css'
@@ -24,25 +23,9 @@ function HomePage() {
 
 
     return (
-        <ul>
-            <li>
-                <strong>User Id</strong> {user.id}
-            </li>
-            <li>
-                <strong>Username</strong> {user.username}
-            </li>
-            <li>
-                <strong>Email</strong> {user.email}
-            </li>
-            <li>
-                {user.profile_pic && <img id="user-profile-pic" src={user.profile_pic} alt ="user profile"/>}
-            </li>
-            <li>
-                <LogoutButton />
-            </li>
-            {Object.values(friends).map(friend => <li>{friend.first_name}</li>)}
-            {Object.values(transactions).map(transaction => <li>{transaction.details}</li>)}
-        </ul>
+        <div id="home-page">
+            {/* {Object.values(friends).map(friend => <li>{friend.first_name}</li>)} */}
+        </div>
     );
 }
 export default HomePage;
