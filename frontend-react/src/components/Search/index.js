@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './Search.css'
 
 const filterUsers = (users, query) => {
@@ -16,22 +17,13 @@ const filterUsers = (users, query) => {
 };
 
 const SearchBar = ({ setFriend, friend }) => {
-    const [users, setUsers] = useState([]);
+    const stateUsers = useSelector(state => state.users);
+    const users = Object.values(stateUsers);
+    console.log(users)
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
     const filteredUsers = filterUsers(users, searchQuery);
-
-    console.log(filteredUsers);
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
     
     return (
         <>

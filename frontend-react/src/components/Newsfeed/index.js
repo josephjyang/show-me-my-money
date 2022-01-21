@@ -14,7 +14,7 @@ function Newsfeed() {
         if (user) {
             dispatch(getFriends(user));
             dispatch(getTransactions(user));
-            // dispatch(getUsers());
+            dispatch(getUsers());
         }
     }, [dispatch, user])
 
@@ -27,7 +27,7 @@ function Newsfeed() {
         <div id="newsfeed">
             {Object.values(transactions).map(transaction => {
                 return (
-                    <div className="transaction-container">
+                    <div className="transaction-container" key={transaction.id}>
                         {/* <div className="creator-picture" style={{ backgroundImage:`url(${transaction.creator.profile_pic})` }} /> */}
                         <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator"/>
                         <div className="transaction-info">

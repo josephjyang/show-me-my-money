@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { createTransaction } from "../../store/transactions";
 import SearchBar from "../Search";
+import './TransactionForm.css';
 
 const TransactionForm = () => {
     const [backErrors, setBackErrors] = useState([]);
@@ -81,8 +82,9 @@ const TransactionForm = () => {
                     <div key={ind}>{error}</div>
                 ))}
             </div>
-            <div>
+            <div id="transaction-amount">
                 {errors.amount && <p className="transaction-error">{errors.amount}</p>}
+                <span>$</span>
                 <input
                     className={errors.amount ? "error transaction-field" : "transaction-field"}
                     type='text'
@@ -93,7 +95,7 @@ const TransactionForm = () => {
                     required={true}
                 />
             </div>
-            <div>
+            <div id="transaction-recipient">
                 <label htmlFor="friend">To</label>
                 {!friend && <SearchBar friend={friend} setFriend={setFriend}/>}
                 {friend && <div>{friend.first_name} {friend.last_name}<i onClick={() => setFriend('')}className="fas fa-times"/></div>}
@@ -101,8 +103,9 @@ const TransactionForm = () => {
             <div>
                 {errors.details && <p className="transaction-error">{errors.details}</p>}
                 <label htmlFor="details">Note</label>
-                <input
+                <textarea
                     className={errors.details ? "error transaction-field" : "transaction-field"}
+                    id="transaction-details"
                     type='text'
                     name='details'
                     onChange={updateDetails}
