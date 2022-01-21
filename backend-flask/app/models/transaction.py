@@ -10,7 +10,7 @@ class Transaction(db.Model):
     payee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     creator_id = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    amount = db.Column(db.Numeric(precision=9, scale=2), nullable=False)
+    amount = db.Column(db.Float(precision=9), nullable=False)
     details = db.Column(db.Text, nullable=False)
     paid = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -57,8 +57,15 @@ class Transaction(db.Model):
         }
     
     
-    def test_dict(self):
+    def to_dict_user(self):
         return {
             'id': self.id,
-            'details': self.details
+            'payer_id': self.payer_id,
+            'payee_id': self.payee_id,
+            'creator_id': self.creator_id,
+            'amount': self.amount,
+            'details': self.details,
+            'paid': self.paid,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }

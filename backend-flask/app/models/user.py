@@ -76,11 +76,11 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'profile_pic': self.profile_pic,
-            'transactions_sent': {transaction.test_dict()['id']: transaction.test_dict() 
+            'transactions_sent': {transaction.to_dict_user()['id']: transaction.to_dict_user() 
                         for transaction in self.transactions_sent},
-            'transactions_received': {transaction.test_dict()['id']: transaction.test_dict() 
+            'transactions_received': {transaction.to_dict_user()['id']: transaction.to_dict_user() 
                         for transaction in self.transactions_received},
-            'transactions_created': {transaction.test_dict()['id']: transaction.test_dict()
+            'transactions_created': {transaction.to_dict_user()['id']: transaction.to_dict_user()
                                       for transaction in self.transactions_created},
             'following': {user.to_dict_friends()['id']: user.to_dict_friends()
                         for user in self.following},

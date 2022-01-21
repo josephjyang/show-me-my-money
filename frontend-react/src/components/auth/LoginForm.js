@@ -26,10 +26,6 @@ const LoginForm = () => {
 
     return (
         <>
-            <NavLink to='/' exact={true} activeClassName='active'>
-                <img src="/smmm-logo.png" alt="smmm logo" id="smmm-logo" />
-            </NavLink>
-            <DemoLoginButton />
             <form onSubmit={onLogin}>
                 <div>
                     {errors.map((error, ind) => (

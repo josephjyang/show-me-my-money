@@ -1,15 +1,10 @@
 const LOAD_FRIENDS = 'friends/LOAD_FRIENDS';
-const REMOVE_USER = 'session/REMOVE_USER';
 
 const loadFriends = (user, friends) => ({
     type: LOAD_FRIENDS,
     user,
     friends
 });
-
-const removeUser = () => ({
-    type: REMOVE_USER
-})
 
 const initialState = { };
 
@@ -25,10 +20,11 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_FRIENDS:
             const friends = {}
-            
-            return { user: action.payload }
-        case REMOVE_USER:
-            return { user: null }
+            console.log(action.friends);
+            Object.values(action.friends.friends).forEach(friend => {
+                friends[friend.id] = friend
+            })
+            return { ...state, ...friends }
         default:
             return state;
     }
