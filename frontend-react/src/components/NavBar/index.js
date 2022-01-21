@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import ProfileButton from './ProfileButton';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -11,10 +11,14 @@ const NavBar = () => {
                 <NavLink to='/home' exact={true} activeClassName='active'>
                     <img src="/smmm-logo.png" alt="smmm logo" id="smmm-logo" />
                 </NavLink>
-                <NavLink to='/pay' exact={true} activeClassName='active'>
-                    Pay or Request
-                </NavLink>
-                <LogoutButton />
+                <div id="right-nav">
+                    <NavLink to='/pay' exact={true} activeClassName='active'>
+                        <div id="pay-button">
+                            <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />Pay or Request
+                        </div>
+                    </NavLink>
+                    <ProfileButton />
+                </div>
             </nav>
         </div>
     );

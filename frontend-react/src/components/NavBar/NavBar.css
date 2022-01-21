@@ -13,35 +13,41 @@
     font-weight: 500;
     background-color: green;
     width: 100%;
-    height: 100%;
+    height: 75px;
 }
 
-#home-nav > ul {
-    list-style-type: none;
-    color:rgb(220, 220, 220);
+#right-nav {
     display: flex;
-    align-items: center;
-    margin-right: 30px;
-}
-
-#home-nav li {
-    margin: 10px;
 }
 
 #smmm-logo {
-    width: 200px;
+    width: 175px;
+}
+
+#smmm-sign {
+    width: 20px;
+    margin-right: 10px;
+}
+
+#pay-button {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    background-color: rgb(0, 176, 79);
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: black;
+    font-weight: 700;
+    margin-right: 35px;
+}
+
+#pay-button:hover {
+    background-color: rgb(18, 133, 0);
 }
 
 #home-nav a:link, a:visited {
     text-decoration: none;
     color:rgb(220, 220, 220);
-}
-
-#signup {
-    border: 2px rgb(210, 210, 210) solid;
-    border-radius: 5px;
-    padding: 5px 11px;
-    font-size: 15px;
 }
 
 nav a:hover {
@@ -50,14 +56,91 @@ nav a:hover {
     cursor: pointer;
 }
 
-#signup:hover {
-    border: 2px white solid;
+#profile-icon {
+    font-weight: 700;
+    position: relative;
+    font-size: 20px;
+    color: rgb(200, 200, 200);
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
 
-#ymtl-container-home{
+.fa-cog {
+    font-size: 22px;
+}
+
+#profile-icon:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.profile-dropdown {
+    position: absolute;
     display: flex;
-    justify-content: flex-start;
-    padding-top: 20px;
-    margin-left: 30px;
-    margin-bottom: 15px;
+    flex-direction: column;
+    min-width: 260px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0;
+    top: 35px;
+    right: 15px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 10;
+    overflow: show;
+}
+
+.profile-dropdown li {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    display: flex;
+    padding: 10px;
+}
+
+#user-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#user-name span {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#user-name #email {
+    font-weight: normal;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+#log-out-button {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    font-size: 13px;
+    background-color: transparent;
+    border: none;
+}
+
+#log-out-button:hover {
+    background-color: rgba(119, 255, 0, 0.3);
+    cursor: pointer;
+}
+
+#user-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+    display: inline-block;
+    margin-right: 10px;
+    object-fit: cover;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 20px;
 }

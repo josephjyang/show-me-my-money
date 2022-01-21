@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
+import { getUsers } from '../../store/users';
 import './Newsfeed.css'
 
 function Newsfeed() {
@@ -12,7 +13,8 @@ function Newsfeed() {
     useEffect(() => {
         if (user) {
             dispatch(getFriends(user));
-            dispatch(getTransactions(user))
+            dispatch(getTransactions(user));
+            // dispatch(getUsers());
         }
     }, [dispatch, user])
 

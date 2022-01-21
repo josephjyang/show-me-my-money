@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import friends from './friends';
 import transactions from './transactions'
+import users from './users'
 
 const rootReducer = combineReducers({
     session,
     friends,
-    transactions
+    transactions,
+    users
 });
 
 

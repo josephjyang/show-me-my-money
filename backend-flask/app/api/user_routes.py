@@ -14,14 +14,14 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-# @login_required
+@login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
 
 @user_routes.route('/<int:id>/friends')
-# @login_required
+@login_required
 def get_all_friends(id):
     user = User.query.get(id)
     following = {friend.id: friend.to_dict_friends()
@@ -33,7 +33,7 @@ def get_all_friends(id):
 
 
 @user_routes.route('/<int:id>/friends/transactions')
-# @login_required
+@login_required
 def get_all_transactions(id):
     user = User.query.get(id)
     followedIds = [friend.id for friend in user.followed]

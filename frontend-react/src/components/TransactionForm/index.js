@@ -1,191 +1,124 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { createTransaction } from "../../store/transactions";
+import SearchBar from "../Search";
 
 const TransactionForm = () => {
-    const [backErrors, setBackErrors] = useState([])
+    const [backErrors, setBackErrors] = useState([]);
     const [errors, setErrors] = useState({});
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [profilePic, setProfilePic] = useState('');
+    const [friend, setFriend] = useState('');
+    const [amount, setAmount] = useState('');
+    const [details, setDetails] = useState('');
+    const [isPayment, setIsPayment] = useState(true);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory()
 
-    const onSignUp = async e => {
+    const submitPayment = async e => {
         e.preventDefault();
-        if (!username) errors.username = "Username is required"
-        if (!email) errors.email = "Email is required"
-        if (!firstName) errors.firstName = "First Name is required"
-        if (!lastName) errors.firstName = "Last Name is required"
-        if (!password) errors.password = "Password is required"
-        if (!confirmPassword) errors.cpassword = "Confirm Password is required"
+        if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
+        if (!friend) errors.friend = "Enter a recipient"
+        if (!details) errors.details = "Enter some details regarding the payment"
         setErrors({ ...errors })
-        if (Object.keys(errors).length > 0) return
-        if (password === confirmPassword) {
-            const newUser = {
-                username,
-                email,
-                password,
-                first_name: firstName,
-                last_name: lastName,
-                profile_pic: profilePic
-            }
-            const data = await dispatch(signUp(newUser));
-            if (data) {
-                setBackErrors(data);
-            }
+        if (Object.keys(errors).length > 0) return;
+        let payer_id = user.id;
+        let payee_id = friend.id;
+
+        const newTransaction = {
+            payer_id,
+            payee_id,
+            creator_id: user.id,
+            amount,
+            details,
+            paid: isPayment
         }
+        const data = await dispatch(createTransaction(newTransaction));
+        if (data.errors) setBackErrors(data.errors)
+        else history.push("/home")
     }
 
-    const updateUsername = (e) => {
-        setUsername(e.target.value);
-        if (e.target.value.length > 40) errors.username = "Username must be 40 characters or fewer"
-        else if (e.target.value.length <= 5) errors.username = "Username must be at least five characters"
-        else delete errors.username
+    const submitRequest = async e => {
+        e.preventDefault();
+        if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
+        if (!friend) errors.friend = "Enter a recipient"
+        if (!details) errors.details = "Enter some details regarding the payment"
+        setErrors({ ...errors })
+        if (Object.keys(errors).length > 0) return;
+        let payer_id = friend.id;
+        let payee_id = user.id;
+        const newTransaction = {
+            payer_id,
+            payee_id,
+            creator_id: user.id,
+            amount,
+            details,
+            paid: isPayment
+        }
+        const data = await dispatch(createTransaction(newTransaction));
+        if (data.errors) setBackErrors(data.errors)
+        else history.push("/home")
+    }
+
+    const updateAmount = (e) => {
+        setAmount(e.target.value);
+        if (typeof parseInt(e.target.value) !== "number" || e.target.value <= 0) errors.amount = "Enter a value greater than $0!"
+        else delete errors.amount
     };
 
-    const validateEmail = email => {
-        const validRegex =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-        if (email.match(validRegex)) return true;
-        else return false;
-    }
-
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
-        if (e.target.value.length > 255) errors.email = "Email must be 255 characters or fewer"
-        else if (e.target.value.length <= 6) errors.email = "Email must be at least six characters"
-        else if (!validateEmail(e.target.value)) errors.email = "Please enter a valid email address"
+    const updateDetails = (e) => {
+        setDetails(e.target.value);
+        if (e.target.value.length <= 0) errors.details = "Enter some details regarding the payment"
         else delete errors.email
     };
 
-    const updatePassword = (e) => {
-        setPassword(e.target.value);
-        if (e.target.value.length === 0) {
-            errors.password = "Password is required"
-        } else delete errors.password
-    };
-
-    const updateConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value);
-        if (e.target.value.length === 0) errors.cpassword = "Confirm Password is required"
-        else if (password !== e.target.value) errors.cpassword = "Password and Confirm Password must match"
-        else delete errors.cpassword
-    };
-
-    const updateFirstName = e => {
-        setFirstName(e.target.value);
-        if (e.target.value.length > 100) errors.firstName = "First Name must be 100 characters or fewer"
-        else if (e.target.value.length === 0) errors.firstName = "First Name is required"
-        else delete errors.firstName
-    };
-
-    const updateLastName = (e) => {
-        setLastName(e.target.value);
-        if (e.target.value.length > 100) errors.lastName = "Last Name must be 100 characters or fewer"
-        else if (e.target.value.length === 0) errors.lastName = "Last Name is required"
-        else delete errors.lastName
-    };
-
-    const updateProfilePic = e => setProfilePic(e.target.value);
-
+    
     return (
-        <form onSubmit={onSignUp}>
+        <div>
             <div>
-                {backErrors.map((error, ind) => (
+                {backErrors?.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
             <div>
-                {errors.username && <p className="signup-error">{errors.username}</p>}
+                {errors.amount && <p className="transaction-error">{errors.amount}</p>}
                 <input
-                    className={errors.username ? "error signup-field" : "signup-field"}
+                    className={errors.amount ? "error transaction-field" : "transaction-field"}
                     type='text'
-                    placeholder='Username'
-                    name='username'
-                    onChange={updateUsername}
-                    value={username}
+                    placeholder='0'
+                    name='amount'
+                    onChange={updateAmount}
+                    value={amount}
                     required={true}
                 />
             </div>
             <div>
-                {errors.email && <p className="signup-error">{errors.email}</p>}
+                <label htmlFor="friend">To</label>
+                {!friend && <SearchBar friend={friend} setFriend={setFriend}/>}
+                {friend && <div>{friend.first_name} {friend.last_name}<i onClick={() => setFriend('')}className="fas fa-times"/></div>}
+            </div>
+            <div>
+                {errors.details && <p className="transaction-error">{errors.details}</p>}
+                <label htmlFor="details">Note</label>
                 <input
-                    className={errors.email ? "error signup-field" : "signup-field"}
+                    className={errors.details ? "error transaction-field" : "transaction-field"}
                     type='text'
-                    placeholder="Email"
-                    name='email'
-                    onChange={updateEmail}
-                    value={email}
+                    name='details'
+                    onChange={updateDetails}
+                    value={details}
                     required={true}
                 />
             </div>
-            <div>
-                {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
-                <input
-                    className={errors.email ? "error signup-field" : "signup-field"}
-                    placeholder="First Name"
-                    type='text'
-                    name='firstName'
-                    onChange={updateFirstName}
-                    value={firstName}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
-                <input
-                    className={errors.lastName ? "error signup-field" : "signup-field"}
-                    type='text'
-                    placeholder="Last Name"
-                    name='lastName'
-                    onChange={updateLastName}
-                    value={lastName}
-                    required={true}
-                />
-            </div>
-            <div>
-                <input
-                    className="signup-field"
-                    type='text'
-                    placeholder="Profile Picture URL"
-                    name='profilePic'
-                    onChange={updateProfilePic}
-                    value={profilePic}
-                />
-            </div>
-            <div>
-                {errors.password && <p className="signup-error">{errors.password}</p>}
-                <input
-                    className={errors.password ? "error signup-field" : "signup-field"}
-                    type='password'
-                    placeholder="Password"
-                    name='password'
-                    onChange={updatePassword}
-                    value={password}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
-                <input
-                    className={errors.cpassword ? "error signup-field" : "signup-field"}
-                    type='password'
-                    placeholder="Confirm Password"
-                    name='confirmPassword'
-                    onChange={updateConfirmPassword}
-                    value={confirmPassword}
-                    required={true}
-                />
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
+            <button type="button" onClick={async (e) => {
+                await setIsPayment(true);
+                submitPayment(e)
+                }}>Pay</button>
+            <button type="button" onClick={async (e) => {
+                await setIsPayment(false);
+                submitRequest(e)
+            }}>Request</button>
+        </div>
     );
 };
 

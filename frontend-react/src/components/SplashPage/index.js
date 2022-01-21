@@ -10,8 +10,9 @@ const SplashPage = () => {
 
     else return (
         <>
-            <h1 id='homepage-header'>The smart to-do app for busy people.</h1>
-            <a href="/sign-up" id='homepage-signup-button'> Sign Up Free</a>
+            <h1 id='homepage-header'>Fast, safe, social payments.</h1>
+            <h3>Pay. Get Paid. Share. When you need to see your money, come to Show Me My Money</h3>
+            <a href="/sign-up" id='homepage-signup-button'>Get SMMY</a>
             <footer id='homepage-footer'>
                 <div className='footer-container'>
                     <div className='footer-nav-div'>
