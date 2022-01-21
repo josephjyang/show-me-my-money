@@ -30,37 +30,12 @@ def new_transaction():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@transaction_routes.route('/<int:id>')
+@transaction_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
-
-
-@transaction_routes.route('/<int:id>/friends')
-@login_required
-def get_all_friends(id):
-    user = User.query.get(id)
-    following = {friend.id: friend.to_dict_friends()
-                 for friend in user.following}
-    followed = {friend.id: friend.to_dict_friends()
-                for friend in user.followed}
-    friends = {**following, **followed}
-    return {'friends': friends}
-
-
-@transaction_routes.route('/<int:id>/friends/transactions')
-@login_required
-def get_all_transactions(id):
-    user = User.query.get(id)
-    followedIds = [friend.id for friend in user.followed]
-    followingIds = [friend.id for friend in user.following]
-    friendIds = followedIds + followingIds
-    transactions = Transaction.query.filter(or_(Transaction.payee_id == user.id,
-                                                Transaction.payer_id == user.id,
-                                                Transaction.payee_id.in_(
-                                                    friendIds),
-                                                Transaction.payee_id.in_(
-                                                    friendIds),
-                                                ))
-    return {'transactions': [transaction.to_dict() for transaction in transactions]}
+def delete_transaction(id):
+	transaction = Transaction.query.get(id)
+	db.session.delete(transaction)
+	db.session.commit()
+	return {'message': 'Successfully Deleted Transaction'}
+	# Delete task from database
+	# return success message

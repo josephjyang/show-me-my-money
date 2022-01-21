@@ -1,5 +1,6 @@
 const LOAD_TRANSACTIONS = 'transactions/LOAD_TRANSACTIONS';
 const ADD_TRANSACTION = 'transactions/ADD_TRANSACTION';
+const REMOVE_TRANSACTION = 'transactions/REMOVE_TRANSACTION';
 
 const loadTransactions = (user, transactions) => ({
     type: LOAD_TRANSACTIONS,
@@ -10,6 +11,13 @@ const loadTransactions = (user, transactions) => ({
 const addTransaction = transaction => {
     return {
         type: ADD_TRANSACTION,
+        transaction
+    }
+}
+
+const removeTransaction = transaction => {
+    return {
+        type: REMOVE_TRANSACTION,
         transaction
     }
 }
@@ -37,6 +45,17 @@ export const createTransaction = newTransaction => async dispatch => {
     }
 }
 
+export const deleteTransaction = transaction => async dispatch => {
+    const res = await fetch(`/api/transactions/${transaction.id}`, {
+        method: 'DELETE',
+    });
+    const data = await res.json();
+    if (res.ok) {
+        dispatch(removeTransaction(transaction))
+        return data
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -46,6 +65,9 @@ export default function reducer(state = initialState, action) {
                 transactions[transaction.id] = transaction
             })
             return { ...state, ...transactions }
+        case REMOVE_TRANSACTION:
+            delete newState[action.transaction.id]
+            return newState;
         default:
             return state;
     }
