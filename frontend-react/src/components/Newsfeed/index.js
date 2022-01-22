@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
@@ -46,6 +46,12 @@ function Newsfeed() {
                                 {(transaction.payer_id === user.id || transaction.payee_id === user.id) && <span> ${transaction.amount}</span>}
                                 <div className="transaction-details">
                                     {transaction.details}
+                                </div>
+                                <div className="icon-container">
+                                    <i class="fas fa-heart" />
+                                    <NavLink to={`/transactions/${transaction.id}`}>
+                                        <i class="fas fa-comment" />    
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>

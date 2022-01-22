@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Transaction, db
+from app.models import User, Transaction, db, Comment
 from sqlalchemy import or_
-from app.forms import TransactionForm
+from app.forms import TransactionForm, CommentForm
 
 transaction_routes = Blueprint('transactions', __name__)
 
@@ -57,3 +57,18 @@ def delete_transaction(id):
 	return {'message': 'Successfully Deleted Transaction'}
 	# Delete task from database
 	# return success message
+
+
+@transaction_routes.route('/<int:id>/comments', methods=["POST"])
+@login_required
+def new_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form)
+    if form.validate_on_submit():
+        comment = Comment()
+        form.populate_obj(comment)
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

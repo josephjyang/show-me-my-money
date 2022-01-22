@@ -7,7 +7,8 @@ def seed_users():
         email="demo@aa.io", 
         password="password", 
         first_name="Demo", 
-        last_name="User"
+        last_name="User",
+        balance=10000
     )
     rod = User(
         username="rod.tidwell85", 
@@ -15,7 +16,8 @@ def seed_users():
         password="password", 
         first_name="Rod", 
         last_name="Tidwell",
-        profile_pic="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cuba_Gooding_Jr._2012.jpg/1200px-Cuba_Gooding_Jr._2012.jpg"
+        profile_pic="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cuba_Gooding_Jr._2012.jpg/1200px-Cuba_Gooding_Jr._2012.jpg",
+        balance=5346284.85
     )
     jerry = User(
         username="jerry.maguire",
@@ -23,7 +25,8 @@ def seed_users():
         password="password",
         first_name="Jerry",
         last_name="Maguire",
-        profile_pic="https://www.biography.com/.image/t_share/MTc5ODc1NTM4NjMyOTc2Mzcz/gettyimages-693134468.jpg"
+        profile_pic="https://www.biography.com/.image/t_share/MTc5ODc1NTM4NjMyOTc2Mzcz/gettyimages-693134468.jpg",
+        balance=380269.52
     )
     marcee = User(
         username="marcee.tidwell",
@@ -31,7 +34,8 @@ def seed_users():
         password="password",
         first_name="Marcee",
         last_name="Tidwell",
-        profile_pic="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Regina_King_by_Gage_Skidmore.jpg/640px-Regina_King_by_Gage_Skidmore.jpg"
+        profile_pic="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Regina_King_by_Gage_Skidmore.jpg/640px-Regina_King_by_Gage_Skidmore.jpg",
+        balance=35485.36
     )
     dorothy = User(
         username="dorothy.maguire",
@@ -39,7 +43,8 @@ def seed_users():
         password="password",
         first_name="Dorothy",
         last_name="Maguire",
-        profile_pic="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimagesvc.meredithcorp.io%2Fv3%2Fmm%2Fimage%3Furl%3Dhttps%253A%252F%252Fstatic.onecms.io%252Fwp-content%252Fuploads%252Fsites%252F20%252F2021%252F02%252F04%252Frenee-zellweger.jpg&q=85"
+        profile_pic="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimagesvc.meredithcorp.io%2Fv3%2Fmm%2Fimage%3Furl%3Dhttps%253A%252F%252Fstatic.onecms.io%252Fwp-content%252Fuploads%252Fsites%252F20%252F2021%252F02%252F04%252Frenee-zellweger.jpg&q=85",
+        balance=23538.29
     )
     ray = User(
         username="ray.maguire",
@@ -47,7 +52,8 @@ def seed_users():
         password="password",
         first_name="Ray",
         last_name="Maguire",
-        profile_pic="https://cbsnews2.cbsistatic.com/hub/i/r/2010/10/11/98f5727f-a642-11e2-a3f0-029118418759/thumbnail/640x480/9fd224f1e82d36d5fd721a5e2f459145/jonathan_lipnick_424.jpg"
+        profile_pic="https://cbsnews2.cbsistatic.com/hub/i/r/2010/10/11/98f5727f-a642-11e2-a3f0-029118418759/thumbnail/640x480/9fd224f1e82d36d5fd721a5e2f459145/jonathan_lipnick_424.jpg",
+        balance=7393.54
     )
     tyson = User(
         username="tyson.tidwell85",
@@ -55,7 +61,8 @@ def seed_users():
         password="password",
         first_name="Tyson",
         last_name="Tidwell",
-        profile_pic="https://m.media-amazon.com/images/M/MV5BMzA5ZWM5ZjctNTNiZi00NjJkLTkwY2QtZDhhZWUzZWUyMTA0XkEyXkFqcGdeQXVyOTExNDkxMjk@._V1_.jpg"
+        profile_pic="https://m.media-amazon.com/images/M/MV5BMzA5ZWM5ZjctNTNiZi00NjJkLTkwY2QtZDhhZWUzZWUyMTA0XkEyXkFqcGdeQXVyOTExNDkxMjk@._V1_.jpg",
+        balance=35982.35
     )
 
     rod.following.append(jerry)

@@ -34,6 +34,7 @@ function ProfileButton() {
                     <img id="user-picture" src={user.profile_pic} alt="user" />
                     <div id="user-name">
                         <span>{user.first_name} {user.last_name}</span>
+                        <span>{user.balance}Hi</span>
                         <span id="email">@{user.username}</span>
                     </div>
                 </li>
