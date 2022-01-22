@@ -12,6 +12,7 @@ import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
 import Newsfeed from './components/Newsfeed';
 import TransactionForm from './components/TransactionForm';
+import Transaction from './components/Transaction';
 import { authenticate } from './store/session';
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
                         </ProtectedRoute>
                         <ProtectedRoute path='/transactions/:transactionId/edit'>
                             <TransactionForm />
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/transactions/:transactionId'>
+                            <Transaction />
                         </ProtectedRoute>
                     </Switch>
                 )}

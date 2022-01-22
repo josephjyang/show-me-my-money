@@ -18,3 +18,27 @@ class Comment(db.Model):
     user = db.relationship("User", back_populates="comments")
     transaction = db.relationship(
         "Transaction", back_populates="comments")
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'transaction_id': self.transaction_id,
+            'content': self.content,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'user': self.user.to_dict_friends(),
+            'transaction': self.transaction.to_dict_user()
+        }
+    
+
+    def to_dict_transactions(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'transaction_id': self.transaction_id,
+            'content': self.content,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'user': self.user.to_dict_friends(),
+        }

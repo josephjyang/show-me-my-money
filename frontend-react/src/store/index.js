@@ -4,12 +4,14 @@ import session from './session';
 import friends from './friends';
 import transactions from './transactions'
 import users from './users'
+import comments from './comments'
 
 const rootReducer = combineReducers({
     session,
     friends,
     transactions,
-    users
+    users,
+    comments
 });
 
 

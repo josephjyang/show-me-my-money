@@ -35,7 +35,7 @@ def seed_transactions():
         creator_id=4,
         amount=34.75,
         details="For drinks last night. It was so fun! We should do it again soon.",
-        paid=False
+        paid=True
     )
 
     rod_ray = Transaction(

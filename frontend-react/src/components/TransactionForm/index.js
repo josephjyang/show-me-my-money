@@ -22,8 +22,7 @@ const TransactionForm = () => {
     const dispatch = useDispatch();
     const history = useHistory()
 
-    const submitPayment = async e => {
-        e.preventDefault();
+    const submitPayment = async () => {
         if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
         if (!friend) errors.friend = "Enter a recipient"
         if (!details) errors.details = "Enter some details regarding the payment"
@@ -58,8 +57,7 @@ const TransactionForm = () => {
         else history.push("/home")
     }
 
-    const submitRequest = async e => {
-        e.preventDefault();
+    const submitRequest = async () => {
         if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
         if (!friend) errors.friend = "Enter a recipient"
         if (!details) errors.details = "Enter some details regarding the payment"
@@ -149,14 +147,8 @@ const TransactionForm = () => {
                     />
                 </div>
                 <div id="transaction-buttons">
-                    <button id="payment-button" type="button" onClick={async (e) => {
-                        // await setIsPayment(true);
-                        submitPayment(e)
-                        }}>Pay</button>
-                    <button id="request-button" type="button" onClick={async (e) => {
-                        // await setIsPayment(false);
-                        submitRequest(e)
-                    }}>Request</button>
+                    <button id="payment-button" type="button" onClick={submitPayment}>Pay</button>
+                    <button id="request-button" type="button" onClick={submitRequest}>Request</button>
                 </div>
             </div>
         </div>
