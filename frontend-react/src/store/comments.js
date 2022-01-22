@@ -24,8 +24,9 @@ const removeComment = comment => {
 const initialState = {};
 
 export const getComments = () => async dispatch => {
-    const res = await fetch(`/api/comments`)
+    const res = await fetch(`/api/comments/`)
     const comments = await res.json();
+    console.log(comments)
     dispatch(loadComments(comments));
     return comments;
 }

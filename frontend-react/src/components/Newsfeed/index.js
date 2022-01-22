@@ -5,6 +5,7 @@ import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
 import { deleteTransaction } from '../../store/transactions';
+import { getComments } from '../../store/comments';
 import './Newsfeed.css'
 
 function Newsfeed() {
@@ -18,6 +19,7 @@ function Newsfeed() {
             dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());
+            dispatch(getComments())
         }
     }, [dispatch, user])
 
