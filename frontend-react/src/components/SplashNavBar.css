@@ -8,6 +8,8 @@
     padding: 0 30px;
     width: 100vw;
     position:fixed;
+    top: 0;
+    z-index: 10;
 }
 
 #splash-nav-left {
@@ -38,7 +40,9 @@
     margin: 15px;
 }
 
-#splash-nav a:link, a:visited {
+#splash-nav a:link, a:visited,
+#about-link:visited,
+#about-link {
     text-decoration: none;
     color: black;
 }
@@ -68,7 +72,7 @@ nav a:hover {
 }
 
 #sign-up-button:hover {
-    background-color: #7DAD9D;
+    background-color: #91c4b3;
     transition: 0.2s;
 }
 
