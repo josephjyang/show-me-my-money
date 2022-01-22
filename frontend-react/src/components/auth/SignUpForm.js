@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import './SignUpForm.css'
 
 const SignUpForm = () => {
     const [backErrors, setBackErrors] = useState([])
@@ -98,7 +99,7 @@ const SignUpForm = () => {
     if (user) return <Redirect to="/" />;
 
     return (
-        <form onSubmit={onSignUp}>
+        <form id="sign-up-form" onSubmit={onSignUp}>
             <div>
                 {backErrors.map((error, ind) => (
                     <div key={ind}>{error}</div>
