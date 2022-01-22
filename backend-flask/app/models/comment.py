@@ -36,6 +36,7 @@ class Comment(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
+            'transaction_id': self.transaction_id,
             'content': self.content,
             'created_at': self.created_at,
             'updated_at': self.updated_at,

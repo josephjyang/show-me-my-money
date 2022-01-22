@@ -56,16 +56,18 @@ export const deleteComment = comment => async dispatch => {
 }
 
 export const updateComment = comment => async dispatch => {
+    console.log(comment)
     const res = await fetch(`/api/comments/${comment.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
     const data = await res.json();
+    console.log(data)
     if (res.ok) {
         dispatch(addComment(data))
         return data
-    }
+    } else return data;
 }
 
 export default function reducer(state = initialState, action) {

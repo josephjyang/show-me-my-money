@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory, useParams, NavLink } from "react-router-dom";
-import { signUp } from "../../store/session";
-import { createComment, deleteComment } from "../../store/comments";
-import { createTransaction, updateTransaction, getTransactions } from "../../store/transactions";
-import SearchBar from "../Search";
+import { useHistory, useParams, NavLink } from "react-router-dom";
+import { createComment, deleteComment, updateComment } from "../../store/comments";
+import { getTransactions } from "../../store/transactions";
 import './Transaction.css';
 
 const Transaction = () => {
@@ -13,6 +11,8 @@ const Transaction = () => {
     const { transactionId } = useParams();
     const [errors, setErrors] = useState({});
     const [content, setContent] = useState();
+    const [edit, setEdit] = useState(false);
+    const [editContent, setEditContent] = useState();
     const transaction = transactions[transactionId]
     const comments = Object.values(transaction.comments)
     const dispatch = useDispatch();
@@ -36,7 +36,23 @@ const Transaction = () => {
         })
         dispatch(getTransactions(user))
     }
+    
+    const editSubmit = async e => {
+        e.preventDefault();
 
+        let editedComment = transaction.comments[edit]
+        
+        editedComment.content = editContent
+        
+        const data = await dispatch(updateComment(editedComment));
+        if (data.errors) setErrors(data.errors)
+        else {
+            dispatch(getTransactions(user));
+            setEditContent("");
+            setEdit(false);
+        }
+    }
+    
     return (
         <div id="transaction-container">
             <div className="transaction-information">
@@ -62,7 +78,24 @@ const Transaction = () => {
                 {comments.map(comment => (
                     <div>
                         <img className="creator-picture" src={comment.user.profile_pic} alt="commenter" />
-                        {comment.content}
+                        {edit === comment.id ? (
+                            <form onSubmit={editSubmit}>
+                                <input
+                                    className={errors.details ? "error comment-field" : "comment-field"}
+                                    id="comment-field"
+                                    type='text'
+                                    placeholder='Write a comment...'
+                                    name='comment'
+                                    onChange={e => setEditContent(e.target.value)}
+                                    value={editContent}
+                                    required={true}
+                                />
+                            </form>
+                        ) : comment.content}
+                        <i className="fas fa-edit" onClick={() => {
+                            setEdit(comment.id)
+                            setEditContent(comment.content)
+                            }}></i>
                         <i className="fas fa-trash" onClick={() => removeComment(comment)}></i>
                     </div>
                 ))}

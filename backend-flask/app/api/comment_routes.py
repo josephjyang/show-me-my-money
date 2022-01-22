@@ -29,3 +29,17 @@ def delete_comment(id):
 	db.session.delete(comment)
 	db.session.commit()
 	return {'message': 'Successfully Deleted Comment'}
+
+
+@comment_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_comment(id):
+    comment = Comment.query.get(id)
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment.content = form.content.data
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
