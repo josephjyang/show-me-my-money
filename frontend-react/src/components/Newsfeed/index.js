@@ -50,9 +50,9 @@ function Newsfeed() {
                                     {transaction.details}
                                 </div>
                                 <div className="icon-container">
-                                    <i class="fas fa-heart" />
+                                    <i className="fas fa-heart" />
                                     <NavLink to={`/transactions/${transaction.id}`}>
-                                        <i class="fas fa-comment" />    
+                                        <i className="fas fa-comment" />    
                                     </NavLink>
                                 </div>
                             </div>

@@ -30,6 +30,7 @@ const Transaction = () => {
             transaction_id: transaction.id,
             content
         }
+        setContent("")
         await dispatch(createComment(newComment, transaction)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
@@ -67,16 +68,16 @@ const Transaction = () => {
                         {transaction.details}
                     </div>
                     <div className="icon-container">
-                        <i class="fas fa-heart" />
+                        <i className="fas fa-heart" />
                         <NavLink to={`/transactions/${transaction.id}`}>
-                            <i class="fas fa-comment" />
+                            <i className="fas fa-comment" />
                         </NavLink>
                     </div>
                 </div>
             </div>
             <div id="transaction-comments-container">
                 {comments.map(comment => (
-                    <div>
+                    <div key={comment.id}>
                         <img className="creator-picture" src={comment.user.profile_pic} alt="commenter" />
                         {edit === comment.id ? (
                             <form onSubmit={editSubmit}>
