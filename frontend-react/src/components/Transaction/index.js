@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams, NavLink } from "react-router-dom";
 import { signUp } from "../../store/session";
-import { createComment } from "../../store/comments";
+import { createComment, deleteComment } from "../../store/comments";
 import { createTransaction, updateTransaction, getTransactions } from "../../store/transactions";
 import SearchBar from "../Search";
 import './Transaction.css';
@@ -16,7 +16,12 @@ const Transaction = () => {
     const transaction = transactions[transactionId]
     const comments = Object.values(transaction.comments)
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
+
+    const removeComment = async comment => {
+        await dispatch(deleteComment(comment));
+        dispatch(getTransactions(user));
+    }
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -58,6 +63,7 @@ const Transaction = () => {
                     <div>
                         <img className="creator-picture" src={comment.user.profile_pic} alt="commenter" />
                         {comment.content}
+                        <i className="fas fa-trash" onClick={() => removeComment(comment)}></i>
                     </div>
                 ))}
             </div>

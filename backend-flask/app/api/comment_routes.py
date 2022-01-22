@@ -20,3 +20,12 @@ def validation_errors_to_error_messages(validation_errors):
 def get_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
+
+
+@comment_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_comment(id):
+	comment = Comment.query.get(id)
+	db.session.delete(comment)
+	db.session.commit()
+	return {'message': 'Successfully Deleted Comment'}
