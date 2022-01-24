@@ -17,7 +17,7 @@ const filterUsers = (users, query) => {
     });
 };
 
-const SearchBar = ({ setFriend, friend }) => {
+const SearchBar = ({ setFriend, friend, errors }) => {
     const user = useSelector(state => state.session.user);
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
@@ -53,11 +53,15 @@ const SearchBar = ({ setFriend, friend }) => {
                     type="text"
                     id="header-search"
                     name="s"
+                    placeholder="Name or @username"
                 />
             </form>
             <div id="search-results">
                 {searchQuery && !friend && filteredUsers.map(user => (
-                    <div onClick={() => setFriend(user)}key={user.id} className="user-card">
+                    <div onClick={() => {
+                        setFriend(user);
+                        delete errors.friend;
+                        }}key={user.id} className="user-card">
                         <img className="user-card-pic" src={user.profile_pic} alt="user profile" />
                         <div className="user-card-info">
                                 <div>{user.first_name} {user.last_name}</div>

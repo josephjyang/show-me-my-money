@@ -44,12 +44,17 @@ function Newsfeed() {
                     <div className="transaction-container" key={transaction.id}>
                         <div className="transaction-information">
                             <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator"/>
-                            <div className="transaction-info">
-                                <span className="user-name">{transaction.creator.first_name} </span>
-                                {transaction.payer_id === transaction.creator_id ? 
-                                    <span>paid <span className="user-name">{transaction.payee.first_name}</span></span>
-                                    : <span>charged <span className="user-name">{transaction.payer.first_name}</span></span>}
-                                {(transaction.payer_id === user.id || transaction.payee_id === user.id) && <span> ${transaction.amount}</span>}
+                            <div className="transaction-content">
+                                <div className="content-header">
+                                    <div className="content-header-names">
+                                        <span className="user-name">{transaction.creator.first_name} </span>
+                                        {transaction.payer_id === transaction.creator_id ? 
+                                            <span>paid <span className="user-name">{transaction.payee.first_name}</span></span>
+                                            : <span>charged <span className="user-name">{transaction.payer.first_name}</span></span>}
+                                    </div>
+                                    {transaction.payer_id === user.id && <div className="neg-amount"> -${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                    {transaction.payee_id === user.id && <div className="pos-amount"> +${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                </div>
                                 <div className="transaction-details">
                                     {transaction.details}
                                 </div>
@@ -58,11 +63,11 @@ function Newsfeed() {
                                     <NavLink to={`/transactions/${transaction.id}`}>
                                         <i className="fas fa-comment" />    
                                     </NavLink>
-                                    {Object.keys(transaction.comments).length}
+                                    {Object.keys(transaction.comments).length > 0 && Object.keys(transaction.comments).length}
                                 </div>
                             </div>
                         </div>
-                        {(transaction.creator_id === user.id) &&
+                        {/* {(transaction.creator_id === user.id) &&
                         (
                             <div className="transaction-icons">
                                 <i className="fas fa-edit" onClick={() => {
@@ -70,7 +75,7 @@ function Newsfeed() {
                                 }}></i>
                                 <i className="fas fa-trash" onClick={() => deleteTrans(transaction)}></i>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 )
             })}

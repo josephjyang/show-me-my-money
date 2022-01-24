@@ -55,70 +55,83 @@ const Transaction = () => {
     }
     
     return (
-        <div id="transaction-container">
-            <div className="transaction-information">
-                <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
-                <div className="transaction-info">
-                    <span className="user-name">{transaction.creator.first_name} </span>
-                    {transaction.payer_id === transaction.creator_id ?
-                        <span>paid <span className="user-name">{transaction.payee.first_name}</span></span>
-                        : <span>charged <span className="user-name">{transaction.payer.first_name}</span></span>}
-                    {(transaction.payer_id === user.id || transaction.payee_id === user.id) && <span> ${transaction.amount}</span>}
-                    <div className="transaction-details">
-                        {transaction.details}
-                    </div>
-                    <div className="icon-container">
-                        <i className="fas fa-heart" />
-                        <NavLink to={`/transactions/${transaction.id}`}>
-                            <i className="fas fa-comment" />
-                        </NavLink>
+        <div id="transaction-page">
+            <div id="transaction-container">
+                <div className="transaction-information">
+                    <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
+                    <div className="transaction-info">
+                        <span className="user-name">{transaction.creator.first_name} </span>
+                        {transaction.payer_id === transaction.creator_id ?
+                            <span>paid <span className="user-name">{transaction.payee.first_name}</span></span>
+                            : <span>charged <span className="user-name">{transaction.payer.first_name}</span></span>}
+                        {(transaction.payer_id === user.id || transaction.payee_id === user.id) && <span> ${transaction.amount}</span>}
+                        <div className="transaction-details">
+                            {transaction.details}
+                        </div>
+                        <div className="icon-container">
+                            <i className="fas fa-heart" />
+                            <NavLink to={`/transactions/${transaction.id}`}>
+                                <i className="fas fa-comment" />
+                            </NavLink>
+                            {Object.keys(transaction.comments).length}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="transaction-comments-container">
-                {comments.map(comment => (
-                    <div key={comment.id}>
-                        <img className="creator-picture" src={comment.user.profile_pic} alt="commenter" />
-                        {edit === comment.id ? (
-                            <form onSubmit={editSubmit}>
-                                <input
-                                    className={errors.details ? "error comment-field" : "comment-field"}
-                                    id="comment-field"
-                                    type='text'
-                                    placeholder='Write a comment...'
-                                    name='comment'
-                                    onChange={e => setEditContent(e.target.value)}
-                                    value={editContent}
-                                    required={true}
-                                />
-                            </form>
-                        ) : comment.content}
-                        <i className="fas fa-edit" onClick={() => {
-                            setEdit(comment.id)
-                            setEditContent(comment.content)
-                            }}></i>
-                        <i className="fas fa-trash" onClick={() => removeComment(comment)}></i>
-                    </div>
-                ))}
-            </div>
-            <div id="comment-form-container">
-                <div id="comment-form">
-                    <div id="comment-details">
-                        <img className="creator-picture" src={user.profile_pic} alt="creator" />
-                        <input
-                            className={errors.details ? "error comment-field" : "comment-field"}
-                            id="comment-field"
-                            type='text'
-                            placeholder='Write a comment...'
-                            name='comment'
-                            onChange={e => setContent(e.target.value)}
-                            value={content}
-                            required={true}
-                        />
-                    </div>
-                    {errors.comment && <p className="comment-error">{errors.comment}</p>}
-                    <div id="comment-buttons">
-                        <button id="comment-button" type="button" onClick={onSubmit}>Submit</button>
+                <div id="transaction-comments-container">
+                    {comments.map(comment => (
+                        <div className="comment-container" key={comment.id}>
+                            <img className="creator-picture" src={comment.user.profile_pic} alt="commenter" />
+                            <div className="comment-content-ctr">
+                                <div className="comment-inner-ctr">
+                                    <div className="commenter-fname">{comment.user.first_name}</div>
+                                    {edit === comment.id ? (
+                                        <form className="edit-comment-form" onSubmit={editSubmit}>
+                                            <input
+                                                className={errors.details ? "error edit comment-field" : "edit comment-field"}
+                                                id="comment-field"
+                                                type='text'
+                                                placeholder='Write a comment...'
+                                                name='comment'
+                                                onChange={e => setEditContent(e.target.value)}
+                                                value={editContent}
+                                                required={true}
+                                            />
+                                        </form>
+                                    ) : (<div>{comment.content}</div>)}
+                                </div>
+                                {comment.user_id === user.id && 
+                                    <div className="transaction-icons">
+                                        <i className="fas fa-edit" onClick={() => {
+                                        setEdit(comment.id)
+                                        setEditContent(comment.content)
+                                        }}></i>
+                                        <i className="fas fa-trash" onClick={() => removeComment(comment)}></i>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div id="comment-form-container">
+                    <div id="comment-form">
+                        <div id="comment-details-container">
+                            <div id="comment-details">
+                                <img className="comment-picture" src={user.profile_pic} alt="creator" />
+                                <form id="new-comment-form" onSubmit={onSubmit}>
+                                    <input
+                                        className={errors.details ? "error comment-field" : "comment-field"}
+                                        id="comment-field"
+                                        type='text'
+                                        placeholder='Write a comment...'
+                                        name='comment'
+                                        onChange={e => setContent(e.target.value)}
+                                        value={content}
+                                        required={true}
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                        {errors.comment && <p className="comment-error">{errors.comment}</p>}
                     </div>
                 </div>
             </div>

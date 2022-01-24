@@ -18,7 +18,6 @@ const TransactionForm = () => {
     const [friend, setFriend] = useState(transactionId ? transaction.creator_id === transaction.payer_id ? transaction.payee : transaction.payer : '');
     const [amount, setAmount] = useState(transactionId ? transaction.amount : '');
     const [details, setDetails] = useState(transactionId ? transaction.details : '');
-    // const [isPayment, setIsPayment] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -95,7 +94,7 @@ const TransactionForm = () => {
 
     const updateAmount = (e) => {
         setAmount(e.target.value);
-        if (typeof parseInt(e.target.value) !== "number" || e.target.value <= 0) errors.amount = "Enter a value greater than $0!"
+        if (isNaN(parseInt(e.target.value)) || e.target.value <= 0) errors.amount = "Enter a value greater than 0!"
         else delete errors.amount
     };
 
@@ -114,37 +113,48 @@ const TransactionForm = () => {
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <div id="transaction-amount">
-                    <span>$</span>
-                    <input
-                        className={errors.amount ? "error transaction-field" : "transaction-field"}
-                        id="transaction-amount-field"
-                        type='text'
-                        placeholder='0'
-                        name='amount'
-                        onChange={updateAmount}
-                        value={amount}
-                        required={true}
-                        />
+                <div id="amount-container">
+                    <div id="transaction-amount">
+                        <span>$</span>
+                        <input
+                            className={errors.amount ? "error transaction-field" : "transaction-field"}
+                            id="transaction-amount-field"
+                            type='text'
+                            placeholder='0'
+                            name='amount'
+                            onChange={updateAmount}
+                            value={amount}
+                            required={true}
+                            />
+                    </div>
+                    {errors.amount && <p className="transaction-error">{errors.amount}</p>}
                 </div>
-                {errors.amount && <p className="transaction-error">{errors.amount}</p>}
-                <div id="transaction-recipient">
-                    <label htmlFor="friend">To</label>
-                    {!friend && <SearchBar friend={friend} setFriend={setFriend}/>}
-                    {friend && <div className="recipient-container"><div className="recipient-name">{friend.first_name} {friend.last_name}</div><i onClick={() => setFriend('')}className="fas fa-times"/></div>}
+                <div id="recipient-container">
+                    <div id="transaction-recipient">
+                        <label htmlFor="friend">To</label>
+                        {!friend && <SearchBar friend={friend} setFriend={setFriend} errors={errors}/>}
+                        {friend && <div className="recipient-container"><div className="recipient-name">{friend.first_name} {friend.last_name}</div>
+                            <i onClick={() => {
+                                setFriend('');
+                                errors.friend = "Enter a recipient"
+                                }}className="fas fa-times"/></div>}
+                    </div>
+                    {errors.friend && <p className="transaction-error">{errors.friend}</p>}
                 </div>
-                <div id="transaction-details-container">
+                <div id="details-container">
+                    <div id="transaction-details-container">
+                        <label htmlFor="details">Note</label>
+                        <textarea
+                            className={errors.details ? "error transaction-field" : "transaction-field"}
+                            id="transaction-details"
+                            type='text'
+                            name='details'
+                            onChange={updateDetails}
+                            value={details}
+                            required={true}
+                            />
+                    </div>
                     {errors.details && <p className="transaction-error">{errors.details}</p>}
-                    <label htmlFor="details">Note</label>
-                    <textarea
-                        className={errors.details ? "error transaction-field" : "transaction-field"}
-                        id="transaction-details"
-                        type='text'
-                        name='details'
-                        onChange={updateDetails}
-                        value={details}
-                        required={true}
-                    />
                 </div>
                 <div id="transaction-buttons">
                     <button id="payment-button" type="button" onClick={submitPayment}>Pay</button>
