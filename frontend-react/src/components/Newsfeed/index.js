@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
-import { deleteTransaction } from '../../store/transactions';
+// import { deleteTransaction } from '../../store/transactions';
 import { getComments } from '../../store/comments';
+import { getLikes, createLike, deleteLike } from '../../store/likes';
 import './Newsfeed.css'
 
 function Newsfeed() {
     const user = useSelector(state => state.session.user);
+    const users = useSelector(state => state.users);
     const transactions = useSelector(state => state.transactions)
     const userTransactions = Object.values(transactions)
     userTransactions.sort((a, b) => {
@@ -22,7 +24,8 @@ function Newsfeed() {
             dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());
-            dispatch(getComments())
+            dispatch(getComments());
+            dispatch(getLikes());
         }
     }, [dispatch, user])
 
@@ -30,8 +33,22 @@ function Newsfeed() {
         return null;
     }
 
-    const deleteTrans = async transaction => {
-        await dispatch(deleteTransaction(transaction));
+    // const deleteTrans = async transaction => {
+    //     await dispatch(deleteTransaction(transaction));
+    //     dispatch(getTransactions(user));
+    // }
+
+    const addLike = async transaction => {
+        const newLike = {
+            user_id: user.id,
+            transaction_id: transaction.id
+        }
+        await dispatch(createLike(newLike));
+        dispatch(getTransactions(user));
+    }
+
+    const removeLike = async like => {
+        await dispatch(deleteLike(like));
         dispatch(getTransactions(user));
     }
 
@@ -58,11 +75,16 @@ function Newsfeed() {
                                     {transaction.details}
                                 </div>
                                 <div className="icon-container">
-                                    <i className="fas fa-heart" />
-                                    <NavLink to={`/transactions/${transaction.id}`}>
-                                        <i className="fas fa-comment" />    
-                                    </NavLink>
-                                    {Object.keys(transaction.comments).length > 0 && Object.keys(transaction.comments).length}
+                                    <div className="likes-container">
+                                        {transaction.likes[user.id] ? <i className="fas fa-heart liked" onClick={() => removeLike(transaction.likes[user.id])} /> : <i className="fas fa-heart" onClick={() => addLike(transaction)}/>}
+                                        {Object.keys(transaction.likes).length > 0 && Object.keys(transaction.likes).length}
+                                    </div>
+                                    <div className="comments-container">
+                                        <NavLink to={`/transactions/${transaction.id}`}>
+                                            <i className="fas fa-comment" />    
+                                        </NavLink>
+                                        {Object.keys(transaction.comments).length > 0 && Object.keys(transaction.comments).length}
+                                    </div>
                                 </div>
                             </div>
                         </div>

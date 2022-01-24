@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Transaction, db, Comment
+from app.models import User, Transaction, db, Comment, Like
 from sqlalchemy import or_
-from app.forms import TransactionForm, CommentForm
+from app.forms import TransactionForm, CommentForm, LikeForm
 
 transaction_routes = Blueprint('transactions', __name__)
 
@@ -74,3 +74,16 @@ def new_comment(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@transaction_routes.route('/<int:id>/likes', methods=["POST"])
+@login_required
+def new_like(id):
+    form = LikeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form)
+    if form.validate_on_submit():
+        like = Like()
+        form.populate_obj(like)
+        db.session.add(like)
+        db.session.commit()
+        return like.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

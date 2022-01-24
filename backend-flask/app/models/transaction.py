@@ -56,6 +56,8 @@ class Transaction(db.Model):
             'creator': self.creator.to_dict(),
             'comments': {comment.to_dict_transactions()['id']: comment.to_dict_transactions()
                          for comment in self.comments},
+            'likes': {like.to_dict_transactions()['user_id']: like.to_dict_transactions()
+                         for like in self.likes},
         }
     
     
