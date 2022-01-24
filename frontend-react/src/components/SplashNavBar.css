@@ -53,11 +53,14 @@ nav a:hover {
     cursor: pointer;
 }
 
-#login-link {
+#log-in-link {
     color: black;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
 }
 
-#login-link:hover {
+#log-in-link:hover {
     color: #587d71;
 }
 

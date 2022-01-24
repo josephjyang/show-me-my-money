@@ -7,8 +7,7 @@
     padding: 20px;
 }
 
-#sign-up-form,
-#log-in-form {
+#sign-up-form {
     display: flex;
     flex-direction: column;
     justify-content: center;

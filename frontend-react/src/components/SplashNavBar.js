@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import LoginFormModal from './auth/LoginFormModal';
 import LogoutButton from './auth/LogoutButton';
 import DemoLoginButton from './DemoLoginButton';
 import './SplashNavBar.css'
@@ -26,9 +27,7 @@ const SplashNavBar = () => {
                     <DemoLoginButton />
                 </li>
                 <li>
-                    <NavLink id="login-link" to='/login' exact={true} activeClassName='active'>
-                        Sign in
-                    </NavLink>
+                    <LoginFormModal />
                 </li>
                 <li>
                     <NavLink to='/sign-up' exact={true} activeClassName='active'>
