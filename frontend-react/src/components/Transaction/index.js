@@ -25,6 +25,7 @@ const Transaction = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
+        if (!content) return;
         const newComment = {
             user_id: user.id,
             transaction_id: transaction.id,
@@ -40,6 +41,7 @@ const Transaction = () => {
     
     const editSubmit = async e => {
         e.preventDefault();
+        if (!editContent) return;
 
         let editedComment = transaction.comments[edit]
         
@@ -87,15 +89,20 @@ const Transaction = () => {
                                     {edit === comment.id ? (
                                         <form className="edit-comment-form" onSubmit={editSubmit}>
                                             <input
-                                                className={errors.details ? "error edit comment-field" : "edit comment-field"}
+                                                className={errors[comment.id] ? "error edit comment-field" : "edit comment-field"}
                                                 id="comment-field"
                                                 type='text'
                                                 placeholder='Write a comment...'
                                                 name='comment'
-                                                onChange={e => setEditContent(e.target.value)}
+                                                onChange={e => {
+                                                    setEditContent(e.target.value);
+                                                    if (e.target.value.length <= 0) errors[comment.id] = "Please enter a comment"
+                                                    else delete errors[comment.id]
+                                                }}
                                                 value={editContent}
                                                 required={true}
                                             />
+                                            {errors[comment.id] && <div className="edit-error">{errors[comment.id]}</div>}
                                         </form>
                                     ) : (<div>{comment.content}</div>)}
                                 </div>
@@ -119,19 +126,23 @@ const Transaction = () => {
                                 <img className="comment-picture" src={user.profile_pic} alt="creator" />
                                 <form id="new-comment-form" onSubmit={onSubmit}>
                                     <input
-                                        className={errors.details ? "error comment-field" : "comment-field"}
+                                        className={errors.comment ? "error comment-field" : "comment-field"}
                                         id="comment-field"
                                         type='text'
                                         placeholder='Write a comment...'
                                         name='comment'
-                                        onChange={e => setContent(e.target.value)}
+                                        onChange={e => {
+                                            setContent(e.target.value);
+                                            if (e.target.value.length <= 0) errors.comment = "Please enter a comment"
+                                            else delete errors.comment;
+                                        }}
                                         value={content}
                                         required={true}
                                     />
                                 </form>
                             </div>
+                            {errors.comment && <p className="comment-error">{errors.comment}</p>}
                         </div>
-                        {errors.comment && <p className="comment-error">{errors.comment}</p>}
                     </div>
                 </div>
             </div>

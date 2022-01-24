@@ -47,6 +47,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 #comment-details {
@@ -103,4 +104,16 @@
 
 .comment-inner-ctr {
     width: 100%;
+}
+
+.edit-error {
+    color: rgb(200, 0, 0);
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.comment-error {
+    color: rgb(200, 0, 0);
+    font-size: 14px;
+    padding-left: 35px;
 }
