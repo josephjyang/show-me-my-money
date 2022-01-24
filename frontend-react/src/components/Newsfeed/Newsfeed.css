@@ -66,15 +66,16 @@
 
 .icon-container {
     margin-top: 20px;
+    display: flex;
 }
 
-.icon-container .fa-heart {
-    margin-right: 15px;
-}
-
+.icon-container .fa-heart,
 .icon-container .fa-comment {
-    margin-right: 5px;
-    margin-left: 10px;
+    margin-right: 7px;
+}
+
+.likes-container {
+    margin-right: 25px;
 }
 
 .icon-container a:visited,

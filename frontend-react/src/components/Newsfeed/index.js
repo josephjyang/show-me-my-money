@@ -75,12 +75,16 @@ function Newsfeed() {
                                     {transaction.details}
                                 </div>
                                 <div className="icon-container">
-                                    {transaction.likes[user.id] ? <i className="fas fa-heart liked" onClick={() => removeLike(transaction.likes[user.id])} /> : <i className="fas fa-heart" onClick={() => addLike(transaction)}/>}
-                                    {Object.keys(transaction.likes).length > 0 && Object.keys(transaction.likes).length}
-                                    <NavLink to={`/transactions/${transaction.id}`}>
-                                        <i className="fas fa-comment" />    
-                                    </NavLink>
-                                    {Object.keys(transaction.comments).length > 0 && Object.keys(transaction.comments).length}
+                                    <div className="likes-container">
+                                        {transaction.likes[user.id] ? <i className="fas fa-heart liked" onClick={() => removeLike(transaction.likes[user.id])} /> : <i className="fas fa-heart" onClick={() => addLike(transaction)}/>}
+                                        {Object.keys(transaction.likes).length > 0 && Object.keys(transaction.likes).length}
+                                    </div>
+                                    <div className="comments-container">
+                                        <NavLink to={`/transactions/${transaction.id}`}>
+                                            <i className="fas fa-comment" />    
+                                        </NavLink>
+                                        {Object.keys(transaction.comments).length > 0 && Object.keys(transaction.comments).length}
+                                    </div>
                                 </div>
                             </div>
                         </div>
