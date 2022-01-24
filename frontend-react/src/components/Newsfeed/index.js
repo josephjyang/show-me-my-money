@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
@@ -15,7 +15,6 @@ function Newsfeed() {
     userTransactions.sort((a, b) => {
         return Date.parse(b.updated_at) - Date.parse(a.updated_at)
     })
-    const history = useHistory();
 
     const dispatch = useDispatch();
     useEffect(() => {

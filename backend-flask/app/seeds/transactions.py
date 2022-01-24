@@ -48,7 +48,7 @@ def seed_transactions():
     )
 
     marcee_jerry = Transaction(
-        payer_id=5,
+        payer_id=4,
         payee_id=3,
         creator_id=5,
         amount=324.76,
