@@ -68,6 +68,9 @@ function App() {
                         <Route path='/' exact={true}>
                             <SplashPage />
                         </Route>
+                        <Route path='/about' exact={true}>
+
+                        </Route>
                         <Route path='/login' exact={true}>
                             <LoginForm />
                         </Route>

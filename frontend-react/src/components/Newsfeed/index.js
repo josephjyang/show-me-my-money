@@ -11,6 +11,10 @@ import './Newsfeed.css'
 function Newsfeed() {
     const user = useSelector(state => state.session.user);
     const transactions = useSelector(state => state.transactions)
+    const userTransactions = Object.values(transactions)
+    userTransactions.sort((a, b) => {
+        return Date.parse(b.updated_at) - Date.parse(a.updated_at)
+    })
     const history = useHistory();
 
     const dispatch = useDispatch();
@@ -35,7 +39,7 @@ function Newsfeed() {
 
     return (
         <div id="newsfeed">
-            {Object.values(transactions).map(transaction => {
+            {userTransactions.map(transaction => {
                 return (
                     <div className="transaction-container" key={transaction.id}>
                         <div className="transaction-information">
@@ -54,6 +58,7 @@ function Newsfeed() {
                                     <NavLink to={`/transactions/${transaction.id}`}>
                                         <i className="fas fa-comment" />    
                                     </NavLink>
+                                    {Object.keys(transaction.comments).length}
                                 </div>
                             </div>
                         </div>

@@ -44,3 +44,30 @@
 .transaction-details {
     margin-top: 8px;
 }
+
+.icon-container {
+    margin-top: 20px;
+}
+
+.icon-container .fa-heart {
+    margin-right: 15px;
+}
+
+.icon-container .fa-comment {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+.icon-container a:visited,
+.icon-container a,
+.fa-heart {
+    color: gray;
+}
+
+.fa-heart:hover,
+.fa-comment:hover,
+.fa-edit:hover,
+.fa-trash:hover {
+    cursor: pointer;
+    color: rgb(65, 65, 65);
+}

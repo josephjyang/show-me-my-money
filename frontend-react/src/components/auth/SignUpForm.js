@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import './SignUpForm.css'
 
 const SignUpForm = () => {
     const [backErrors, setBackErrors] = useState([])
@@ -98,96 +99,120 @@ const SignUpForm = () => {
     if (user) return <Redirect to="/" />;
 
     return (
-        <form onSubmit={onSignUp}>
-            <div>
-                {backErrors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <div>
-                {errors.username && <p className="signup-error">{errors.username}</p>}
-                <input
-                    className={errors.username ? "error signup-field" : "signup-field"}
-                    type='text'
-                    placeholder='Username'
-                    name='username'
-                    onChange={updateUsername}
-                    value={username}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.email && <p className="signup-error">{errors.email}</p>}
-                <input
-                    className={errors.email ? "error signup-field" : "signup-field"}
-                    type='text'
-                    placeholder="Email"
-                    name='email'
-                    onChange={updateEmail}
-                    value={email}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
-                <input
-                    className={errors.email ? "error signup-field" : "signup-field"}
-                    placeholder="First Name"
-                    type='text'
-                    name='firstName'
-                    onChange={updateFirstName}
-                    value={firstName}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
-                <input
-                    className={errors.lastName ? "error signup-field" : "signup-field"}
-                    type='text'
-                    placeholder="Last Name"
-                    name='lastName'
-                    onChange={updateLastName}
-                    value={lastName}
-                    required={true}
-                />
-            </div>
-            <div>
-                <input
-                    className="signup-field"
-                    type='text'
-                    placeholder="Profile Picture URL"
-                    name='profilePic'
-                    onChange={updateProfilePic}
-                    value={profilePic}
-                />
-            </div>
-            <div>
-                {errors.password && <p className="signup-error">{errors.password}</p>}
-                <input
-                    className={errors.password ? "error signup-field" : "signup-field"}
-                    type='password'
-                    placeholder="Password"
-                    name='password'
-                    onChange={updatePassword}
-                    value={password}
-                    required={true}
-                />
-            </div>
-            <div>
-                {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
-                <input
-                    className={errors.cpassword ? "error signup-field" : "signup-field"}
-                    type='password'
-                    placeholder="Confirm Password"
-                    name='confirmPassword'
-                    onChange={updateConfirmPassword}
-                    value={confirmPassword}
-                    required={true}
-                />
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
+        <div id="sign-up-ctr">
+            <form id="sign-up-form" onSubmit={onSignUp}>
+                <h3>Create a Show Me My Money Account</h3>
+                <div>
+                    {backErrors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <div className="signup-field-ctr">
+                    {username && 
+                        <label className="signup-label" htmlFor="username">Username</label>
+                    }
+                    <input
+                        className={errors.username ? "error signup-field" : "signup-field"}
+                        type='text'
+                        placeholder='Username'
+                        name='username'
+                        onChange={updateUsername}
+                        value={username}
+                        required={true}
+                        />
+                    {errors.username && <p className="signup-error">{errors.username}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {email &&
+                        <label className="signup-label" htmlFor="email">Email</label>
+                    }
+                    <input
+                        className={errors.email ? "error signup-field" : "signup-field"}
+                        type='text'
+                        placeholder="Email"
+                        name='email'
+                        onChange={updateEmail}
+                        value={email}
+                        required={true}
+                        />
+                    {errors.email && <p className="signup-error">{errors.email}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {firstName &&
+                        <label className="signup-label" htmlFor="firstName">First Name</label>
+                    }
+                    <input
+                        className={errors.firstName ? "error signup-field" : "signup-field"}
+                        placeholder="First Name"
+                        type='text'
+                        name='firstName'
+                        onChange={updateFirstName}
+                        value={firstName}
+                        required={true}
+                        />
+                    {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {lastName &&
+                        <label className="signup-label" htmlFor="lastName">Last Name</label>
+                    }
+                    <input
+                        className={errors.lastName ? "error signup-field" : "signup-field"}
+                        type='text'
+                        placeholder="Last Name"
+                        name='lastName'
+                        onChange={updateLastName}
+                        value={lastName}
+                        required={true}
+                        />
+                    {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {profilePic &&
+                        <label className="signup-label" htmlFor="profilePic">Profile Picture URL</label>
+                    }
+                    <input
+                        className="signup-field"
+                        type='text'
+                        placeholder="Profile Picture URL"
+                        name='profilePic'
+                        onChange={updateProfilePic}
+                        value={profilePic}
+                    />
+                </div>
+                <div className="signup-field-ctr">
+                    {password &&
+                        <label className="signup-label" htmlFor="password">Password</label>
+                    }
+                    <input
+                        className={errors.password ? "error signup-field" : "signup-field"}
+                        type='password'
+                        placeholder="Password"
+                        name='password'
+                        onChange={updatePassword}
+                        value={password}
+                        required={true}
+                        />
+                    {errors.password && <p className="signup-error">{errors.password}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {confirmPassword &&
+                        <label className="signup-label" htmlFor="confirmPassword">Confirm Password</label>
+                    }
+                    <input
+                        className={errors.cpassword ? "error signup-field" : "signup-field"}
+                        type='password'
+                        placeholder="Confirm Password"
+                        name='confirmPassword'
+                        onChange={updateConfirmPassword}
+                        value={confirmPassword}
+                        required={true}
+                        />
+                    {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
+                </div>
+                <button type="submit" id='sign-up-submit-button'>Sign Up</button>
+            </form>
+        </div>
     );
 };
 

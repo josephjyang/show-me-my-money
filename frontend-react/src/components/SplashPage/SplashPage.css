@@ -1,27 +1,74 @@
+#splash-page {
+    background-color: #A2E0CB;
+    height: 1000px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+}
 
-#homepage-header {
-    font-size: 40px;
-    font-weight: 500;
-    margin: 55px 0 31px 0;
+.splash-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.splash-panel.one {
+    margin-top: 126px;
+    background-color: white;
+}
+
+.left-panel {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-comments-dollar,
+.fa-money-bill-wave {
+    font-size: 350px;
+}
+
+.splash-panel.two {
+    background-color: #A2E0CB;
+}
+
+.homepage-header {
+    font-size: 70px;
+    font-weight: 700;
+    margin: 55px 0 10px 0;
+    width: 350px;
+}
+
+.homepage-tagline {
+    font-size: 22px;
+    font-weight: 400;
+    width: 350px;
 }
 
 #homepage-signup-button {
     font-size: 23px;
     color: #fff;
-    background-color: #d24b03;
+    background-color: #466158;
     border-color: transparent;
-    display: inline-block;
     margin: 4px 0 50px 0;
+    text-decoration: none;
     font-weight: 500;
     text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
     cursor: pointer;
     border: 1px solid transparent;
-    text-decoration: none;
     border-radius: 5px;
     padding: 11px 32px 12px;
-    line-height: 1.2;
+}
+
+#homepage-signup-button:hover {
+    background-color: #2e413b;
 }
 
 #homepage-footer {
@@ -72,31 +119,6 @@ a:hover{
 .footer-link:hover {
     background-color: #eeeeee;
     color: #8b8b94;
-}
-
-li {
-    float: none;
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-}
-
-li > a {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 3px;
-}
-
-ul {
-    list-style-type: disc;
-    display: block;
-    margin-top: 0;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
 }
 
 .nav-footer-header{
