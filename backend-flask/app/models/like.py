@@ -18,3 +18,23 @@ class Like(db.Model):
     transaction = db.relationship(
         "Transaction", back_populates="likes")
 
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'transaction_id': self.transaction_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'user': self.user.to_dict(),
+            'transaction': self.transaction.to_dict(),
+        }
+
+    def to_dict_transactions(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'transaction_id': self.transaction_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }

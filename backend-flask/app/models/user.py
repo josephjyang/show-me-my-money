@@ -91,7 +91,9 @@ class User(db.Model, UserMixin):
             'friend_requests_sent': {request.to_dict()['id']: request.to_dict()
                                      for request in self.friend_requests_sent},
             'friend_requests_received': {request.to_dict()['id']: request.to_dict()
-                                     for request in self.friend_requests_received}
+                                     for request in self.friend_requests_received},
+            'likes': {like.to_dict_transactions()['transaction_id']: like.to_dict_transactions()
+                                         for like in self.likes}
         }
 
     def to_dict_friends(self):

@@ -83,6 +83,10 @@
     color: gray;
 }
 
+.fa-heart.liked {
+    color: green;
+}
+
 .fa-heart:hover,
 .fa-comment:hover,
 .fa-edit:hover,
