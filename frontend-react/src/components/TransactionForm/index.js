@@ -101,7 +101,7 @@ const TransactionForm = () => {
     const updateDetails = (e) => {
         setDetails(e.target.value);
         if (e.target.value.length <= 0) errors.details = "Enter some details regarding the payment"
-        else delete errors.email
+        else delete errors.details
     };
 
     
