@@ -3,3 +3,4 @@ from .signup_form import SignUpForm
 from .comment_form import CommentForm
 from .transaction_form import TransactionForm
 from .like_form import LikeForm
+from .friend_request_form import FriendRequestForm

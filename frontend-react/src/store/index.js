@@ -6,6 +6,7 @@ import transactions from './transactions'
 import users from './users'
 import comments from './comments'
 import likes from './likes'
+import friendRequests from './friendRequests'
 
 const rootReducer = combineReducers({
     session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     transactions,
     users,
     comments,
-    likes
+    likes,
+    friendRequests
 });
 
 

@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import Newsfeed from "../Newsfeed";
 import { getUsers } from "../../store/users";
 import { getFriends } from "../../store/friends";
+import { getFriendRequests, createFriendRequest } from "../../store/friendRequests";
 import './UserProfile.css'
 
 const UserProfile = () => {
     const sessionUser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users);
     const friends = useSelector(state => state.friends);
+    const friendRequests = useSelector(state => state.friendRequests)
+    const [errors, setErrors] = useState({});
+
     const { userId } = useParams();
     let user
     if (userId) user = users[userId];
@@ -17,11 +21,19 @@ const UserProfile = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getUsers());
-        dispatch(getFriends(sessionUser))
+        dispatch(getFriends(sessionUser));
+        dispatch(getFriendRequests(sessionUser));
     }, [dispatch, sessionUser])
 
     const addFriend = async user => {
-        
+        const payload = {
+            sender_id: sessionUser.id,
+            recipient_id: user.id
+        }
+
+        const data = await dispatch(createFriendRequest(payload));
+        if (data.errors) setErrors(data.errors)
+        dispatch(getFriendRequests(sessionUser));
     }
 
     if (user) return (
@@ -47,9 +59,9 @@ const UserProfile = () => {
                     </div>
                 </NavLink>
                 {friends[user.id] ? 
-                    <div>Friends</div> : 
+                    <div>Friends</div> : friendRequests[user.id] ? <div>Friend Request Sent</div> :
                     (
-                    <div id="add-friend-button">
+                    <div id="add-friend-button" onClick={addFriend}>
                         <p id="pay-button-text">Add friend</p>
                     </div>
                     )

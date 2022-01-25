@@ -88,9 +88,9 @@ class User(db.Model, UserMixin):
                         for user in self.following},
             'followed': {user.to_dict_friends()['id']: user.to_dict_friends()
                         for user in self.followed},
-            'friend_requests_sent': {request.to_dict()['id']: request.to_dict()
+            'friend_requests_sent': {request.to_dict()['recipient_id']: request.to_dict()
                                      for request in self.friend_requests_sent},
-            'friend_requests_received': {request.to_dict()['id']: request.to_dict()
+            'friend_requests_received': {request.to_dict()['sender_id']: request.to_dict()
                                      for request in self.friend_requests_received},
             'likes': {like.to_dict_transactions()['transaction_id']: like.to_dict_transactions()
                                          for like in self.likes}
