@@ -1,0 +1,81 @@
+#user-profile-ctr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+}
+
+#user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+#profile-name {
+    font-size: 24px;
+    margin: 16px 0;
+}
+
+#profile-username {
+    margin: 0;
+    display: inline-block;
+    color: gray;
+}
+
+#profile-friends{
+    margin: 0;
+}
+
+#profile-row {
+    display: flex;
+    align-items: center;
+}
+
+#profile-row .fa-circle{
+    margin: 0 15px;
+    font-size: 10px;
+    color: rgb(85, 85, 85);
+}
+
+#profile-pay-button {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    background-color: rgb(0, 176, 79);
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: black;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+#profile-pay-button:hover {
+    background-color: rgb(60, 216, 60);
+}
+
+#pay-button-text {
+    text-decoration: none;
+    margin: 0;
+}
+
+#user-info a:link {
+    text-decoration: none;
+}
+
+#user-profile-ctr #newsfeed-container {
+    border-top: 1px solid rgb(210, 210, 210);
+}
+
+#user-pro-pic img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+#user-pro-pic {
+    width: 150px;
+}

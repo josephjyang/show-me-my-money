@@ -9,6 +9,7 @@
 }
 
 #newsfeed {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,7 +44,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 20px 30px;
+    padding: 10px 30px;
 }
 
 .transaction-information {
@@ -61,6 +62,16 @@
 
 .user-name {
     font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.user-name:visited {
+    color: black;
+}
+
+.user-name:hover {
+    cursor: pointer
 }
 
 .creator-picture {
