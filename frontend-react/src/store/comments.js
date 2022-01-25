@@ -1,6 +1,7 @@
 const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
 const ADD_COMMENT = 'comments/ADD_COMMENT';
 const REMOVE_COMMENT = 'comments/REMOVE_COMMENT';
+const CLEAR_COMMENTS = 'comments/CLEAR_COMMENTS';
 
 const loadComments = (comments) => ({
     type: LOAD_COMMENTS,
@@ -70,6 +71,12 @@ export const updateComment = comment => async dispatch => {
     } else return data;
 }
 
+export const clearComments = () => {
+    return {
+        type: CLEAR_COMMENTS
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -85,6 +92,8 @@ export default function reducer(state = initialState, action) {
         case REMOVE_COMMENT:
             delete newState[action.comment.id]
             return newState;
+        case CLEAR_COMMENTS:
+            return {};
         default:
             return state;
     }

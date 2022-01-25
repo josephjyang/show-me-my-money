@@ -1,4 +1,5 @@
 const LOAD_USERS = 'users/LOAD_USERS';
+const CLEAR_USERS = 'users/CLEAR_USERS;'
 
 const loadUsers = (users) => ({
     type: LOAD_USERS,
@@ -14,6 +15,12 @@ export const getUsers = () => async dispatch => {
     return users;
 }
 
+export const clearUsers = () => {
+    return {
+        type: CLEAR_USERS
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -23,6 +30,8 @@ export default function reducer(state = initialState, action) {
                 users[user.id] = user;
             })
             return { ...state, ...users }
+        case CLEAR_USERS:
+            return {};
         default:
             return state;
     }

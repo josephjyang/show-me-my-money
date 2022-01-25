@@ -11,6 +11,15 @@ def seed_transactions():
         paid=True
     )
 
+    rod_jerry2 = Transaction(
+        payer_id=3,
+        payee_id=2,
+        creator_id=2,
+        amount=42.86,
+        details="Marcee's gift",
+        paid=False
+    )
+
     rod_tyson = Transaction(
         payer_id=2,
         payee_id=7,
@@ -57,6 +66,7 @@ def seed_transactions():
     )
 
     db.session.add(rod_jerry)
+    db.session.add(rod_jerry2)
     db.session.add(rod_tyson)
     db.session.add(jerry_rod)
     db.session.add(marcee_dorothy)

@@ -1,6 +1,7 @@
 const LOAD_LIKES = 'likes/LOAD_LIKES';
 const ADD_LIKE = 'likes/ADD_LIKE';
 const REMOVE_LIKE = 'likes/REMOVE_LIKE';
+const CLEAR_LIKES = 'likes/CLEAR_LIKES';
 
 const loadLikes = (likes) => ({
     type: LOAD_LIKES,
@@ -55,6 +56,12 @@ export const deleteLike = like => async dispatch => {
     }
 }
 
+export const clearLikes = () => {
+    return {
+        type: CLEAR_LIKES
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -70,6 +77,8 @@ export default function reducer(state = initialState, action) {
         case REMOVE_LIKE:
             delete newState[action.like.id]
             return newState;
+        case CLEAR_LIKES:
+            return {};
         default:
             return state;
     }

@@ -1,4 +1,5 @@
 const LOAD_FRIENDS = 'friends/LOAD_FRIENDS';
+const CLEAR_FRIENDS = 'friends/CLEAR_FRIENDS';
 
 const loadFriends = (user, friends) => ({
     type: LOAD_FRIENDS,
@@ -15,6 +16,12 @@ export const getFriends = user => async dispatch => {
     return friends;
 }
 
+export const clearFriends = () => {
+    return {
+        type: CLEAR_FRIENDS
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -25,6 +32,8 @@ export default function reducer(state = initialState, action) {
                 friends[friend.id] = friend
             })
             return { ...state, ...friends }
+        case CLEAR_FRIENDS:
+            return {};
         default:
             return state;
     }

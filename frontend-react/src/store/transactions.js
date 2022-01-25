@@ -1,6 +1,7 @@
 const LOAD_TRANSACTIONS = 'transactions/LOAD_TRANSACTIONS';
 const ADD_TRANSACTION = 'transactions/ADD_TRANSACTION';
 const REMOVE_TRANSACTION = 'transactions/REMOVE_TRANSACTION';
+const CLEAR_TRANSACTIONS = 'transactions/CLEAR_TRANSACTIONS';
 
 const loadTransactions = (user, transactions) => ({
     type: LOAD_TRANSACTIONS,
@@ -68,6 +69,12 @@ export const updateTransaction = transaction => async dispatch => {
     }
 }
 
+export const clearTransactions = () => {
+    return {
+        type: CLEAR_TRANSACTIONS
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -83,6 +90,8 @@ export default function reducer(state = initialState, action) {
         case REMOVE_TRANSACTION:
             delete newState[action.transaction.id]
             return newState;
+        case CLEAR_TRANSACTIONS:
+            return {};
         default:
             return state;
     }
