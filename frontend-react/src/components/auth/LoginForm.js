@@ -22,7 +22,7 @@ const LoginForm = () => {
     const updateCredential = e => setCredential(e.target.value);
     const updatePassword = e => setPassword(e.target.value);
 
-    if (user) return <Redirect to='/home' />;
+    if (user) return <Redirect to='/' />;
 
     return (
         <>

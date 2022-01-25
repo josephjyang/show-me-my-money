@@ -38,7 +38,7 @@ const TransactionForm = () => {
             const data = await dispatch(updateTransaction(transaction));
             if (data.errors) setBackErrors(data.errors)
             else {
-                history.push("/home")
+                history.push("/")
                 return
             }
         }
@@ -53,7 +53,7 @@ const TransactionForm = () => {
         }
         const data = await dispatch(createTransaction(newTransaction));
         if (data.errors) setBackErrors(data.errors)
-        else history.push("/home")
+        else history.push("/")
     }
 
     const submitRequest = async () => {
@@ -74,7 +74,7 @@ const TransactionForm = () => {
             const data = await dispatch(updateTransaction(transaction));
             if (data.errors) setBackErrors(data.errors)
             else {
-                history.push("/home")
+                history.push("/")
                 return
             }
         }
@@ -89,7 +89,7 @@ const TransactionForm = () => {
         }
         const data = await dispatch(createTransaction(newTransaction));
         if (data.errors) setBackErrors(data.errors)
-        else history.push("/home")
+        else history.push("/")
     }
 
     const updateAmount = (e) => {

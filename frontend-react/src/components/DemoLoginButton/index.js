@@ -13,7 +13,7 @@ function DemoLoginButton() {
         const email = "rod.tidwell85"
         const password = "password"
         await dispatch(login(email, password));
-        history.push("/home")
+        history.push("/")
     }
 
     return (

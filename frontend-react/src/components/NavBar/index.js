@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <div id="nav-container">
             <nav id="home-nav">
-                <NavLink to='/home' exact={true} activeClassName='active'>
+                <NavLink to='/' exact={true} activeClassName='active'>
                     <img src="/smmm-logo.png" alt="smmm logo" id="smmm-logo" />
                 </NavLink>
                 <div id="right-nav">
