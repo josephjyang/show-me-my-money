@@ -6,6 +6,7 @@
     border-radius: 10px;
     padding: 10px 20px 0;
     margin: 20px;
+    background-color: rgb(245, 245, 245);
 }
 
 .pending-container {
@@ -21,7 +22,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .pending-header {
@@ -37,9 +38,10 @@
     border-radius: 20px;
     border: 1px black solid;
     margin: 10px;
-    padding: 10px 30px;
+    padding: 10px 0px;
     font-size: 16px;
     font-weight: bold;
+    width: 125px;
 }
 
 .pending-button:hover {

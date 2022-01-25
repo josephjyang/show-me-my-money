@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './User.css'
 
 function User() {
     const [user, setUser] = useState({});
@@ -20,16 +21,23 @@ function User() {
         return null;
     }
 
+    console.log(Object.keys(user.following).length)
+
     return (
         <ul>
+            <div id="user-pro-pic">
+                <img src={user.profile_pic} alt="user profile"></img>
+            </div>
             <li>
-                <strong>User Id</strong> {userId}
+                <strong>{user.first_name} {user.last_name}</strong>
             </li>
             <li>
-                <strong>Username</strong> {user.username}
+                <strong>@{user.username}</strong> {Object.keys(user.following).length + Object.keys(user.followed).length} friends
             </li>
             <li>
-                <strong>Email</strong> {user.email}
+                <div id="pay-button">
+                    <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />Pay or Request
+                </div>
             </li>
         </ul>
     );
