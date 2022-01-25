@@ -2,38 +2,6 @@ from .db import db
 from sqlalchemy.sql import func
 
 
-# user_send_friend_requests = db.Table(
-#     "user_send_friend_requests",
-#     db.Column(
-#         "user_id",
-#         db.Integer,
-#         db.ForeignKey("users.id"),
-#         primary_key=True
-#     ),
-#     db.Column(
-#         "friend_request_id",
-#         db.Integer,
-#         db.ForeignKey("friend_requests.id"),
-#         primary_key=True
-#     )
-# )
-
-# user_receive_friend_requests = db.Table(
-#     "user_receive_friend_requests",
-#     db.Column(
-#         "user_id",
-#         db.Integer,
-#         db.ForeignKey("users.id"),
-#         primary_key=True
-#     ),
-#     db.Column(
-#         "friend_request_id",
-#         db.Integer,
-#         db.ForeignKey("friend_requests.id"),
-#         primary_key=True
-#     )
-# )
-
 class FriendRequest(db.Model):
     __tablename__ = 'friend_requests'
 

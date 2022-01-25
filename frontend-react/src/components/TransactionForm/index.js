@@ -57,7 +57,7 @@ const TransactionForm = () => {
     }
 
     const submitRequest = async () => {
-        if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
+        if (amount <= 0 || isNaN(parseInt(amount))) errors.amount = "Enter a value greater than $0!"
         if (!friend) errors.friend = "Enter a recipient"
         if (!details) errors.details = "Enter some details regarding the payment"
         setErrors({ ...errors })
