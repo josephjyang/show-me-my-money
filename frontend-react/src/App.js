@@ -10,9 +10,12 @@ import UsersList from './components/UsersList';
 import User from './components/UserPage/User';
 import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
-import Newsfeed from './components/Newsfeed';
+// import Newsfeed from './components/Newsfeed';
 import TransactionForm from './components/TransactionForm';
 import Transaction from './components/Transaction';
+// import PendingTransactions from './components/PendingTransactions';
+import MainPage from './components/MainPage';
+import UserProfile from './components/UserProfile';
 import { authenticate } from './store/session';
 
 function App() {
@@ -41,10 +44,13 @@ function App() {
                             <UsersList />
                         </ProtectedRoute>
                         <ProtectedRoute path='/users/:userId' exact={true}>
-                            <User />
+                            <UserProfile />
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/users/:userId/pay' exact={true}>
+                            <TransactionForm />
                         </ProtectedRoute>
                         <ProtectedRoute path='/' exact={true}>
-                            <Newsfeed />
+                            <MainPage />
                         </ProtectedRoute>
                         <ProtectedRoute path='/pay'>
                             <TransactionForm />

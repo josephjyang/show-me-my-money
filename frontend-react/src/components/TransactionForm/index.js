@@ -8,14 +8,14 @@ import './TransactionForm.css';
 
 const TransactionForm = () => {
     const user = useSelector(state => state.session.user);
+    const users = useSelector(state => state.users);
     const transactions = useSelector(state => state.transactions)
-    const {transactionId} = useParams();
+    const { transactionId, userId } = useParams();
     let transaction
     if (transactionId) transaction = transactions[transactionId]
-    console.log(transaction);
     const [backErrors, setBackErrors] = useState([]);
     const [errors, setErrors] = useState({});
-    const [friend, setFriend] = useState(transactionId ? transaction.creator_id === transaction.payer_id ? transaction.payee : transaction.payer : '');
+    const [friend, setFriend] = useState(userId ? users[userId] : transactionId ? transaction.creator_id === transaction.payer_id ? transaction.payee : transaction.payer : '');
     const [amount, setAmount] = useState(transactionId ? transaction.amount : '');
     const [details, setDetails] = useState(transactionId ? transaction.details : '');
     const dispatch = useDispatch();
@@ -104,7 +104,7 @@ const TransactionForm = () => {
         else delete errors.details
     };
 
-    
+
     return (
         <div id="transaction-form-container">
             <div id="transaction-form">
@@ -125,19 +125,19 @@ const TransactionForm = () => {
                             onChange={updateAmount}
                             value={amount}
                             required={true}
-                            />
+                        />
                     </div>
                     {errors.amount && <p className="transaction-error">{errors.amount}</p>}
                 </div>
                 <div id="recipient-container">
                     <div id="transaction-recipient">
                         <label htmlFor="friend">To</label>
-                        {!friend && <SearchBar friend={friend} setFriend={setFriend} errors={errors}/>}
+                        {!friend && <SearchBar friend={friend} setFriend={setFriend} errors={errors} />}
                         {friend && <div className="recipient-container"><div className="recipient-name">{friend.first_name} {friend.last_name}</div>
                             <i onClick={() => {
                                 setFriend('');
                                 errors.friend = "Enter a recipient"
-                                }}className="fas fa-times"/></div>}
+                            }} className="fas fa-times" /></div>}
                     </div>
                     {errors.friend && <p className="transaction-error">{errors.friend}</p>}
                 </div>
@@ -152,7 +152,7 @@ const TransactionForm = () => {
                             onChange={updateDetails}
                             value={details}
                             required={true}
-                            />
+                        />
                     </div>
                     {errors.details && <p className="transaction-error">{errors.details}</p>}
                 </div>

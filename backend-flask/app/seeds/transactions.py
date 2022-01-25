@@ -68,7 +68,7 @@ def seed_transactions():
     marcee_jerry = Transaction(
         payer_id=4,
         payee_id=3,
-        creator_id=5,
+        creator_id=4,
         amount=324.76,
         details="Thanks for getting the food for Rod's party! You're the best!",
         paid=True
