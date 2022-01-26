@@ -10,10 +10,9 @@ import UsersList from './components/UsersList';
 import User from './components/UserPage/User';
 import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
-// import Newsfeed from './components/Newsfeed';
+import About from './components/About';
 import TransactionForm from './components/TransactionForm';
 import Transaction from './components/Transaction';
-// import PendingTransactions from './components/PendingTransactions';
 import MainPage from './components/MainPage';
 import UserProfile from './components/UserProfile';
 import { authenticate } from './store/session';
@@ -75,7 +74,7 @@ function App() {
                             <SplashPage />
                         </Route>
                         <Route path='/about' exact={true}>
-
+                            <About />
                         </Route>
                         <Route path='/login' exact={true}>
                             <LoginForm />
