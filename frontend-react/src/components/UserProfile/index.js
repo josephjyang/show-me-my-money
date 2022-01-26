@@ -4,7 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import Newsfeed from "../Newsfeed";
 import { getUsers } from "../../store/users";
 import { getFriends } from "../../store/friends";
-import { getFriendRequests, createFriendRequest } from "../../store/friendRequests";
+import { getFriendRequests, createFriendRequest, deleteFriendRequest } from "../../store/friendRequests";
 import './UserProfile.css'
 
 const UserProfile = () => {
@@ -31,9 +31,19 @@ const UserProfile = () => {
             recipient_id: user.id
         }
 
-        const data = await dispatch(createFriendRequest(payload));
-        if (data.errors) setErrors(data.errors)
+        const data = await dispatch(createFriendRequest(payload, user));
+        if (data.errors) setErrors(data.errors);
+        dispatch(getFriends(sessionUser));
         dispatch(getFriendRequests(sessionUser));
+        dispatch(getUsers());
+    }
+
+    const cancelRequest = async request => {
+        const data = await dispatch(deleteFriendRequest(request, sessionUser));
+        if (data.errors) setErrors(data.errors);
+        dispatch(getFriends(sessionUser));
+        dispatch(getFriendRequests(sessionUser));
+        dispatch(getUsers());
     }
 
     if (user) return (
@@ -58,13 +68,14 @@ const UserProfile = () => {
                         <p id="pay-button-text">Pay or Request</p>
                     </div>
                 </NavLink>
-                {friends[user.id] ? 
-                    <div>Friends</div> : friendRequests[user.id] ? <div>Friend Request Sent</div> :
-                    (
-                    <div id="add-friend-button" onClick={addFriend}>
-                        <p id="pay-button-text">Add friend</p>
-                    </div>
-                    )
+                {friends[user.id] ? <div>Friends</div> : 
+                        friendRequests[user.id] ? 
+                        friendRequests[user.id].recipient_id === user.id ? 
+                            <div onClick={() => cancelRequest(friendRequests[user.id])}>Friend Request Sent</div> : 
+                        <div>Friend Request Received</div> :
+                        (<div id="add-friend-button" onClick={() => addFriend(user)}>
+                            <p id="pay-button-text">Add friend</p>
+                        </div>)
                 }
             </div>
             <Newsfeed person={user} />

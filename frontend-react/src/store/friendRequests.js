@@ -1,6 +1,7 @@
 const LOAD_REQUESTS = 'friendRequests/LOAD_REQUESTS';
 const CLEAR_REQUESTS = 'friends/CLEAR_REQUESTS';
-const ADD_REQUEST = 'friendRequests/ADD_REQUEST'
+const ADD_REQUEST = 'friendRequests/ADD_REQUEST';
+const CANCEL_REQUEST = 'friendRequests/CANCEL_REQUEST';
 
 const loadFriendRequests = (user, friendRequests) => ({
     type: LOAD_REQUESTS,
@@ -8,10 +9,19 @@ const loadFriendRequests = (user, friendRequests) => ({
     friendRequests
 });
 
-const addFriendRequest = friendRequest => {
+const addFriendRequest = (friendRequest, user) => {
     return {
         type: ADD_REQUEST,
-        friendRequest
+        friendRequest,
+        user
+    }
+}
+
+const cancelFriendRequest = (friendRequest, user) => {
+    return {
+        type: CANCEL_REQUEST,
+        friendRequest,
+        user
     }
 }
 
@@ -24,7 +34,7 @@ export const getFriendRequests = user => async dispatch => {
     return friendRequests;
 }
 
-export const createFriendRequest = friendRequest => async dispatch => {
+export const createFriendRequest = (friendRequest, user) => async dispatch => {
     const res = await fetch(`/api/friend-requests/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,8 +42,19 @@ export const createFriendRequest = friendRequest => async dispatch => {
     });
     const request = await res.json();
     if (res.ok) {
-        dispatch(addFriendRequest(request))
+        dispatch(addFriendRequest(request, user))
         return request;
+    }
+}
+
+export const deleteFriendRequest = (request, user) => async dispatch => {
+    const res = await fetch(`/api/friend-requests/${request.id}`, {
+        method: 'DELETE',
+    });
+    const data = await res.json();
+    if (res.ok) {
+        dispatch(cancelFriendRequest(request, user))
+        return data
     }
 }
 
@@ -50,11 +71,16 @@ export default function reducer(state = initialState, action) {
             const friendRequests = {}
             console.log(action.friendRequests);
             Object.values(action.friendRequests.friend_requests).forEach(request => {
-                friendRequests[request.id] = request
+                if (action.user.id === request.recipient_id) friendRequests[request.sender_id] = request
+                else friendRequests[request.recipient_id] = request
             })
             return { ...state, ...friendRequests }
-        case ADD_REQUEST:
-            newState[action.friendRequest.id] = action.friendRequest
+        case ADD_REQUEST:   
+            newState[action.friendRequest.recipient_id] = action.friendRequest
+            return newState;
+        case CANCEL_REQUEST:
+            if (action.friendRequest.recipient_id === action.user.id) delete newState[action.friendRequest.sender_id]
+            else delete newState[action.friendRequest.recipient_id]
             return newState;
         case CLEAR_REQUESTS:
             return {};

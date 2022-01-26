@@ -32,9 +32,9 @@ def new_friend_request():
 
 @friend_request_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_transaction(id):
-	transaction = Transaction.query.get(id)
-	db.session.delete(transaction)
+def delete_friend_request(id):
+	request = FriendRequest.query.get(id)
+	db.session.delete(request)
 	db.session.commit()
 	return {'message': 'Successfully Deleted Transaction'}
 	# Delete task from database
