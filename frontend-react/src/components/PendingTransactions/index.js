@@ -8,6 +8,7 @@ import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
 import { getComments } from '../../store/comments';
+import { updateUser } from '../../store/users';
 import './PendingTransactions.css'
 
 function PendingTransactions() {
@@ -46,7 +47,11 @@ function PendingTransactions() {
     const acceptTrans = async transaction => {
         if (transaction) {
             transaction.paid = true;
+            user.balance -= Number(transaction.amount);
+            transaction.creator.balance += Number(transaction.amount);
             await dispatch(updateTransaction(transaction));
+            await dispatch(updateUser(user))
+            await dispatch(updateUser(transaction.creator))
             dispatch(getTransactions(user));
             history.push("/");
             return
@@ -147,7 +152,7 @@ function PendingTransactions() {
             {friendRequests?.map(request => {
                 return (
                     <div key={request.id}>
-                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id].last_name} a friend request
+                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
                     </div>
                 )
             })}

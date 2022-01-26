@@ -1,10 +1,17 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Transaction, FriendRequest, db
-from app.forms import FriendRequestForm, SignUpForm
+from app.forms import FriendRequestForm, UserUpdateForm
 from sqlalchemy import or_
 
 user_routes = Blueprint('users', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @user_routes.route('/')
@@ -25,7 +32,14 @@ def user(id):
 @login_required
 def update_user_balance(id):
     user = User.query.get(id)
-    return user.to_dict()
+    form = UserUpdateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user.balance = form.balance.data
+        db.session.add(user)
+        db.session.commit()
+        return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @user_routes.route('/<int:id>/friends')
