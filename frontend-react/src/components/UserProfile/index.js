@@ -5,6 +5,7 @@ import Newsfeed from "../Newsfeed";
 import { getUsers } from "../../store/users";
 import { getFriends } from "../../store/friends";
 import { getFriendRequests, createFriendRequest, deleteFriendRequest } from "../../store/friendRequests";
+import { authenticate } from '../../store/session';
 import './UserProfile.css'
 
 const UserProfile = () => {
@@ -36,6 +37,7 @@ const UserProfile = () => {
         dispatch(getFriends(sessionUser));
         dispatch(getFriendRequests(sessionUser));
         dispatch(getUsers());
+        dispatch(authenticate())
     }
 
     const cancelRequest = async request => {
@@ -44,6 +46,7 @@ const UserProfile = () => {
         dispatch(getFriends(sessionUser));
         dispatch(getFriendRequests(sessionUser));
         dispatch(getUsers());
+        dispatch(authenticate())
     }
 
     if (user) return (

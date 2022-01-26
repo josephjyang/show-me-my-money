@@ -5,6 +5,7 @@ import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
 import { getComments } from '../../store/comments';
+import { authenticate } from '../../store/session';
 import { getLikes, createLike, deleteLike } from '../../store/likes';
 import PendingTransactions from '../PendingTransactions';
 import './Newsfeed.css'
@@ -26,6 +27,8 @@ function Newsfeed({ person }) {
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
+            console.log("running newsfeed");
+            // dispatch(authenticate())
             dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());

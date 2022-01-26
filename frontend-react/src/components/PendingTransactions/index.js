@@ -26,14 +26,16 @@ function PendingTransactions() {
 
     const history = useHistory()
     const dispatch = useDispatch();
-    useEffect(() => {
-        if (user) {
-            dispatch(getFriends(user));
-            dispatch(getTransactions(user));
-            dispatch(getUsers());
-            dispatch(getComments());
-        }
-    }, [dispatch, user])
+    // useEffect(() => {
+    //     if (user) {
+    //         console.log("running pending");
+    //         dispatch(authenticate());
+    //         dispatch(getFriends(user));
+    //         dispatch(getTransactions(user));
+    //         dispatch(getUsers());
+    //         dispatch(getComments());
+    //     }
+    // }, [dispatch, user])
 
     if (!user) {
         return null;
