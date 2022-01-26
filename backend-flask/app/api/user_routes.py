@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Transaction, FriendRequest
+from app.models import User, Transaction, FriendRequest, db
+from app.forms import FriendRequestForm, SignUpForm
 from sqlalchemy import or_
 
 user_routes = Blueprint('users', __name__)
@@ -20,6 +21,13 @@ def user(id):
     return user.to_dict()
 
 
+@user_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_user_balance(id):
+    user = User.query.get(id)
+    return user.to_dict()
+
+
 @user_routes.route('/<int:id>/friends')
 @login_required
 def get_all_friends(id):
@@ -30,6 +38,20 @@ def get_all_friends(id):
                 for friend in user.followed}
     friends = { **following, **followed }
     return {'friends': friends}
+
+
+@user_routes.route('/<int:id>/friends', methods=["POST"])
+@login_required
+def new_friend(id):
+    form = FriendRequestForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        friend_id = form.data['sender_id']
+        user = User.query.get(id)
+        new_friend = User.query.get(friend_id)
+        user.friend(new_friend)
+        db.session.commit()
+        return new_friend.to_dict_friends()
 
 
 @user_routes.route('/<int:id>/friends/transactions')

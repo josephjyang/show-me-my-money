@@ -71,7 +71,7 @@ const UserProfile = () => {
                 {friends[user.id] ? <div>Friends</div> : 
                         friendRequests[user.id] ? 
                         friendRequests[user.id].recipient_id === user.id ? 
-                            <div onClick={() => cancelRequest(friendRequests[user.id])}>Friend Request Sent</div> : 
+                            <button onClick={() => cancelRequest(friendRequests[user.id])} class="button" type="button" data-hover="Cancel Request"><span>Friend Request Sent</span></button> : 
                         <div>Friend Request Received</div> :
                         (<div id="add-friend-button" onClick={() => addFriend(user)}>
                             <p id="pay-button-text">Add friend</p>

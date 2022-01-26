@@ -60,13 +60,16 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def friend(self, user):
-        if user not in self.friends:
-            self.friends.append(user)
+        if user not in self.following and user not in self.followed:
+            self.followed.append(user)
             return self.to_dict()
 
     def unfriend(self, user):
-        if user in self.friends:
-            self.friends.remove(user)
+        if user in self.following:
+            self.following.remove(user)
+            return self.to_dict()
+        if user in self.followed:
+            self.followed.remove(user)
             return self.to_dict()
 
     def to_dict(self):
