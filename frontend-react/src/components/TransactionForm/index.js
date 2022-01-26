@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { signUp } from "../../store/session";
+import { updateUser } from "../../store/users";
 import { createTransaction, updateTransaction } from "../../store/transactions";
 import SearchBar from "../Search";
 import './TransactionForm.css';
@@ -19,7 +19,7 @@ const TransactionForm = () => {
     const [amount, setAmount] = useState(transactionId ? transaction.amount : '');
     const [details, setDetails] = useState(transactionId ? transaction.details : '');
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
 
     const submitPayment = async () => {
         if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
@@ -53,11 +53,17 @@ const TransactionForm = () => {
         }
         const data = await dispatch(createTransaction(newTransaction));
         if (data.errors) setBackErrors(data.errors)
-        else history.push("/")
+        else {
+            user.balance -= Number(amount);
+            friend.balance += Number(amount);
+            await dispatch(updateUser(user))
+            await dispatch(updateUser(friend))
+            history.push("/")
+        }
     }
 
     const submitRequest = async () => {
-        if (amount <= 0 || typeof parseInt(amount, 10) !== "number") errors.amount = "Enter a value greater than $0!"
+        if (amount <= 0 || isNaN(parseInt(amount))) errors.amount = "Enter a value greater than $0!"
         if (!friend) errors.friend = "Enter a recipient"
         if (!details) errors.details = "Enter some details regarding the payment"
         setErrors({ ...errors })

@@ -1,9 +1,17 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Transaction
+from app.models import User, Transaction, FriendRequest, db
+from app.forms import FriendRequestForm, UserUpdateForm
 from sqlalchemy import or_
 
 user_routes = Blueprint('users', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @user_routes.route('/')
@@ -20,6 +28,20 @@ def user(id):
     return user.to_dict()
 
 
+@user_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_user_balance(id):
+    user = User.query.get(id)
+    form = UserUpdateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user.balance = form.balance.data
+        db.session.add(user)
+        db.session.commit()
+        return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 @user_routes.route('/<int:id>/friends')
 @login_required
 def get_all_friends(id):
@@ -32,16 +54,40 @@ def get_all_friends(id):
     return {'friends': friends}
 
 
+@user_routes.route('/<int:id>/friends', methods=["POST"])
+@login_required
+def new_friend(id):
+    form = FriendRequestForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        friend_id = form.data['sender_id']
+        user = User.query.get(id)
+        new_friend = User.query.get(friend_id)
+        user.friend(new_friend)
+        db.session.commit()
+        return new_friend.to_dict_friends()
+
+
 @user_routes.route('/<int:id>/friends/transactions')
 @login_required
 def get_all_transactions(id):
     user = User.query.get(id)
-    followedIds = [friend.id for friend in user.followed]
-    followingIds = [friend.id for friend in user.following]
-    friendIds = followedIds + followingIds
+    followed_ids = [friend.id for friend in user.followed]
+    following_ids = [friend.id for friend in user.following]
+    friendIds = followed_ids + following_ids
     transactions = Transaction.query.filter(or_(Transaction.payee_id == user.id,
         Transaction.payer_id == user.id,
         Transaction.payee_id.in_(friendIds),
         Transaction.payee_id.in_(friendIds),
         ))
     return {'transactions': [transaction.to_dict() for transaction in transactions]}
+
+
+@user_routes.route('/<int:id>/friend-requests')
+@login_required
+def get_all_friend_requests(id):
+    friend_requests = FriendRequest.query.filter(or_(
+        FriendRequest.sender_id == id,
+        FriendRequest.recipient_id == id
+        ))
+    return {'friend_requests': [request.to_dict() for request in friend_requests]}

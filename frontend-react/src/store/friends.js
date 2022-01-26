@@ -1,10 +1,16 @@
 const LOAD_FRIENDS = 'friends/LOAD_FRIENDS';
 const CLEAR_FRIENDS = 'friends/CLEAR_FRIENDS';
+const ADD_FRIEND = 'friends/ADD_FRIEND';
 
 const loadFriends = (user, friends) => ({
     type: LOAD_FRIENDS,
     user,
     friends
+});
+
+const addFriend = friend => ({
+    type: ADD_FRIEND,
+    friend
 });
 
 const initialState = { };
@@ -14,6 +20,19 @@ export const getFriends = user => async dispatch => {
     const friends = await res.json();
     dispatch(loadFriends(user, friends));
     return friends;
+}
+
+export const createFriend = invite => async dispatch => {
+    const res = await fetch(`/api/users/${invite.recipient_id}/friends`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(invite)
+    });
+    const newFriend = await res.json();
+    if (res.ok) {
+        dispatch(addFriend(newFriend));
+        return newFriend;
+    }
 }
 
 export const clearFriends = () => {
@@ -27,11 +46,13 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_FRIENDS:
             const friends = {}
-            console.log(action.friends);
             Object.values(action.friends.friends).forEach(friend => {
                 friends[friend.id] = friend
             })
             return { ...state, ...friends }
+        case ADD_FRIEND:
+            newState[action.friend.id] = action.friend;
+            return newState;
         case CLEAR_FRIENDS:
             return {};
         default:

@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getFriends } from '../../store/friends';
+import { getFriends, createFriend } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
+import { authenticate } from '../../store/session';
+import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
 import { getComments } from '../../store/comments';
+import { updateUser } from '../../store/users';
 import './PendingTransactions.css'
 
 function PendingTransactions() {
     const user = useSelector(state => state.session.user);
+    const users = useSelector(state => state.users)
     const transactions = useSelector(state => state.transactions)
     const userTransactions = Object.values(transactions)
     userTransactions.sort((a, b) => {
@@ -17,6 +21,8 @@ function PendingTransactions() {
     })
     const requests = userTransactions.filter(transaction => !transaction.paid && transaction.payee_id === user.id)
     const invoices = userTransactions.filter(transaction => !transaction.paid && transaction.payer_id === user.id)
+    const friendRequests = Object.values(user.friend_requests_sent);
+    const friendInvites = Object.values(user.friend_requests_received);
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -41,12 +47,27 @@ function PendingTransactions() {
     const acceptTrans = async transaction => {
         if (transaction) {
             transaction.paid = true;
+            user.balance -= Number(transaction.amount);
+            transaction.creator.balance += Number(transaction.amount);
             await dispatch(updateTransaction(transaction));
+            await dispatch(updateUser(user))
+            await dispatch(updateUser(transaction.creator))
             dispatch(getTransactions(user));
             history.push("/");
             return
         }
         else history.push("/");
+    }
+
+    const acceptFriend = async invite => {
+        await dispatch(createFriend(invite))
+        await dispatch(deleteFriendRequest(invite, user));
+        dispatch(authenticate());
+    }
+
+    const ignoreRequest = async invite => {
+        await dispatch(deleteFriendRequest(invite, user));
+        dispatch(authenticate());
     }
 
 
@@ -119,6 +140,22 @@ function PendingTransactions() {
                     )
                 })}
             </div>
+            {friendInvites?.map(invite => {
+                return (
+                    <div key={invite.id}>
+                        <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
+                        <button onClick={() => acceptFriend(invite)}>Accept</button>
+                        <button onClick={() => ignoreRequest(invite)}>Ignore</button>
+                    </div>
+                )
+            })}
+            {friendRequests?.map(request => {
+                return (
+                    <div key={request.id}>
+                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
+                    </div>
+                )
+            })}
         </div>
     );
 }
