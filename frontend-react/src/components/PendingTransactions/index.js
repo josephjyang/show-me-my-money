@@ -28,7 +28,6 @@ function PendingTransactions() {
     const dispatch = useDispatch();
     // useEffect(() => {
     //     if (user) {
-    //         console.log("running pending");
     //         dispatch(authenticate());
     //         dispatch(getFriends(user));
     //         dispatch(getTransactions(user));

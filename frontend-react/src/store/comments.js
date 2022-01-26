@@ -27,7 +27,6 @@ const initialState = {};
 export const getComments = () => async dispatch => {
     const res = await fetch(`/api/comments/`)
     const comments = await res.json();
-    console.log(comments)
     dispatch(loadComments(comments));
     return comments;
 }
@@ -57,14 +56,12 @@ export const deleteComment = comment => async dispatch => {
 }
 
 export const updateComment = comment => async dispatch => {
-    console.log(comment)
     const res = await fetch(`/api/comments/${comment.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
     const data = await res.json();
-    console.log(data)
     if (res.ok) {
         dispatch(addComment(data))
         return data

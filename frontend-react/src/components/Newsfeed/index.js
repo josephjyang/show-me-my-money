@@ -27,8 +27,6 @@ function Newsfeed({ person }) {
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
-            console.log("running newsfeed");
-            // dispatch(authenticate())
             dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());

@@ -69,7 +69,6 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_REQUESTS:
             const friendRequests = {}
-            console.log(action.friendRequests);
             Object.values(action.friendRequests.friend_requests).forEach(request => {
                 if (action.user.id === request.recipient_id) friendRequests[request.sender_id] = request
                 else friendRequests[request.recipient_id] = request

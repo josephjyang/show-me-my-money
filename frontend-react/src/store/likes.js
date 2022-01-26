@@ -27,7 +27,6 @@ const initialState = {};
 export const getLikes = () => async dispatch => {
     const res = await fetch(`/api/likes/`)
     const likes = await res.json();
-    console.log(likes)
     dispatch(loadLikes(likes));
     return likes;
 }

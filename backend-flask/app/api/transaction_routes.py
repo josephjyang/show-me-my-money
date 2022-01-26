@@ -20,7 +20,6 @@ def validation_errors_to_error_messages(validation_errors):
 def new_transaction():
     form = TransactionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form)
     if form.validate_on_submit():
         transaction = Transaction()
         form.populate_obj(transaction)
@@ -64,7 +63,6 @@ def delete_transaction(id):
 def new_comment(id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form)
     if form.validate_on_submit():
         comment = Comment()
         form.populate_obj(comment)
@@ -79,7 +77,6 @@ def new_comment(id):
 def new_like(id):
     form = LikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form)
     if form.validate_on_submit():
         like = Like()
         form.populate_obj(like)

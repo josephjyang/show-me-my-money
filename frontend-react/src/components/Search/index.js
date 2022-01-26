@@ -21,7 +21,6 @@ const SearchBar = ({ setFriend, friend, errors }) => {
     const user = useSelector(state => state.session.user);
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
-    console.log(users)
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
