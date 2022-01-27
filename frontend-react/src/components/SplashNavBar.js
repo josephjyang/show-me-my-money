@@ -2,7 +2,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LoginFormModal from './auth/LoginFormModal';
-import LogoutButton from './auth/LogoutButton';
 import DemoLoginButton from './DemoLoginButton';
 import './SplashNavBar.css'
 

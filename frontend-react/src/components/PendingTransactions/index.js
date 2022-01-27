@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getFriends, createFriend } from '../../store/friends';
+import { createFriend } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
-import { getUsers } from '../../store/users';
 import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
-import { getComments } from '../../store/comments';
 import { updateUser } from '../../store/users';
 import './PendingTransactions.css'
 
@@ -99,11 +97,11 @@ function PendingTransactions() {
                                 <button className="pending-button" onClick={() => deleteTrans(transaction)}>
                                     Cancel
                                 </button>
-                                <NavLink to={`/transactions/${transaction.id}/edit`}>
-                                    <button className="pending-button">
-                                        Edit
-                                    </button>
-                                </NavLink>
+                                <button className="pending-button">
+                                    <NavLink to={`/transactions/${transaction.id}/edit`}>                     
+                                            Edit
+                                    </NavLink>
+                                </button>
                             </div>
                         </div>
                     )
@@ -141,22 +139,36 @@ function PendingTransactions() {
                     )
                 })}
             </div>
-            {friendInvites?.map(invite => {
-                return (
-                    <div key={invite.id}>
-                        <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
-                        <button onClick={() => acceptFriend(invite)}>Accept</button>
-                        <button onClick={() => ignoreRequest(invite)}>Ignore</button>
-                    </div>
-                )
-            })}
-            {friendRequests?.map(request => {
-                return (
-                    <div key={request.id}>
-                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
-                    </div>
-                )
-            })}
+            <div id="pending-invites">
+                <h2 className='pending-header'>Pending Friend Invites</h2>
+                {friendInvites?.map(invite => {
+                    return (
+                        <div key={invite.id}>
+                            <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
+                            <button onClick={() => acceptFriend(invite)}>Accept</button>
+                            <button onClick={() => ignoreRequest(invite)}>Ignore</button>
+                        </div>
+                    )
+                })}
+            </div>
+            <div id="pending-friend-requests">
+                <h2 className='pending-header'>Pending Friend Requests</h2>
+                {friendRequests?.map(request => {
+                    return (
+                        <div className="friend-request-box" key={request.id}>
+                            <div className="friend-request-details">
+                                <div className="transaction-picture">
+                                    <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" />
+                                </div>
+                                <p>
+                                    You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
+                                </p>
+                            </div>
+                            <button onClick={() => ignoreRequest(request)} className="pending-button">Cancel</button>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     );
 }

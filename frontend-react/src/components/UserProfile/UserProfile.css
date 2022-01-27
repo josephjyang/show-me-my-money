@@ -46,6 +46,28 @@
 }
 
 #add-friend-button,
+#friends-button,
+.button {
+    border-radius: 10px;
+    /* padding: 7px 15px; */
+    background-color: rgb(165, 165, 165);
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    position: relative;
+    width: 140px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.fa-user-plus,
+.fa-check {
+    margin-right: 5px;
+    font-size: 12px;
+}
+
 #profile-pay-button {
     display: flex;
     align-items: center;
@@ -55,11 +77,6 @@
     width: 220px;
     height: 50px;
     font-weight: 700;
-}
-
-#add-friend-button {
-    border: 1px rgb(0, 176, 79) solid;
-    font-weight: bold;
 }
 
 #add-friend-button:hover {
@@ -98,7 +115,7 @@
     width: 150px;
 }
 
-.button {
+/* .button {
     width: 220px;
     height: 50px;
     display: flex;
@@ -114,7 +131,7 @@
     outline: none;
     color: black;
     background-color: white;
-}
+} */
 
 .button:hover {
     background-color: green;
@@ -125,7 +142,6 @@
 .button:after {
     content: '';
     position: absolute;
-    top: 0.67em;
     left: 0;
     width: 100%;
     text-align: center;
@@ -148,8 +164,8 @@
     transform: translate(-150%,0);
 }
 
-.button:hover span,
-.button:active span {
+.button:hover p,
+.button:active p {
     opacity: 0;
     -webkit-transform: scale(0.3);
     -moz-transform: scale(0.3);

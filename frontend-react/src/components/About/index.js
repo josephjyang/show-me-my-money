@@ -1,4 +1,5 @@
 import React from 'react';
+import profile from './profile.png'
 import './About.css'
 
 function About() {
@@ -8,7 +9,7 @@ function About() {
                 <h3>Hello! Welcome to Show Me My Money - a place to send and receive payments between you and your friends. When you need to see your money, come to Show Me My Money.</h3>
                 <p id="smmm-info">If you'd like to learn more about the project,<br /> please checkout the Github Repository, here: <a href="https://github.com/josephjyang/show-me-my-money">Show Me My Money</a>.</p>
                 <div id="about-me-section">
-                    <img className="profile-pic" src="/profile.png" alt="Joseph Yang" />
+                    <img className="profile-pic" src={profile} alt="Joseph Yang" />
                     <div id="about-me-text">
                         <h3 id="about-me">
                             Created by Joe Yang (@josephjyang)

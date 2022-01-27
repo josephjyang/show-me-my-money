@@ -24,7 +24,7 @@ class SignUpForm(FlaskForm):
     password = StringField('password', validators=[DataRequired()])
     first_name = StringField('first_name', validators=[DataRequired()])
     last_name = StringField('last_name', validators=[DataRequired()])
-    profile_pic = StringField('profile_pic')
+    # profile_pic = StringField('profile_pic')
     balance = DecimalField('amount', places=2, validators=[
         DataRequired()])
     

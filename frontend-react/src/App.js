@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -7,9 +7,7 @@ import SplashNavBar from './components/SplashNavBar';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/UserPage/User';
 import SplashPage from './components/SplashPage';
-import HomePage from './components/HomePage';
 import About from './components/About';
 import TransactionForm from './components/TransactionForm';
 import Transaction from './components/Transaction';
@@ -35,7 +33,7 @@ function App() {
 
     if (user) {
         return (
-            <>
+            <div id="main-content">
                 <NavBar />
                 {loaded && (
                     <Switch>
@@ -62,7 +60,7 @@ function App() {
                         </ProtectedRoute>
                     </Switch>
                 )}
-            </>
+            </div>
         );
     } else {
         return (

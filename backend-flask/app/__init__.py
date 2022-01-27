@@ -70,6 +70,4 @@ def react_root(path):
         return app.send_static_file('smmm-logo.png')
     if path == 'smmm-sign.png':
         return app.send_static_file('smmm-sign.png')
-    if path == 'profile.png':
-        return app.send_static_file('profile.png')
     return app.send_static_file('index.html')

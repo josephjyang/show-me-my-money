@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getFriends } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
-import { getComments } from '../../store/comments';
-import { authenticate } from '../../store/session';
-import { getLikes, createLike, deleteLike } from '../../store/likes';
-import PendingTransactions from '../PendingTransactions';
+import { createLike, deleteLike } from '../../store/likes';
 import './Newsfeed.css'
 
 function Newsfeed({ person }) {
@@ -27,11 +23,8 @@ function Newsfeed({ person }) {
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
-            dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());
-            dispatch(getComments());
-            dispatch(getLikes());
         }
     }, [dispatch, user])
 
