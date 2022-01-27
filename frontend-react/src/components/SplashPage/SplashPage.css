@@ -88,7 +88,8 @@ a:hover{
     position: fixed;
     bottom: 0px;
     left: 0px;
-    height: 5vh;
+    min-height: 50px;
+    height: 7vh;
     width: 100%;
     background-color: black;
     color: white;

@@ -145,10 +145,17 @@ function PendingTransactions() {
                 <h2 className='pending-header'>Pending Friend Invites</h2>
                 {friendInvites?.map(invite => {
                     return (
-                        <div key={invite.id}>
-                            <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
-                            <button onClick={() => acceptFriend(invite)}>Accept</button>
-                            <button onClick={() => ignoreRequest(invite)}>Ignore</button>
+                        <div className="friend-request-box" key={invite.id}>
+                            <div className="friend-request-details">
+                                <div className="transaction-picture">
+                                    {users[invite.sender_id]?.profile_pic ? <img className="creator-picture" src={users[invite.sender_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[invite.sender_id]?.first_name[0]}-{users[invite.sender_id]?.last_name[0]}</div>}
+                                </div>
+                                <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
+                            </div>
+                            <div className="pending-button-ctr">
+                                <button className="pending-button" onClick={() => acceptFriend(invite)}>Accept</button>
+                                <button className="pending-button" onClick={() => ignoreRequest(invite)}>Ignore</button>
+                            </div>
                         </div>
                     )
                 })}

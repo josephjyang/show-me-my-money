@@ -43,6 +43,7 @@
     padding: 5px 0px;
     font-size: 14px;
     width: 75px;
+    height: 30px;
 }
 
 .pending-button a {
@@ -62,11 +63,19 @@
 }
 
 .friend-request-box {
-    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px rgb(210, 210, 210) solid;
+    padding: 15px 0;
+}
+
+.pending-button-ctr {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border-top: 1px rgb(210, 210, 210) solid;
+}
+
+.pending-button-ctr button {
+    margin-bottom: 0;
 }
 
 .friend-request-details {

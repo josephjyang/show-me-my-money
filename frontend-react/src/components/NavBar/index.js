@@ -36,10 +36,6 @@ const NavBar = () => {
                     </div>
                     <span>Home</span>
                 </NavLink>
-                <NavLink to='/search' activeClassName='active' className="navbar-link">
-                    <i class="fas fa-search"></i>
-                    Search
-                </NavLink>
                 <NavLink to={`/users/${user.id}`} activeClassName='active' className="navbar-link">
                     <i class="fas fa-user-circle"></i>
                     Profile
