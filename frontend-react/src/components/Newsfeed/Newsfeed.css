@@ -6,6 +6,31 @@
 #newsfeed-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-right: 1px solid rgb(210, 210, 210);
+}
+
+#newsfeed-filter {
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 32px;
+    display: flex;
+}
+
+#filter-active {
+    background-color: gray;
+    color: white;
+}
+
+.filter-button {
+    border-radius: 32px;
+    min-height: 32px;
+    min-width: 80px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
 }
 
 #newsfeed {
@@ -13,14 +38,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50vw;
-    border-left: 1px solid rgb(210, 210, 210);
-    border-right: 1px solid rgb(210, 210, 210);
+    width: 100%;
 }
 
 .transaction-content {
     width: 100%;
-    border-bottom: 1px solid rgb(210, 210, 210);
+    
     padding-bottom: 20px;
 }
 
@@ -44,7 +67,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 30px;
+    padding: 0 30px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    margin: 10px 0;
 }
 
 .transaction-information {
@@ -104,11 +129,11 @@
 .icon-container a:visited,
 .icon-container a,
 .fa-heart {
-    color: gray;
+    color: rgb(162, 162, 162);
 }
 
 .fa-heart.liked {
-    color: green;
+    color: #46C79C;
 }
 
 .fa-heart:hover,

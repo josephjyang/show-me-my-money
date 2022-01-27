@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getTransactions } from '../../store/transactions';
@@ -8,14 +8,20 @@ import './Newsfeed.css'
 
 function Newsfeed({ person }) {
     const user = useSelector(state => state.session.user);
-    const transactions = useSelector(state => state.transactions)
-    const userTransactions = Object.values(transactions)
+    const transactions = useSelector(state => state.transactions);
+    const [me, setMe] = useState(false)
+    const userTransactions = Object.values(transactions);
     userTransactions.sort((a, b) => {
         return Date.parse(b.updated_at) - Date.parse(a.updated_at)
     })
     const filteredTransactions = userTransactions.filter(transaction => {
         if (person) {
-            return (transaction.paid && (transaction.payer_id === person.id || transaction.payee_id === person.id))
+            if (me) {
+                return (transaction.paid && (transaction.payer_id === person.id || transaction.payee_id === person.id) && (transaction.payer_id === user.id || transaction.payee_id === user.id))
+            } else return (transaction.paid && (transaction.payer_id === person.id || transaction.payee_id === person.id))
+        }
+        else if (me) {
+            return (transaction.paid && (transaction.payer_id === user.id || transaction.payee_id === user.id))
         }
         else return transaction.paid
     })
@@ -49,6 +55,10 @@ function Newsfeed({ person }) {
 
     return (
         <div id="newsfeed-container">
+            <div id="newsfeed-filter">
+                <button onClick={() => setMe(false)} id={me ? "filter" : "filter-active"} className="filter-button"><i class="fas fa-user-friends"></i></button>
+                <button onClick={() => setMe(true)} id={me ? "filter-active" : "filter"} className="filter-button"><i class="fas fa-user"></i></button>
+            </div>
             <div id="newsfeed">
                 {filteredTransactions.map(transaction => {
                     return (

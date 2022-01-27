@@ -72,7 +72,7 @@ function PendingTransactions() {
 
     return (
         <div id="pending">
-            <div id="pending-requests">
+            {requests.length > 0 && (<div className="pending-box">
                 <h2 className='pending-header'>Pending Requests</h2>
                 {requests.map(transaction => {
                     return (
@@ -106,8 +106,9 @@ function PendingTransactions() {
                         </div>
                     )
                 })}
-            </div>
-            <div id="pending-charges">
+            </div>)}
+            {invoices.length > 0 &&
+            (<div className="pending-box">
                 <h2 className='pending-header'>Pending Charges</h2>
                 {invoices.map(transaction => {
                     return (
@@ -138,8 +139,9 @@ function PendingTransactions() {
                         </div>
                     )
                 })}
-            </div>
-            <div id="pending-invites">
+            </div>)}
+            {friendInvites.length > 0 && (
+            <div className="pending-box">
                 <h2 className='pending-header'>Pending Friend Invites</h2>
                 {friendInvites?.map(invite => {
                     return (
@@ -150,15 +152,16 @@ function PendingTransactions() {
                         </div>
                     )
                 })}
-            </div>
-            <div id="pending-friend-requests">
+                </div>)}
+            {friendRequests.length > 0 && (
+            <div className="pending-box">
                 <h2 className='pending-header'>Pending Friend Requests</h2>
                 {friendRequests?.map(request => {
                     return (
                         <div className="friend-request-box" key={request.id}>
                             <div className="friend-request-details">
                                 <div className="transaction-picture">
-                                    <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" />
+                                    {users[request.recipient_id]?.profile_pic ? <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[request.recipient_id]?.first_name[0]}-{users[request.recipient_id]?.last_name[0]}</div>}
                                 </div>
                                 <p>
                                     You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
@@ -168,7 +171,7 @@ function PendingTransactions() {
                         </div>
                     )
                 })}
-            </div>
+            </div>)}
         </div>
     );
 }

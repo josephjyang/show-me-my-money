@@ -3,6 +3,9 @@
     display: flex;
     justify-content: center;
     position: relative;
+    border-right: 1px rgb(210, 210, 210) solid;
+    min-height: 100vh;
+    height: 100%;
 }
 
 #smmm-text-logo {
@@ -13,6 +16,10 @@
     margin-top: 10px;
     text-align: center;
     width: 100%;
+}
+
+#home-nav #smmm-text-logo:hover {
+    color: #38a27f;
 }
 
 #nav-user-pro-pic img {
@@ -33,7 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 25px 0;
+    margin: 25px 0 15px;
 }
 
 #nav-user-intro {
@@ -49,6 +56,13 @@
     font-weight: 700;
     font-size: 13px;
     color:#194738;
+}
+
+#nav-user-balance {
+    margin-bottom: 25px;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
 }
 
 #home-nav .active {
@@ -120,7 +134,7 @@
     border-radius: 25px;
     padding: 10px 20px;
     color: black;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 20px;
     font-family: 'Raleway'
 }

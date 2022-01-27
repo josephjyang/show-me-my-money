@@ -16,7 +16,7 @@ const NavBar = () => {
                 </NavLink>
                 <div id="nav-user-greeting">
                     <div id="nav-user-pro-pic">
-                        <img src={user.profile_pic} alt="user profile"></img>
+                        {user.profile_pic ? <img src={user.profile_pic} alt="user profile" /> : <div>{user.first_name[0]}{user.last_name[0]}</div>}
                     </div>
                     <div id="nav-user-intro">
                         <div id="user-hello">
@@ -26,6 +26,9 @@ const NavBar = () => {
                             @{user.username}
                         </div>
                     </div>
+                </div>
+                <div id="nav-user-balance">
+                    Balance: ${Intl.NumberFormat('en-US').format(user.balance)}
                 </div>
                 <NavLink to='/' activeClassName='active' className="navbar-link">
                     <div className="nav-icon-container">
@@ -37,7 +40,7 @@ const NavBar = () => {
                     <i class="fas fa-search"></i>
                     Search
                 </NavLink>
-                <NavLink to='/profile' activeClassName='active' className="navbar-link">
+                <NavLink to={`/users/${user.id}`} activeClassName='active' className="navbar-link">
                     <i class="fas fa-user-circle"></i>
                     Profile
                 </NavLink>

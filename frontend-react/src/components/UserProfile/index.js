@@ -13,7 +13,7 @@ const UserProfile = () => {
     const users = useSelector(state => state.users);
     const friends = useSelector(state => state.friends);
     const friendRequests = useSelector(state => state.friendRequests)
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState([]);
 
     const { userId } = useParams();
     let user
@@ -70,7 +70,7 @@ const UserProfile = () => {
                         {user.following && Object.keys(user.following).length + Object.keys(user.followed).length} friends
                     </p>
                 </div>
-                {friends[user.id] ? (<button className="button" type="button" data-hover="Remove friend" id="friends-button">
+                {sessionUser.id === user.id ? "" : friends[user.id] ? (<button className="button" type="button" data-hover="Remove friend" id="friends-button">
                     <p id="pay-button-text">
                         <i className="fas fa-check"/>
                         Friends
@@ -84,12 +84,16 @@ const UserProfile = () => {
                             <i className="fas fa-user-plus"/><p id="pay-button-text">Add friend</p>
                         </div>)
                 }
-                <NavLink to={`/users/${user.id}/pay`} activeClassName='active'>
-                    <div id="profile-pay-button">
-                        <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />
-                        <p id="pay-button-text">Pay or Request</p>
-                    </div>
-                </NavLink>
+                {sessionUser.id !== user.id && 
+                (
+                    <NavLink to={`/users/${user.id}/pay`} activeClassName='active'>
+                        <div id="profile-pay-button">
+                            <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />
+                            <p id="pay-button-text">Pay or Request</p>
+                        </div>
+                    </NavLink>
+                )
+                }
             </div>
             <Newsfeed person={user} />
         </div>
