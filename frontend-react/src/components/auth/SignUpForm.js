@@ -37,15 +37,6 @@ const SignUpForm = () => {
             newUser.append("first_name", firstName)
             newUser.append("last_name", lastName)
             newUser.append("balance", 1000)
-            console.log(newUser)
-            // const newUser = {
-            //     username,
-            //     email,
-            //     password,
-            //     first_name: firstName,
-            //     last_name: lastName,
-            //     profile_pic: image
-            // }
             const data = await dispatch(signUp(newUser));
             console.log(data)
             if (data) {
@@ -212,9 +203,7 @@ const SignUpForm = () => {
                     {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
                 </div>
                 <div className="signup-field-ctr">
-                    {image &&
-                        <label className="signup-label" htmlFor="image">Profile Picture URL</label>
-                    }
+                    <label className="signup-label" htmlFor="image">Profile Picture</label>
                     <input
                         className="signup-field"
                         type='file'

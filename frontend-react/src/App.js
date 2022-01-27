@@ -35,7 +35,7 @@ function App() {
 
     if (user) {
         return (
-            <>
+            <div id="main-content">
                 <NavBar />
                 {loaded && (
                     <Switch>
@@ -62,7 +62,7 @@ function App() {
                         </ProtectedRoute>
                     </Switch>
                 )}
-            </>
+            </div>
         );
     } else {
         return (

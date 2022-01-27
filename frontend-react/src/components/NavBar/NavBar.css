@@ -1,19 +1,21 @@
 #nav-container {
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #home-nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
     font-size: 15px;
     font-weight: 500;
-    background-color: green;
-    width: 100%;
-    height: 75px;
+    background-color: blue;
+    max-width: 250px;
+    width: 30vw;
+    height: 100%;
 }
 
 #right-nav {
