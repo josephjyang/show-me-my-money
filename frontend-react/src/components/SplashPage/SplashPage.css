@@ -71,42 +71,6 @@
     background-color: #2e413b;
 }
 
-#homepage-footer {
-    margin-top: 10px;
-    background-color: #fff;
-    border-top: 1px solid #e8e8e8;
-    padding: 50px 0;
-    height: 100%;
-    width: 100%;
-    font-size: 16px;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
-    display: flex;
-
-}
-
-.footer-nav-div {
-    display: inline-block;
-    box-sizing: border-box;
-    font-size: 15px;
-    font-weight: 400px;
-    min-width: 140px;
-    max-width: 180px;
-}
-
-.footer-nav-div li {
-    margin-top: 0;
-    text-align: -webkit-match-parent;
-}
-
-.footer-nav-div a {
-    line-height: 24px;
-    color: #8b8b94;
-    padding-top: 0;
-    padding-bottom: 0;
-    text-decoration: none;
-    align-content: stretch;
-}
 
 a {
     background-color: transparent;
@@ -116,30 +80,32 @@ a:hover{
     cursor: pointer;
 }
 
-.footer-link:hover {
-    background-color: #eeeeee;
-    color: #8b8b94;
-}
-
-.nav-footer-header{
-    font-weight: 700;
-    color: #8b8b94;
-    margin: 2px 0 8px 15px;
-}
-
-.nav-footer-list{
-    width: 151px;
-}
-
 * {
     box-sizing: border-box;
 }
 
-.footer-container {
-    width: auto;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    display: inline-block;
+#homepage-footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 5vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#about {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Raleway';
+}
+
+#about:hover {
+    color: #A2E0CB;
+    cursor:pointer;
 }

@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(1000), nullable=True)
-    balance = db.Column(db.Float(2), nullable=False)
+    balance = db.Column(db.Float(), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())

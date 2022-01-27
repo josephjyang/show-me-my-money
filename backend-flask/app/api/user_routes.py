@@ -4,6 +4,7 @@ from app.models import User, Transaction, FriendRequest, db
 from app.forms import FriendRequestForm, UserUpdateForm
 from sqlalchemy import or_
 
+
 user_routes = Blueprint('users', __name__)
 
 def validation_errors_to_error_messages(validation_errors):

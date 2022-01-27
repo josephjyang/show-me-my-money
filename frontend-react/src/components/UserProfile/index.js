@@ -21,9 +21,11 @@ const UserProfile = () => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getUsers());
-        dispatch(getFriends(sessionUser));
-        dispatch(getFriendRequests(sessionUser));
+        if (sessionUser) {
+            dispatch(getUsers());
+            dispatch(getFriends(sessionUser));
+            dispatch(getFriendRequests(sessionUser));
+        }
     }, [dispatch, sessionUser])
 
     const addFriend = async user => {
@@ -60,26 +62,31 @@ const UserProfile = () => {
                 </div>
                 <div id="profile-row">
                     <p id="profile-username">@{user.username}</p>
-                    <i class="fas fa-circle"></i>
+                    <i className="fas fa-circle"></i>
                     <p id="profile-friends">
                         {user.following && Object.keys(user.following).length + Object.keys(user.followed).length} friends
                     </p>
                 </div>
+                {friends[user.id] ? (<button className="button" type="button" data-hover="Remove friend" id="friends-button">
+                    <p id="pay-button-text">
+                        <i className="fas fa-check"/>
+                        Friends
+                    </p>
+                </button>) : 
+                        friendRequests[user.id] ? 
+                        friendRequests[user.id].recipient_id === user.id ? 
+                            <button onClick={() => cancelRequest(friendRequests[user.id])} className="button" type="button" data-hover="Cancel request"><p id="pay-button-text">Friend requested</p></button> : 
+                        <div>Friend request received</div> :
+                        (<div id="add-friend-button" onClick={() => addFriend(user)}>
+                            <i className="fas fa-user-plus"/><p id="pay-button-text">Add friend</p>
+                        </div>)
+                }
                 <NavLink to={`/users/${user.id}/pay`} activeClassName='active'>
                     <div id="profile-pay-button">
                         <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />
                         <p id="pay-button-text">Pay or Request</p>
                     </div>
                 </NavLink>
-                {friends[user.id] ? <div>Friends</div> : 
-                        friendRequests[user.id] ? 
-                        friendRequests[user.id].recipient_id === user.id ? 
-                            <button onClick={() => cancelRequest(friendRequests[user.id])} class="button" type="button" data-hover="Cancel Request"><span>Friend request sent</span></button> : 
-                        <div>Friend request received</div> :
-                        (<div id="add-friend-button" onClick={() => addFriend(user)}>
-                            <p id="pay-button-text">Add friend</p>
-                        </div>)
-                }
             </div>
             <Newsfeed person={user} />
         </div>

@@ -27,11 +27,11 @@ function Newsfeed({ person }) {
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
-            dispatch(getFriends(user));
+            // dispatch(getFriends(user));
             dispatch(getTransactions(user));
             dispatch(getUsers());
-            dispatch(getComments());
-            dispatch(getLikes());
+            // dispatch(getComments());
+            // dispatch(getLikes());
         }
     }, [dispatch, user])
 

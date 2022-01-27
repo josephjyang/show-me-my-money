@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './SplashPage.css'
 
@@ -22,12 +22,15 @@ const SplashPage = () => {
             </div>
             <div className="splash-panel two">
                 <div className="left-panel">
-                    <i class="fas fa-money-bill-wave"></i>
+                    <i className="fas fa-money-bill-wave"></i>
                 </div>
                 <div id="right-panel">
                     <h1 className='homepage-header'>Pay friends</h1>
                     <h3 className="homepage-tagline">Whether you're settling bills, splitting up the check, or sending a gift, Show Me My Money helps you get your funds where they need to go.</h3>
                 </div>
+            </div>
+            <div id="homepage-footer">
+                <NavLink to="/about" id="about">ABOUT SHOW ME MY MONEY</NavLink>
             </div>
         </div>
     );

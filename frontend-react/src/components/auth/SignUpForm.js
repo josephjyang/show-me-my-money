@@ -13,9 +13,10 @@ const SignUpForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [profilePic, setProfilePic] = useState('');
+    const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    console.log(image)
 
     const onSignUp = async e => {
         e.preventDefault();
@@ -28,15 +29,25 @@ const SignUpForm = () => {
         setErrors({...errors})
         if (Object.keys(errors).length > 0) return
         if (password === confirmPassword) {
-            const newUser = {
-                username,
-                email,
-                password,
-                first_name: firstName,
-                last_name: lastName,
-                profile_pic: profilePic
-            }
+            const newUser = new FormData()
+            newUser.append("image", image)
+            newUser.append("username", username)
+            newUser.append("email", email)
+            newUser.append("password", password)
+            newUser.append("first_name", firstName)
+            newUser.append("last_name", lastName)
+            newUser.append("balance", 1000)
+            console.log(newUser)
+            // const newUser = {
+            //     username,
+            //     email,
+            //     password,
+            //     first_name: firstName,
+            //     last_name: lastName,
+            //     profile_pic: image
+            // }
             const data = await dispatch(signUp(newUser));
+            console.log(data)
             if (data) {
                 setBackErrors(data);
             }
@@ -94,7 +105,10 @@ const SignUpForm = () => {
         else delete errors.lastName
     };
 
-    const updateProfilePic = e => setProfilePic(e.target.value);
+    const updateProfilePic = e => {
+        const file = e.target.files[0];
+        setImage(file);
+    }
 
     if (user) return <Redirect to="/" />;
 
@@ -168,19 +182,6 @@ const SignUpForm = () => {
                     {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
                 </div>
                 <div className="signup-field-ctr">
-                    {profilePic &&
-                        <label className="signup-label" htmlFor="profilePic">Profile Picture URL</label>
-                    }
-                    <input
-                        className="signup-field"
-                        type='text'
-                        placeholder="Profile Picture URL"
-                        name='profilePic'
-                        onChange={updateProfilePic}
-                        value={profilePic}
-                    />
-                </div>
-                <div className="signup-field-ctr">
                     {password &&
                         <label className="signup-label" htmlFor="password">Password</label>
                     }
@@ -209,6 +210,19 @@ const SignUpForm = () => {
                         required={true}
                         />
                     {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
+                </div>
+                <div className="signup-field-ctr">
+                    {image &&
+                        <label className="signup-label" htmlFor="image">Profile Picture URL</label>
+                    }
+                    <input
+                        className="signup-field"
+                        type='file'
+                        accept="image/*"
+                        placeholder="Profile Picture URL"
+                        name='image'
+                        onChange={updateProfilePic}
+                    />
                 </div>
                 <button type="submit" id='sign-up-submit-button'>Sign Up</button>
             </form>
