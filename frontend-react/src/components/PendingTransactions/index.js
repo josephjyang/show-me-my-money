@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getFriends, createFriend } from '../../store/friends';
+import { createFriend } from '../../store/friends';
 import { getTransactions } from '../../store/transactions';
-import { getUsers } from '../../store/users';
 import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
-import { getComments } from '../../store/comments';
 import { updateUser } from '../../store/users';
 import './PendingTransactions.css'
 

@@ -53,6 +53,9 @@ const UserProfile = () => {
 
     if (user) return (
         <div id="user-profile-ctr">
+            {errors?.map((error, ind) => (
+                <div key={ind}>{error}</div>
+            ))}
             <div id="user-info">
                 <div id="user-pro-pic">
                     <img src={user.profile_pic} alt="user profile"></img>

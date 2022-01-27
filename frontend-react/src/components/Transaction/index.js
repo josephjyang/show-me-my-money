@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { createComment, deleteComment, updateComment } from "../../store/comments";
 import { getTransactions } from "../../store/transactions";
 import { createLike, deleteLike } from "../../store/likes";
@@ -17,7 +17,6 @@ const Transaction = () => {
     const transaction = transactions[transactionId]
     const comments = Object.values(transaction.comments)
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const removeComment = async comment => {
         await dispatch(deleteComment(comment));
