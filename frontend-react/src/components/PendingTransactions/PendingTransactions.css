@@ -42,8 +42,17 @@
     margin: 10px;
     padding: 5px 0px;
     font-size: 14px;
-    width: 75px;
+    min-width: 75px;
     height: 30px;
+}
+
+.pending-button.invite {
+    margin: 5px 0;
+}
+
+.pending-button.cancel {
+    margin: 0;
+    min-width: 75px;
 }
 
 .pending-button a {
@@ -65,6 +74,7 @@
 .friend-request-box {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-top: 1px rgb(210, 210, 210) solid;
     padding: 15px 0;
 }
@@ -72,10 +82,8 @@
 .pending-button-ctr {
     display: flex;
     flex-direction: column;
-}
-
-.pending-button-ctr button {
-    margin-bottom: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .friend-request-details {

@@ -153,8 +153,8 @@ function PendingTransactions() {
                                 <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
                             </div>
                             <div className="pending-button-ctr">
-                                <button className="pending-button" onClick={() => acceptFriend(invite)}>Accept</button>
-                                <button className="pending-button" onClick={() => ignoreRequest(invite)}>Ignore</button>
+                                <button className="pending-button invite" onClick={() => acceptFriend(invite)}>Accept</button>
+                                <button className="pending-button invite" onClick={() => ignoreRequest(invite)}>Ignore</button>
                             </div>
                         </div>
                     )
@@ -174,7 +174,7 @@ function PendingTransactions() {
                                     You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
                                 </p>
                             </div>
-                            <button onClick={() => ignoreRequest(request)} className="pending-button">Cancel</button>
+                            <button onClick={() => ignoreRequest(request)} className="pending-button cancel">Cancel</button>
                         </div>
                     )
                 })}

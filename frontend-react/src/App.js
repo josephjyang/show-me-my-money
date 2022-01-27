@@ -13,6 +13,7 @@ import TransactionForm from './components/TransactionForm';
 import Transaction from './components/Transaction';
 import MainPage from './components/MainPage';
 import UserProfile from './components/UserProfile';
+import Friends from './components/Friends';
 import { authenticate } from './store/session';
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
                     <Switch>
                         <ProtectedRoute path='/users' exact={true}>
                             <UsersList />
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/friends' exact={true}>
+                            <Friends />
                         </ProtectedRoute>
                         <ProtectedRoute path='/users/:userId' exact={true}>
                             <UserProfile />

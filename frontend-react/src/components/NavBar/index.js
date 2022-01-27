@@ -30,7 +30,7 @@ const NavBar = () => {
                 <div id="nav-user-balance">
                     Balance: ${Intl.NumberFormat('en-US').format(user.balance)}
                 </div>
-                <NavLink to='/' activeClassName='active' className="navbar-link">
+                <NavLink to='/' exact={true} activeClassName='active' className="navbar-link">
                     <div className="nav-icon-container">
                         <i class="fas fa-home"></i>
                     </div>

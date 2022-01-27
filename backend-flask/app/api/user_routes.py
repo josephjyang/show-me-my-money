@@ -69,6 +69,17 @@ def new_friend(id):
         return new_friend.to_dict_friends()
 
 
+@user_routes.route('/<int:id>/friends/<int:friend_id>', methods=["DELETE"])
+@login_required
+def delete_friend(id, friend_id):
+    user = User.query.get(id)
+    friend = User.query.get(friend_id)
+    user.unfriend(friend)
+    friend.unfriend(user)
+    db.session.commit()
+    return {'message': 'Successfully Deleted Friend'}
+
+
 @user_routes.route('/<int:id>/friends/transactions')
 @login_required
 def get_all_transactions(id):

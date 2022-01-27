@@ -1,0 +1,44 @@
+#friends-container {
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.friend-box {
+    background-color: #A2E0CB;
+    width: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    height: fit-content;
+}
+
+.friend-box:hover {
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.friend-box a,
+.friend-box a:visited {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.friend-box h3 {
+    margin: 5px;
+    text-decoration: none;
+}
+
+.friend-box p {
+    margin: 0px;
+    text-decoration: none;
+}
+
+.friend-picture {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    text-align: center;
+    border-radius: 5%;
+}
