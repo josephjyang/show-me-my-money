@@ -16,7 +16,6 @@ const SignUpForm = () => {
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    console.log(image)
 
     const onSignUp = async e => {
         e.preventDefault();
@@ -38,7 +37,6 @@ const SignUpForm = () => {
             newUser.append("last_name", lastName)
             newUser.append("balance", 1000)
             const data = await dispatch(signUp(newUser));
-            console.log(data)
             if (data) {
                 setBackErrors(data);
             }

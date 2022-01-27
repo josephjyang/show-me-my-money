@@ -32,16 +32,16 @@ const NavBar = () => {
                 </div>
                 <NavLink to='/' exact={true} activeClassName='active' className="navbar-link">
                     <div className="nav-icon-container">
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                     </div>
                     <span>Home</span>
                 </NavLink>
                 <NavLink to={`/users/${user.id}`} activeClassName='active' className="navbar-link">
-                    <i class="fas fa-user-circle"></i>
+                    <i className="fas fa-user-circle"></i>
                     Profile
                 </NavLink>
                 <NavLink to='/friends' activeClassName='active' className="navbar-link">
-                    <i class="fas fa-users"></i>
+                    <i className="fas fa-users"></i>
                     Friends
                 </NavLink>
                 <LogoutButton />
