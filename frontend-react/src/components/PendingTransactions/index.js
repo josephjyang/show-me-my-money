@@ -118,7 +118,6 @@ function PendingTransactions() {
                             <div className="transaction-information">
                                 <div className="transaction-picture">
                                     {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
-                                    <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
                                 </div>
                                 <div className="pending-content">
                                     <div className="content-header">

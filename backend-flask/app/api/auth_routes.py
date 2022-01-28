@@ -59,6 +59,7 @@ def sign_up():
             # if the dictionary doesn't have a filename key
             # it means that there was an error when we tried to upload
             # so we send back that error message
+            # return {"errors": ["upload error"]}, 400
             return upload, 400
         
         url = upload["url"]

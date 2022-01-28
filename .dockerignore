@@ -1,6 +1,6 @@
-../frontend-react/node_modules
-.venv
-Pipfile
-Pipfile.lock
-.env
+frontend-react/node_modules
+backend-flask/.venv
+backend-flask/Pipfile
+backend-flask/Pipfile.lock
+backend-flask/.env
 .DS_Store
