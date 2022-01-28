@@ -88,7 +88,7 @@ function PendingTransactions() {
                                 <div className="pending-content">
                                     <div className="content-header">
                                         <div className="content-header-names">
-                                            Request to <span className="user-name">{transaction.payer.first_name}</span>
+                                            Request to <NavLink to={`/users/${transaction.payer.id}`} className="user-name">{transaction.payer.first_name}</NavLink>
                                         </div>
                                         {transaction.payee_id === user.id && <div className="amount"> ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
                                     </div>
@@ -124,7 +124,7 @@ function PendingTransactions() {
                                     <div className="pending-content">
                                         <div className="content-header">
                                             <div className="content-header-names">
-                                                <span className="user-name">{transaction.creator.first_name} </span>requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
+                                                <NavLink to={`/users/${transaction.creator.id}`} className="user-name">{transaction.creator.first_name}</NavLink>requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
                                             </div>
                                         </div>
                                         <div className="transaction-details">
@@ -154,7 +154,7 @@ function PendingTransactions() {
                                     <div className="transaction-picture">
                                         {users[invite.sender_id]?.profile_pic ? <img className="creator-picture" src={users[invite.sender_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[invite.sender_id]?.first_name[0]}-{users[invite.sender_id]?.last_name[0]}</div>}
                                     </div>
-                                    <p className="request-info">{users[invite.sender_id]?.first_name} sent you a friend request</p>
+                                    <p className="request-info"><NavLink to={`/users/${users[invite.sender_id]?.id}`} className="user-name">{`${users[invite.sender_id]?.first_name} `} </NavLink>sent you a friend request</p>
                                 </div>
                                 <div className="pending-button-ctr">
                                     <button className="pending-button invite" onClick={() => acceptFriend(invite)}>Accept</button>
@@ -175,7 +175,9 @@ function PendingTransactions() {
                                         {users[request.recipient_id]?.profile_pic ? <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[request.recipient_id]?.first_name[0]}-{users[request.recipient_id]?.last_name[0]}</div>}
                                     </div>
                                     <p className="request-info">
-                                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
+                                        You sent 
+                                        <NavLink to={`/users/${users[request.recipient_id]?.id}`} className="user-name">{` ${users[request.recipient_id]?.first_name} ${users[request.recipient_id]?.last_name} `}</NavLink>
+                                         a friend request
                                     </p>
                                 </div>
                                 <button onClick={() => ignoreRequest(request)} className="pending-button cancel">Cancel</button>
