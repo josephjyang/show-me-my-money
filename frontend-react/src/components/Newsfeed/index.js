@@ -28,10 +28,7 @@ function Newsfeed({ person }) {
 
     const passedTime = (transaction) => {
         let startTime = new Date(transaction.updated_at);
-        // startTime.setHours(startTime.getHours() + 8)
         let endTime = new Date();
-        console.log("starting", startTime)
-        console.log("ending", endTime)
         
         // time difference in ms
         let timeDiff = endTime.getTime() - startTime.getTime();

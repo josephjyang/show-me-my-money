@@ -166,6 +166,12 @@
     padding-left: 10px;
 }
 
+.transaction-error.amount {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+}
+
 #details-container,
 #amount-container,
 #recipient-container {

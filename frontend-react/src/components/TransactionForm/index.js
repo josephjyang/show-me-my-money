@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { updateUser } from "../../store/users";
 import { createTransaction, updateTransaction } from "../../store/transactions";
 import SearchBar from "../Search";
+import AutosizeInput from 'react-input-autosize';
 import './TransactionForm.css';
 
 const TransactionForm = () => {
@@ -122,18 +123,18 @@ const TransactionForm = () => {
                 <div id="amount-container">
                     <div id="transaction-amount">
                         <span>$</span>
-                        <input
+                        <AutosizeInput
+                            name="amount"
+                            value={amount}
+                            onChange={updateAmount}
                             className={errors.amount ? "error transaction-field" : "transaction-field"}
                             id="transaction-amount-field"
                             type='text'
                             placeholder='0'
-                            name='amount'
-                            onChange={updateAmount}
-                            value={amount}
                             required={true}
-                        />
+                            />
                     </div>
-                    {errors.amount && <p className="transaction-error">{errors.amount}</p>}
+                    {errors.amount && <p className="transaction-error amount">{errors.amount}</p>}
                 </div>
                 <div id="recipient-container">
                     <div id="transaction-recipient">

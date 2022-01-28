@@ -110,7 +110,7 @@ const SignUpForm = () => {
                 <h3>Create a Show Me My Money Account</h3>
                 {backErrors.length > 0 && (<div id="backend-errors">
                     {backErrors.map((error, ind) => (
-                        <div key={ind}>Error: {error.split(":")[1]}</div>
+                        <div key={ind}>Error: {error.length > 1 ? error.split(":")[1] : error.split(":")[0]}</div>
                     ))}
                 </div>)}
                 <div className="signup-field-ctr">
