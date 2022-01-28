@@ -20,7 +20,7 @@
 }
 
 #filter-active {
-    background-color: gray;
+    background-color: rgb(101, 101, 101);
     color: white;
 }
 
@@ -110,6 +110,12 @@
 
 .transaction-details {
     margin-top: 8px;
+}
+
+.elapsed-time {
+    margin: 3px 0 0 0;
+    color: gray;
+    font-size: 13px;
 }
 
 .icon-container {

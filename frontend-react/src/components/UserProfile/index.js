@@ -81,7 +81,7 @@ const UserProfile = () => {
                         {user.following && Object.keys(user.following).length + Object.keys(user.followed).length} friends
                     </p>
                 </div>
-                {sessionUser.id === user.id ? "" : friends[user.id] ? (<button onClick={() => removeFriend(friends[user.id])}className="button" type="button" data-hover="Remove friend" id="friends-button">
+                {sessionUser.id === user.id ? "" : friends[user.id] ? (<button onClick={() => removeFriend(friends[user.id])} className="button" type="button" data-hover="Remove friend" id="friends-button">
                     <p id="pay-button-text">
                         <i className="fas fa-check"/>
                         Friends

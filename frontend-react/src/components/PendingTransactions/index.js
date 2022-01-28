@@ -7,6 +7,7 @@ import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
 import { updateUser } from '../../store/users';
+import UserSearchBar from '../UserSearch';
 import './PendingTransactions.css'
 
 function PendingTransactions() {
@@ -72,6 +73,7 @@ function PendingTransactions() {
 
     return (
         <div id="pending">
+            <UserSearchBar />
             {requests.length > 0 && (<div className="pending-box">
                 <h2 className='pending-header'>Pending Requests</h2>
                 {requests.map(transaction => {
@@ -79,7 +81,7 @@ function PendingTransactions() {
                         <div className="pending-container" key={transaction.id}>
                             <div className="transaction-information">
                                 <div className="transaction-picture">
-                                    <img className="creator-picture" src={transaction.payer.profile_pic} alt="creator" />
+                                    {transaction.payer?.profile_pic ? <img className="creator-picture" src={transaction.payer?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.payer?.first_name[0]}-{transaction.payer?.last_name[0]}</div>}
                                 </div>
                                 <div className="pending-content">
                                     <div className="content-header">
@@ -115,6 +117,7 @@ function PendingTransactions() {
                         <div className="pending-container" key={transaction.id}>
                             <div className="transaction-information">
                                 <div className="transaction-picture">
+                                    {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                                     <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
                                 </div>
                                 <div className="pending-content">
