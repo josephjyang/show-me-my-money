@@ -3,6 +3,10 @@
     overflow-y: scroll;  
 }
 
+#pending.dark {
+    background-color: rgb(101, 101, 101);
+}
+
 #pending::-webkit-scrollbar {
     width: 0 !important;
 }
@@ -13,6 +17,10 @@
     padding: 10px 20px 0;
     margin: 20px;
     background-color: rgb(245, 245, 245);
+}
+
+.pending-box.dark {
+    background-color: rgb(165, 165, 165);
 }
 
 .pending-container {
@@ -84,6 +92,11 @@
     align-items: center;
     border-top: 1px rgb(210, 210, 210) solid;
     padding: 15px 0;
+}
+
+.request-info {
+    padding-right: 5px;
+    margin: 0;
 }
 
 .pending-button-ctr {

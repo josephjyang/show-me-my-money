@@ -1,4 +1,4 @@
-#nav-container {
+.nav-container {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -6,6 +6,10 @@
     border-right: 1px rgb(210, 210, 210) solid;
     min-height: 100vh;
     height: 100%;
+}
+
+.nav-container.dark {
+    background-color: rgb(75, 75, 75);
 }
 
 #smmm-text-logo {
@@ -65,10 +69,18 @@
     font-family: 'Raleway';
 }
 
+#user-hello.dark {
+    color: rgb(245, 245, 245);
+}
+
 #user-at {
     font-weight: 700;
     font-size: 13px;
     color:#194738;
+}
+
+#user-at.dark {
+    color:#68D0AE;
 }
 
 #nav-user-balance {
@@ -99,9 +111,13 @@
     padding: 5px 20px 5px 0px;
 }
 
+.navbar-link.dark {
+    color: rgb(245, 245, 245);
+}
+
 .navbar-link:hover {
     background-color: #46C79C;
-    color: white;
+    color: rgb(245, 245, 245);
 }
 
 #log-out-button {
@@ -114,7 +130,7 @@
 #log-out-button:hover {
     background-color: #46C79C;
     cursor: pointer;
-    color: white;
+    color: rgb(245, 245, 245);
 }
 
 #home-nav {
@@ -171,7 +187,7 @@
 }
 
 #home-nav a:hover {
-    color: white;
+    color: rgb(245, 245, 245);
     animation: smooth .25s ease-in-out;
     cursor: pointer;
 }
@@ -196,31 +212,7 @@
 
 #profile-icon:hover {
     cursor: pointer;
-    color: white;
-}
-
-.profile-dropdown {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    min-width: 260px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 0;
-    top: 35px;
-    right: 15px;
-    background-color: white;
-    border-radius: 5px;
-    z-index: 10;
-    overflow: show;
-}
-
-.profile-dropdown li {
-    box-sizing: border-box;
-    width: 100%;
-    text-align: left;
-    font-size: 20px;
-    display: flex;
-    padding: 10px;
+    color: rgb(245, 245, 245);
 }
 
 #user-name {
@@ -251,4 +243,13 @@
     text-align: center;
     border-radius: 50%;
     margin-right: 20px;
+}
+
+#dark-mode,
+#light-mode {
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
 }

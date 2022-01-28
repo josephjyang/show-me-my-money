@@ -9,12 +9,14 @@ import { deleteTransaction, updateTransaction } from '../../store/transactions';
 import { updateUser } from '../../store/users';
 import UserSearchBar from '../UserSearch';
 import './PendingTransactions.css'
+import { useMode } from '../../context/AppContext';
 
 function PendingTransactions() {
     const user = useSelector(state => state.session.user);
-    const users = useSelector(state => state.users)
-    const transactions = useSelector(state => state.transactions)
-    const userTransactions = Object.values(transactions)
+    const users = useSelector(state => state.users);
+    const transactions = useSelector(state => state.transactions);
+    const { dark } = useMode();
+    const userTransactions = Object.values(transactions);
     userTransactions.sort((a, b) => {
         return Date.parse(b.updated_at) - Date.parse(a.updated_at)
     })
@@ -72,9 +74,9 @@ function PendingTransactions() {
 
 
     return (
-        <div id="pending">
+        <div id="pending" className={dark}>
             <UserSearchBar />
-            {requests.length > 0 && (<div className="pending-box">
+            {requests.length > 0 && (<div className={`pending-box ${dark}`}>
                 <h2 className='pending-header'>Pending Requests</h2>
                 {requests.map(transaction => {
                     return (
@@ -100,8 +102,8 @@ function PendingTransactions() {
                                     Cancel
                                 </button>
                                 <button className="pending-button">
-                                    <NavLink to={`/transactions/${transaction.id}/edit`}>                     
-                                            Edit
+                                    <NavLink to={`/transactions/${transaction.id}/edit`}>
+                                        Edit
                                     </NavLink>
                                 </button>
                             </div>
@@ -110,77 +112,77 @@ function PendingTransactions() {
                 })}
             </div>)}
             {invoices.length > 0 &&
-            (<div className="pending-box">
-                <h2 className='pending-header'>Pending Charges</h2>
-                {invoices.map(transaction => {
-                    return (
-                        <div className="pending-container" key={transaction.id}>
-                            <div className="transaction-information">
-                                <div className="transaction-picture">
-                                    {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
-                                </div>
-                                <div className="pending-content">
-                                    <div className="content-header">
-                                        <div className="content-header-names">
-                                            <span className="user-name">{transaction.creator.first_name} </span>requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
+                (<div className={`pending-box ${dark}`}>
+                    <h2 className='pending-header'>Pending Charges</h2>
+                    {invoices.map(transaction => {
+                        return (
+                            <div className="pending-container" key={transaction.id}>
+                                <div className="transaction-information">
+                                    <div className="transaction-picture">
+                                        {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
+                                    </div>
+                                    <div className="pending-content">
+                                        <div className="content-header">
+                                            <div className="content-header-names">
+                                                <span className="user-name">{transaction.creator.first_name} </span>requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
+                                            </div>
+                                        </div>
+                                        <div className="transaction-details">
+                                            {transaction.details}
                                         </div>
                                     </div>
-                                    <div className="transaction-details">
-                                        {transaction.details}
-                                    </div>
+                                </div>
+                                <div className="pending-icons">
+                                    <button className="pending-button" onClick={() => deleteTrans(transaction)}>
+                                        Decline
+                                    </button>
+                                    <button className="pending-button" onClick={() => acceptTrans(transaction)}>
+                                        Pay
+                                    </button>
                                 </div>
                             </div>
-                            <div className="pending-icons">
-                                <button className="pending-button" onClick={() => deleteTrans(transaction)}>
-                                    Decline
-                                </button>
-                                <button className="pending-button" onClick={() => acceptTrans(transaction)}>
-                                    Pay
-                                </button>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>)}
+                        )
+                    })}
+                </div>)}
             {friendInvites.length > 0 && (
-            <div className="pending-box">
-                <h2 className='pending-header'>Pending Friend Invites</h2>
-                {friendInvites?.map(invite => {
-                    return (
-                        <div className="friend-request-box" key={invite.id}>
-                            <div className="friend-request-details">
-                                <div className="transaction-picture">
-                                    {users[invite.sender_id]?.profile_pic ? <img className="creator-picture" src={users[invite.sender_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[invite.sender_id]?.first_name[0]}-{users[invite.sender_id]?.last_name[0]}</div>}
+                <div className={`pending-box ${dark}`}>
+                    <h2 className='pending-header'>Pending Friend Invites</h2>
+                    {friendInvites?.map(invite => {
+                        return (
+                            <div className="friend-request-box" key={invite.id}>
+                                <div className="friend-request-details">
+                                    <div className="transaction-picture">
+                                        {users[invite.sender_id]?.profile_pic ? <img className="creator-picture" src={users[invite.sender_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[invite.sender_id]?.first_name[0]}-{users[invite.sender_id]?.last_name[0]}</div>}
+                                    </div>
+                                    <p className="request-info">{users[invite.sender_id]?.first_name} sent you a friend request</p>
                                 </div>
-                                <p>{users[invite.sender_id]?.first_name} sent you a friend request</p>
+                                <div className="pending-button-ctr">
+                                    <button className="pending-button invite" onClick={() => acceptFriend(invite)}>Accept</button>
+                                    <button className="pending-button invite" onClick={() => ignoreRequest(invite)}>Ignore</button>
+                                </div>
                             </div>
-                            <div className="pending-button-ctr">
-                                <button className="pending-button invite" onClick={() => acceptFriend(invite)}>Accept</button>
-                                <button className="pending-button invite" onClick={() => ignoreRequest(invite)}>Ignore</button>
-                            </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
                 </div>)}
             {friendRequests.length > 0 && (
-            <div className="pending-box">
-                <h2 className='pending-header'>Pending Friend Requests</h2>
-                {friendRequests?.map(request => {
-                    return (
-                        <div className="friend-request-box" key={request.id}>
-                            <div className="friend-request-details">
-                                <div className="transaction-picture">
-                                    {users[request.recipient_id]?.profile_pic ? <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[request.recipient_id]?.first_name[0]}-{users[request.recipient_id]?.last_name[0]}</div>}
+                <div className={`pending-box ${dark}`}>
+                    <h2 className='pending-header'>Pending Friend Requests</h2>
+                    {friendRequests?.map(request => {
+                        return (
+                            <div className="friend-request-box" key={request.id}>
+                                <div className="friend-request-details">
+                                    <div className="transaction-picture">
+                                        {users[request.recipient_id]?.profile_pic ? <img className="creator-picture" src={users[request.recipient_id]?.profile_pic} alt="creator" /> : <div className="replacement-photo">{users[request.recipient_id]?.first_name[0]}-{users[request.recipient_id]?.last_name[0]}</div>}
+                                    </div>
+                                    <p className="request-info">
+                                        You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
+                                    </p>
                                 </div>
-                                <p>
-                                    You sent {users[request.recipient_id]?.first_name} {users[request.recipient_id]?.last_name} a friend request
-                                </p>
+                                <button onClick={() => ignoreRequest(request)} className="pending-button cancel">Cancel</button>
                             </div>
-                            <button onClick={() => ignoreRequest(request)} className="pending-button cancel">Cancel</button>
-                        </div>
-                    )
-                })}
-            </div>)}
+                        )
+                    })}
+                </div>)}
         </div>
     );
 }

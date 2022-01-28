@@ -7,6 +7,10 @@
     overflow-y:scroll;
 }
 
+#user-profile-ctr.dark {
+    background-color: rgb(140, 140, 140);
+}
+
 #user-profile-ctr #newsfeed-container {
     overflow-y:auto;
 }
@@ -27,6 +31,10 @@
     margin: 0;
     display: inline-block;
     color: gray;
+}
+
+#profile-username.dark {
+    color: #6de4bc;
 }
 
 #profile-friends{

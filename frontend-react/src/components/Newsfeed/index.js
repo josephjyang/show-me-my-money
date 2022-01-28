@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
 import { createLike, deleteLike } from '../../store/likes';
+import { useMode } from '../../context/AppContext';
 import './Newsfeed.css'
 
 function Newsfeed({ person }) {
     const user = useSelector(state => state.session.user);
     const transactions = useSelector(state => state.transactions);
-    const [me, setMe] = useState(false)
+    const [me, setMe] = useState(false);
+    const { dark } = useMode()
     const userTransactions = Object.values(transactions);
     userTransactions.sort((a, b) => {
         return Date.parse(b.updated_at) - Date.parse(a.updated_at)
@@ -96,11 +98,11 @@ function Newsfeed({ person }) {
 
 
     return (
-        <div id="newsfeed-container">
-            <div id="newsfeed-filter">
+        <div id="newsfeed-container" className={dark}>
+            {person?.id !== user.id && (<div id="newsfeed-filter">
                 <button onClick={() => setMe(false)} id={me ? "filter" : "filter-active"} className="filter-button"><i className="fas fa-user-friends"></i></button>
                 <button onClick={() => setMe(true)} id={me ? "filter-active" : "filter"} className="filter-button"><i className="fas fa-user"></i></button>
-            </div>
+            </div>)}
             <div id="newsfeed">
                 {filteredTransactions.map(transaction => {
                     return (
@@ -109,34 +111,34 @@ function Newsfeed({ person }) {
                                 <div className="transaction-picture">
                                     {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                                 </div>
-                                <div className="transaction-content">
+                                <div className={`transaction-content ${dark}`}>
                                     <div className="content-header">
                                         <div className="content-header-names">
-                                            <NavLink to={`/users/${transaction.creator.id}`} className="user-name" activeClassName='active'>
+                                            <NavLink to={`/users/${transaction.creator.id}`} className={`user-name ${dark}`} activeClassName='active'>
                                                 {transaction.creator.first_name}
                                             </NavLink>
                                             {transaction.payer_id === transaction.creator_id ?
                                                 <span>{" paid "}
-                                                    <NavLink to={`/users/${transaction.payee.id}`} className="user-name" activeClassName='active'>
+                                                    <NavLink to={`/users/${transaction.payee.id}`} className={`user-name ${dark}`} activeClassName='active'>
                                                         {transaction.payee.first_name}
                                                     </NavLink>
                                                 </span>
                                                 : <span>{" charged "}
-                                                    <NavLink to={`/users/${transaction.payer.id}`} className="user-name" activeClassName='active'>
+                                                    <NavLink to={`/users/${transaction.payer.id}`} className={`user-name ${dark}`} activeClassName='active'>
                                                         {transaction.payer.first_name}
                                                     </NavLink>
                                                 </span>}
                                         </div>
-                                        {transaction.payer_id === user.id && <div className="neg-amount"> -${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
-                                        {transaction.payee_id === user.id && <div className="pos-amount"> +${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                        {transaction.payer_id === user.id && <div className={`neg-amount ${dark}`}> -${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                        {transaction.payee_id === user.id && <div className={`pos-amount ${dark}`}> +${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
                                     </div>
-                                    <p className="elapsed-time">
+                                    <p className={`elapsed-time ${dark}`}>
                                         {passedTime(transaction)}
                                     </p>
                                     <div className="transaction-details">
                                         {transaction.details}
                                     </div>
-                                    <div className="icon-container">
+                                    <div className={`icon-container ${dark}`}>
                                         <div className="likes-container">
                                             {transaction.likes[user.id] ? <i className="fas fa-heart liked" onClick={() => removeLike(transaction.likes[user.id])} /> : <i className="fas fa-heart" onClick={() => addLike(transaction)} />}
                                             {Object.keys(transaction.likes).length > 0 && Object.keys(transaction.likes).length}

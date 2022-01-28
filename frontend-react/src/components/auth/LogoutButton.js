@@ -8,10 +8,12 @@ import { clearLikes } from '../../store/likes';
 import { clearTransactions } from '../../store/transactions';
 import { clearUsers } from '../../store/users';
 import { clearFriendRequests } from '../../store/friendRequests';
+import { useMode } from '../../context/AppContext';
 
 const LogoutButton = () => {
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
+    const { dark } = useMode();
     const onLogout = async e => {
         await dispatch(logout());
         await dispatch(clearComments());
@@ -23,7 +25,7 @@ const LogoutButton = () => {
         history.push("/")
     }
 
-    return <button id="log-out-button" className="navbar-link" onClick={onLogout}><i className="fas fa-sign-out-alt"></i>Logout</button>
+    return <button id="log-out-button" className={`navbar-link ${dark}`} onClick={onLogout}><i className="fas fa-sign-out-alt"></i>Logout</button>
 }
 
 export default LogoutButton

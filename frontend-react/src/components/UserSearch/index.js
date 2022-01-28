@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useMode } from '../../context/AppContext';
 import { getUsers } from '../../store/users';
 import './UserSearch.css'
 
@@ -22,6 +23,7 @@ const UserSearchBar = () => {
     const user = useSelector(state => state.session.user);
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
+    const { dark } = useMode();
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
@@ -49,13 +51,14 @@ const UserSearchBar = () => {
                         Search users
                     </span>
                 </label>
-                <i class="fas fa-search"></i>
+                <i className={`fas fa-search ${dark}`}></i>
                 <input
                     value={searchQuery}
                     onInput={(e) => setSearchQuery(e.target.value)}
                     type="text"
                     id="user-header-search"
                     name="s"
+                    className={dark}
                     placeholder="Search for users"
                 />
             </form>
