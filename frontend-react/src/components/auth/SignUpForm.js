@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignUpForm.css'
@@ -16,6 +17,7 @@ const SignUpForm = () => {
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const onSignUp = async e => {
         e.preventDefault();
@@ -25,7 +27,7 @@ const SignUpForm = () => {
         if (!lastName) errors.firstName = "Last Name is required"
         if (!password) errors.password = "Password is required"
         if (!confirmPassword) errors.cpassword = "Confirm Password is required"
-        setErrors({...errors})
+        setErrors({ ...errors })
         if (Object.keys(errors).length > 0) return
         if (password === confirmPassword) {
             const newUser = new FormData()
@@ -39,8 +41,8 @@ const SignUpForm = () => {
             const data = await dispatch(signUp(newUser));
             if (data) {
                 setBackErrors(data);
-            }
-        }
+            } else history.push("/")
+        } else return
     }
 
     const updateUsername = (e) => {
@@ -111,7 +113,7 @@ const SignUpForm = () => {
                     ))}
                 </div>
                 <div className="signup-field-ctr">
-                    {username && 
+                    {username &&
                         <label className="signup-label" htmlFor="username">Username</label>
                     }
                     <input
@@ -122,7 +124,7 @@ const SignUpForm = () => {
                         onChange={updateUsername}
                         value={username}
                         required={true}
-                        />
+                    />
                     {errors.username && <p className="signup-error">{errors.username}</p>}
                 </div>
                 <div className="signup-field-ctr">
@@ -137,7 +139,7 @@ const SignUpForm = () => {
                         onChange={updateEmail}
                         value={email}
                         required={true}
-                        />
+                    />
                     {errors.email && <p className="signup-error">{errors.email}</p>}
                 </div>
                 <div className="signup-field-ctr">
@@ -152,7 +154,7 @@ const SignUpForm = () => {
                         onChange={updateFirstName}
                         value={firstName}
                         required={true}
-                        />
+                    />
                     {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
                 </div>
                 <div className="signup-field-ctr">
@@ -167,7 +169,7 @@ const SignUpForm = () => {
                         onChange={updateLastName}
                         value={lastName}
                         required={true}
-                        />
+                    />
                     {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
                 </div>
                 <div className="signup-field-ctr">
@@ -182,7 +184,7 @@ const SignUpForm = () => {
                         onChange={updatePassword}
                         value={password}
                         required={true}
-                        />
+                    />
                     {errors.password && <p className="signup-error">{errors.password}</p>}
                 </div>
                 <div className="signup-field-ctr">
@@ -197,7 +199,7 @@ const SignUpForm = () => {
                         onChange={updateConfirmPassword}
                         value={confirmPassword}
                         required={true}
-                        />
+                    />
                     {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
                 </div>
                 <div className="signup-field-ctr">
