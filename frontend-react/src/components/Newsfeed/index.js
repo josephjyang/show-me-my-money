@@ -110,7 +110,7 @@ function Newsfeed({ person }) {
                         <div className="transaction-container" key={transaction.id}>
                             <div className="transaction-information">
                                 <div className="transaction-picture">
-                                    <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
+                                    {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                                 </div>
                                 <div className="transaction-content">
                                     <div className="content-header">

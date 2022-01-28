@@ -36,7 +36,7 @@ function Friends() {
                                 {user.first_name} {user.last_name}
                             </h3>
                             <p>
-                                {user.username}
+                                @{user.username}
                             </p>
                         </NavLink>
                     </div>

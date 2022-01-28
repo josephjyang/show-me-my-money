@@ -7,6 +7,7 @@ import { clearFriends } from '../../store/friends';
 import { clearLikes } from '../../store/likes';
 import { clearTransactions } from '../../store/transactions';
 import { clearUsers } from '../../store/users';
+import { clearFriendRequests } from '../../store/friendRequests';
 
 const LogoutButton = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const LogoutButton = () => {
         await dispatch(clearLikes());
         await dispatch(clearTransactions());
         await dispatch(clearUsers());
+        await dispatch(clearFriendRequests());
         history.push("/")
     }
 

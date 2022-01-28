@@ -1,6 +1,9 @@
 import React from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import onlinepayment from '../images/onlinepayment.png'
+import transfermoney from '../images/transfermoney.svg'
+import online_friends from '../images/online_friends.svg'
 import './SplashPage.css'
 
 const SplashPage = () => {
@@ -14,15 +17,15 @@ const SplashPage = () => {
                 <div className="left-panel">
                     <h1 className='homepage-header'>Fast, safe, social payments</h1>
                     <h3 className="homepage-tagline">When you need to see your money, come to Show Me My Money!</h3>
-                    <a href="/sign-up" id='homepage-signup-button'>Get SMMM</a>
+                    <a href="/sign-up" id='homepage-signup-button'>Get $MMM</a>
                 </div>
                 <div className="right-panel">
-                  <i className="fas fa-comments-dollar"/> 
+                    <img src={transfermoney} alt="social payment"/>
                 </div>
             </div>
             <div className="splash-panel two">
                 <div className="left-panel">
-                    <i className="fas fa-money-bill-wave"></i>
+                    <img src={online_friends} alt="friend payment"/> 
                 </div>
                 <div id="right-panel">
                     <h1 className='homepage-header'>Pay friends</h1>

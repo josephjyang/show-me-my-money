@@ -16,7 +16,7 @@ const NavBar = () => {
                 </NavLink>
                 <div id="nav-user-greeting">
                     <div id="nav-user-pro-pic">
-                        {user.profile_pic ? <img src={user.profile_pic} alt="user profile" /> : <div>{user.first_name[0]}{user.last_name[0]}</div>}
+                        {user.profile_pic ? <img src={user.profile_pic} alt="user profile" /> : <div id="user-pro-replace">{user.first_name[0]}-{user.last_name[0]}</div>}
                     </div>
                     <div id="nav-user-intro">
                         <div id="user-hello">

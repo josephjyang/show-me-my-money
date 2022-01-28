@@ -14,7 +14,7 @@
 
 .splash-panel.one {
     margin-top: 126px;
-    background-color: white;
+    background-color: #A2E0CB;
 }
 
 .left-panel {
@@ -22,6 +22,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.left-panel img,
+.right-panel img {
+    max-width: 40vw;
 }
 
 .right-panel {
@@ -36,7 +41,7 @@
 }
 
 .splash-panel.two {
-    background-color: #A2E0CB;
+    background-color: white;
 }
 
 .homepage-header {
@@ -65,6 +70,7 @@
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 11px 32px 12px;
+    font-family: 'Raleway';
 }
 
 #homepage-signup-button:hover {

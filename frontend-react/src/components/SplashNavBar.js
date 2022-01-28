@@ -31,7 +31,7 @@ const SplashNavBar = () => {
                 <li>
                     <NavLink to='/sign-up' exact={true} activeClassName='active'>
                         <button id="sign-up-button">
-                            <img src="smmm-sign.png" alt="initial" id="signup-initial" />Get SMMM
+                            <span id="dollar-sign">$ </span>Get SMMM
                         </button>
                     </NavLink>
                 </li>

@@ -36,6 +36,17 @@
     align-items: center;
 }
 
+#user-pro-replace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(201, 201, 201);
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    font-size: 24px;
+}
+
 #nav-user-greeting {
     display: flex;
     align-items: center;
