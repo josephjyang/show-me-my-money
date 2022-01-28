@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../store/users';
 import './Search.css'
@@ -61,7 +61,7 @@ const SearchBar = ({ setFriend, friend, errors }) => {
                         setFriend(user);
                         delete errors.friend;
                         }}key={user.id} className="user-card">
-                        <img className="user-card-pic" src={user.profile_pic} alt="user profile" />
+                        {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}
                         <div className="user-card-info">
                                 <div>{user.first_name} {user.last_name}</div>
                                 <div>@{user.username}</div>

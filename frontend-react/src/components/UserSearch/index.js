@@ -54,7 +54,7 @@ const UserSearchBar = () => {
                     value={searchQuery}
                     onInput={(e) => setSearchQuery(e.target.value)}
                     type="text"
-                    id="header-search"
+                    id="user-header-search"
                     name="s"
                     placeholder="Search for users"
                 />
@@ -63,7 +63,7 @@ const UserSearchBar = () => {
                 {searchQuery && !friend && filteredUsers.map(user => (
                     <NavLink className="search-links" to={`/users/${user.id}`} key={user.id} >
                         <div className="user-card">
-                            <img className="user-card-pic" src={user.profile_pic} alt="user profile" />
+                            {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}
                             <div className="user-card-info">
                                 <div className="user-card-name">{user.first_name} {user.last_name}</div>
                                 <div className="user-card-name">@{user.username}</div>

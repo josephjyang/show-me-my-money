@@ -81,7 +81,7 @@ function PendingTransactions() {
                         <div className="pending-container" key={transaction.id}>
                             <div className="transaction-information">
                                 <div className="transaction-picture">
-                                    <img className="creator-picture" src={transaction.payer.profile_pic} alt="creator" />
+                                    {transaction.payer?.profile_pic ? <img className="creator-picture" src={transaction.payer?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.payer?.first_name[0]}-{transaction.payer?.last_name[0]}</div>}
                                 </div>
                                 <div className="pending-content">
                                     <div className="content-header">
@@ -117,6 +117,7 @@ function PendingTransactions() {
                         <div className="pending-container" key={transaction.id}>
                             <div className="transaction-information">
                                 <div className="transaction-picture">
+                                    {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                                     <img className="creator-picture" src={transaction.creator.profile_pic} alt="creator" />
                                 </div>
                                 <div className="pending-content">
