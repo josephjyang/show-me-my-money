@@ -12,6 +12,10 @@
     border-right: 1px solid rgb(210, 210, 210);
 }
 
+#newsfeed-container.dark {
+    background-color: rgb(165, 165, 165);
+}
+
 #newsfeed::-webkit-scrollbar {
     width: 0 !important;
 }
@@ -50,8 +54,11 @@
 
 .transaction-content {
     width: 100%;
-    
     padding-bottom: 20px;
+}
+
+.transaction-content.dark {
+    color: black;
 }
 
 .content-header {
@@ -62,11 +69,19 @@
 
 
 .neg-amount {
-    color: red;
+    color: rgb(189, 0, 0);
+}
+
+.neg-amount.dark {
+    color: rgb(255, 0, 0);
 }
 
 .pos-amount {
     color: green;
+}
+
+.pos-amount.dark {
+    color: rgb(0, 245, 0);
 }
 
 .transaction-container {
@@ -103,6 +118,12 @@
     text-decoration: none;
 }
 
+/* .user-name.dark,
+.user-name.dark a,
+.user-name.dark:visited {
+    color: rgb(245, 245, 245);
+} */
+
 .user-name:visited {
     color: black;
 }
@@ -130,6 +151,10 @@
     font-size: 13px;
 }
 
+.elapsed-time.dark {
+    color: rgb(80, 80, 80);
+}
+
 .icon-container {
     margin-top: 20px;
     display: flex;
@@ -150,8 +175,18 @@
     color: rgb(162, 162, 162);
 }
 
+.icon-container.dark a:visited,
+.icon-container.dark a,
+.icon-container.dark .fa-heart {
+    color: rgb(96, 96, 96);
+}
+
 .fa-heart.liked {
     color: #46C79C;
+}
+
+.icon-container.dark .fa-heart.liked {
+    color: #5fffca;
 }
 
 .fa-heart:hover,

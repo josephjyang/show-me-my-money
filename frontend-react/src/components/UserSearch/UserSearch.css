@@ -66,6 +66,15 @@
     font-family: "Source Sans Pro";
 }
 
+#user-header-search.dark {
+    background-color: rgb(101, 101, 101);
+    color: rgb(235, 235, 235);
+}
+
+#user-header-search.dark::placeholder {
+    color: rgb(235, 235, 235);
+}
+
 #user-header-search:active,
 #user-header-search:focus-visible {
     outline: none;

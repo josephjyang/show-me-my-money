@@ -2,16 +2,16 @@ import { createContext, useState, useContext } from 'react';
 
 export const AppContext = createContext();
 
-export const usePage = () => {
+export const useMode = () => {
     return useContext(AppContext)
 }
 
 
 export default function AppProvider({ children }) {
-    const [list, setList] = useState();
+    const [dark, setDark] = useState(false);
 
     return (
-        <AppContext.Provider value={{ list, setList }}>
+        <AppContext.Provider value={{ dark, setDark }}>
             {children}
         </AppContext.Provider>
     );
