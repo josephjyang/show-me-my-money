@@ -29,3 +29,22 @@ button:hover {
 button {
     font-family: 'Source Sans Pro';
 }
+
+#missing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#error-home {
+    background-color: #46C79C;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+#error-home:hover {
+    background-color: #3cac87;
+}

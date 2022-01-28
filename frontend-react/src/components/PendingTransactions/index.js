@@ -7,6 +7,7 @@ import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
 import { updateUser } from '../../store/users';
+import UserSearchBar from '../UserSearch';
 import './PendingTransactions.css'
 
 function PendingTransactions() {
@@ -72,6 +73,7 @@ function PendingTransactions() {
 
     return (
         <div id="pending">
+            <UserSearchBar />
             {requests.length > 0 && (<div className="pending-box">
                 <h2 className='pending-header'>Pending Requests</h2>
                 {requests.map(transaction => {

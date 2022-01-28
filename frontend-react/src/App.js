@@ -14,6 +14,7 @@ import Transaction from './components/Transaction';
 import MainPage from './components/MainPage';
 import UserProfile from './components/UserProfile';
 import Friends from './components/Friends';
+import Error from './components/Error';
 import { authenticate } from './store/session';
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
                         </ProtectedRoute>
                         <ProtectedRoute path='/transactions/:transactionId'>
                             <Transaction />
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/'>
+                            <Error />
                         </ProtectedRoute>
                     </Switch>
                 )}

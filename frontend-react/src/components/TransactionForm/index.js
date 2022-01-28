@@ -164,7 +164,7 @@ const TransactionForm = () => {
                 </div>
                 <div id="transaction-buttons">
                     <button id="payment-button" type="button" onClick={submitPayment}>Pay</button>
-                    <button id="request-button" type="button" onClick={submitRequest}>Request</button>
+                    <button id="request-button" type="button" data-hover="SHOW ME MY MONEY!" onClick={submitRequest}><p>Request</p></button>
                 </div>
             </div>
         </div>
