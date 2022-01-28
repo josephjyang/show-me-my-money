@@ -43,6 +43,12 @@
     width: 100px;
 }
 
+#transaction-amount-field::-webkit-outer-spin-button,
+#transaction-amount-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 #transaction-amount-field:focus-visible {
     border: none;
     outline: none;

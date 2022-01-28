@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateUser } from "../../store/users";
 import { createTransaction, updateTransaction } from "../../store/transactions";
+import { authenticate } from "../../store/session";
 import SearchBar from "../Search";
 import AutosizeInput from 'react-input-autosize';
 import './TransactionForm.css';
@@ -61,6 +62,7 @@ const TransactionForm = () => {
             friend.balance += Number(amount);
             await dispatch(updateUser(user))
             await dispatch(updateUser(friend))
+            dispatch(authenticate())
             history.push("/")
         }
     }
@@ -104,6 +106,7 @@ const TransactionForm = () => {
     const updateAmount = (e) => {
         setAmount(e.target.value);
         if (isNaN(parseInt(e.target.value)) || e.target.value <= 0) errors.amount = "Enter a value greater than 0!"
+        else if (e.target.value > user.balance) errors.amount = "You do not have sufficient funds for this payment"
         else delete errors.amount
     };
 
@@ -131,7 +134,7 @@ const TransactionForm = () => {
                             onChange={updateAmount}
                             className={errors.amount ? `${dark} error transaction-field` : `${dark} transaction-field`}
                             id="transaction-amount-field"
-                            type='text'
+                            type='number'
                             placeholder='0'
                             required={true}
                         />

@@ -9,7 +9,6 @@ import './NavBar.css'
 const NavBar = () => {
     const user = useSelector(state => state.session.user);
     const { dark, setDark } = useMode();
-    console.log(dark)
 
     return (
         <div className={`nav-container ${dark}`}>

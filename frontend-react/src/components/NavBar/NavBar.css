@@ -253,3 +253,8 @@
     position: absolute;
     bottom: 20px;
 }
+
+#dark-mode:hover,
+#light-mode:hover {
+    background-color: rgb(196, 196, 196);
+}
