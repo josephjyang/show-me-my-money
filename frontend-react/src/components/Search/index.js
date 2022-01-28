@@ -1,5 +1,6 @@
 import { useState, useEffect, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useMode } from '../../context/AppContext';
 import { getUsers } from '../../store/users';
 import './Search.css'
 
@@ -22,10 +23,11 @@ const SearchBar = ({ setFriend, friend, errors }) => {
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
     const { search } = window.location;
+    const { dark } = useMode()
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
     const filteredUsers = filterUsers(users, searchQuery);
-    
+
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
@@ -51,20 +53,21 @@ const SearchBar = ({ setFriend, friend, errors }) => {
                     onInput={(e) => setSearchQuery(e.target.value)}
                     type="text"
                     id="header-search"
+                    className={dark}
                     name="s"
                     placeholder="Name or @username"
                 />
             </form>
-            <div id="search-results">
+            <div id="search-results" className={dark}>
                 {searchQuery && !friend && filteredUsers.map(user => (
                     <div onClick={() => {
                         setFriend(user);
                         delete errors.friend;
-                        }}key={user.id} className="user-card">
+                    }} key={user.id} className="user-card">
                         {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}
                         <div className="user-card-info">
-                                <div>{user.first_name} {user.last_name}</div>
-                                <div>@{user.username}</div>
+                            <div>{user.first_name} {user.last_name}</div>
+                            <div>@{user.username}</div>
                         </div>
                     </div>
                 ))}

@@ -6,11 +6,13 @@ import { createTransaction, updateTransaction } from "../../store/transactions";
 import SearchBar from "../Search";
 import AutosizeInput from 'react-input-autosize';
 import './TransactionForm.css';
+import { useMode } from "../../context/AppContext";
 
 const TransactionForm = () => {
     const user = useSelector(state => state.session.user);
     const users = useSelector(state => state.users);
-    const transactions = useSelector(state => state.transactions)
+    const transactions = useSelector(state => state.transactions);
+    const { dark } = useMode()
     const { transactionId, userId } = useParams();
     let transaction
     if (transactionId) transaction = transactions[transactionId]
@@ -113,7 +115,7 @@ const TransactionForm = () => {
 
 
     return (
-        <div id="transaction-form-container">
+        <div id="transaction-form-container" className={dark}>
             <div id="transaction-form">
                 <div>
                     {backErrors?.map((error, ind) => (
@@ -127,12 +129,12 @@ const TransactionForm = () => {
                             name="amount"
                             value={amount}
                             onChange={updateAmount}
-                            className={errors.amount ? "error transaction-field" : "transaction-field"}
+                            className={errors.amount ? `${dark} error transaction-field` : `${dark} transaction-field`}
                             id="transaction-amount-field"
                             type='text'
                             placeholder='0'
                             required={true}
-                            />
+                        />
                     </div>
                     {errors.amount && <p className="transaction-error amount">{errors.amount}</p>}
                 </div>
@@ -144,7 +146,7 @@ const TransactionForm = () => {
                             <i onClick={() => {
                                 setFriend('');
                                 errors.friend = "Enter a recipient"
-                            }} className="fas fa-times" /></div>}
+                            }} className={`fas fa-times ${dark}`} /></div>}
                     </div>
                     {errors.friend && <p className="transaction-error">{errors.friend}</p>}
                 </div>
@@ -152,7 +154,7 @@ const TransactionForm = () => {
                     <div id="transaction-details-container">
                         <label htmlFor="details">Note</label>
                         <textarea
-                            className={errors.details ? "error transaction-field" : "transaction-field"}
+                            className={errors.details ? `${dark} error transaction-field` : `${dark} transaction-field`}
                             id="transaction-details"
                             type='text'
                             name='details'

@@ -55,10 +55,10 @@ const NavBar = () => {
                 </NavLink>
             </nav>
             {dark !== "dark" && (<button id="dark-mode" onClick={() => setDark("dark")}>
-                Dark Mode
+                <i className="fas fa-moon"/> Dark Mode
             </button>)}
             {dark === "dark" && (<button id="light-mode" onClick={() => setDark("light")}>
-                Light Mode
+                <i className="far fa-sun"/> Light Mode
             </button>)}
         </div>
     );

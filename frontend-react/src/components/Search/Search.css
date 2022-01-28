@@ -9,7 +9,12 @@
 
 .user-card {
     display: flex;
-    margin: 10px;
+    padding: 10px;
+}
+
+.user-card:hover {
+    background-color: #A2E0CB;
+    cursor:pointer;
 }
 
 .visually-hidden {
@@ -20,4 +25,12 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+#header-search.dark {
+    background-color: rgb(140, 140, 140);
+}
+
+#header-search.dark::placeholder {
+    color: black;
 }

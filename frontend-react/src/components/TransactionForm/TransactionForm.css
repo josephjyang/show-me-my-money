@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+#transaction-form-container.dark {
+    background-color: rgb(140, 140, 140);
+}
+
 #transaction-form {
     width: 50vw;
     max-width: 443px;
@@ -10,6 +14,19 @@
     flex-direction: column;
     justify-content: center;
     margin: 20px;
+}
+
+.transaction-field.dark {
+    background-color: rgb(140, 140, 140);
+}
+
+.transaction-field.dark input {
+    background-color: rgb(140, 140, 140);
+    color: black
+}
+
+.transaction-field.dark input::placeholder {
+    color: black;
 }
 
 #transaction-amount {
@@ -143,6 +160,10 @@
     overflow: show;
 }
 
+#search-results.dark {
+    background-color: rgb(140, 140, 140);
+}
+
 .recipient-container {
     display: flex;
     align-items: center;
@@ -156,6 +177,10 @@
 
 .fa-times {
     color: gray;
+}
+
+.fa-times.dark {
+    color: black;
 }
 
 .transaction-error {

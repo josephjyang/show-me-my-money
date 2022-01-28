@@ -62,7 +62,7 @@ const UserSearchBar = () => {
                     placeholder="Search for users"
                 />
             </form>
-            <div id="users-search-results">
+            <div id="users-search-results" className={dark}>
                 {searchQuery && !friend && filteredUsers.map(user => (
                     <NavLink className="search-links" to={`/users/${user.id}`} key={user.id} >
                         <div className="user-card">

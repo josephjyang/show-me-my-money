@@ -9,7 +9,6 @@
 
 .user-card {
     display: flex;
-    margin: 10px;
     text-decoration: none;
 }
 
@@ -93,4 +92,8 @@
     border-radius: 5px;
     z-index: 2;
     overflow: show;
+}
+
+#users-search-results.dark {
+    background-color: rgb(160, 160, 160);
 }
