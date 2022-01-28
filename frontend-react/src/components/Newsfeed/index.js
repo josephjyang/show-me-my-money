@@ -102,10 +102,10 @@ function Newsfeed({ person }) {
 
     return (
         <div id="newsfeed-container" className={dark}>
-            <div id="newsfeed-filter">
+            {person?.id !== user.id && (<div id="newsfeed-filter">
                 <button onClick={() => setMe(false)} id={me ? "filter" : "filter-active"} className="filter-button"><i className="fas fa-user-friends"></i></button>
                 <button onClick={() => setMe(true)} id={me ? "filter-active" : "filter"} className="filter-button"><i className="fas fa-user"></i></button>
-            </div>
+            </div>)}
             <div id="newsfeed">
                 {filteredTransactions.map(transaction => {
                     return (

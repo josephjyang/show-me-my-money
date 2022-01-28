@@ -4,13 +4,21 @@
     flex-wrap: wrap;
 }
 
+#friends-container.dark {
+    background-color: rgb(140, 140, 140);
+}
+
 .friend-box {
     background-color: #A2E0CB;
     width: 200px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
     margin: 10px;
     height: fit-content;
+}
+
+.friend-box.dark{
+    background-color: #347b63;
 }
 
 .replacement-photo-friend {
@@ -21,7 +29,7 @@
     align-items: center;
     justify-content: center;
     font-size: 45px;
-    border-radius: 5%;
+    border-radius: 5px;
 }
 
 .friend-box:hover {
@@ -52,5 +60,5 @@
     width: 150px;
     object-fit: cover;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 5px;
 }

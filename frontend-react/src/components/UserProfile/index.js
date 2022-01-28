@@ -7,12 +7,14 @@ import { getFriends, deleteFriend, createFriend } from "../../store/friends";
 import { getFriendRequests, createFriendRequest, deleteFriendRequest } from "../../store/friendRequests";
 import { authenticate } from '../../store/session';
 import './UserProfile.css'
+import { useMode } from "../../context/AppContext";
 
 const UserProfile = () => {
     const sessionUser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users);
     const friends = useSelector(state => state.friends);
-    const friendRequests = useSelector(state => state.friendRequests)
+    const friendRequests = useSelector(state => state.friendRequests);
+    const { dark } = useMode();
     const [errors, setErrors] = useState([]);
 
     const { userId } = useParams();
@@ -63,7 +65,7 @@ const UserProfile = () => {
     }
 
     if (user) return (
-        <div id="user-profile-ctr">
+        <div id="user-profile-ctr" className={dark}>
             {errors?.map((error, ind) => (
                 <div key={ind}>{error}</div>
             ))}
@@ -75,7 +77,7 @@ const UserProfile = () => {
                     <p id="profile-name">{user.first_name} {user.last_name}</p>
                 </div>
                 <div id="profile-row">
-                    <p id="profile-username">@{user.username}</p>
+                    <p id="profile-username" className={dark}>@{user.username}</p>
                     <i className="fas fa-circle"></i>
                     <p id="profile-friends">
                         {user.following && Object.keys(user.following).length + Object.keys(user.followed).length} friends
