@@ -108,11 +108,11 @@ const SignUpForm = () => {
         <div id="sign-up-ctr">
             <form id="sign-up-form" onSubmit={onSignUp}>
                 <h3>Create a Show Me My Money Account</h3>
-                <div>
+                {backErrors.length > 0 && (<div id="backend-errors">
                     {backErrors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                        <div key={ind}>Error: {error.split(":")[1]}</div>
                     ))}
-                </div>
+                </div>)}
                 <div className="signup-field-ctr">
                     {username &&
                         <label className="signup-label" htmlFor="username">Username</label>

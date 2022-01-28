@@ -30,8 +30,7 @@ function Friends() {
                 return (
                     <div className="friend-box" key={user.id}>
                         <NavLink to={`/users/${user.id}`}>
-                            <img src={user.profile_pic} alt="friend" className="friend-picture">
-                            </img>
+                            {user?.profile_pic ? <img className="friend-picture" src={user?.profile_pic} alt="friend" /> : <div className="replacement-photo-friend">{user?.first_name[0]}-{user?.last_name[0]}</div>}
                             <h3>
                                 {user.first_name} {user.last_name}
                             </h3>

@@ -1,4 +1,11 @@
+#pending {
+    height: 100vh;
+    overflow-y: scroll;  
+}
 
+#pending::-webkit-scrollbar {
+    width: 0 !important;
+}
 
 .pending-box {
     border: 3px rgb(210, 210, 210) solid;

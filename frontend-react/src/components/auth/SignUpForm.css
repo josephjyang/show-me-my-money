@@ -17,6 +17,7 @@
     padding: 25px;
     border-radius: 5px;
     background-color: white;
+    position: relative;
 }
 
 #sign-up-submit-button {
@@ -103,4 +104,14 @@
 .error.signup-field {
     background-color: #fdede5;
     border: #ea5400 1px solid;
+}
+
+#backend-errors {
+    position: absolute;
+    top: -20px;
+    background-color: #ea5400;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
 }
