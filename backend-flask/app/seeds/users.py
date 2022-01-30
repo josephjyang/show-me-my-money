@@ -17,7 +17,7 @@ def seed_users():
         first_name="Rod", 
         last_name="Tidwell",
         profile_pic="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cuba_Gooding_Jr._2012.jpg/1200px-Cuba_Gooding_Jr._2012.jpg",
-        balance=46284.85
+        balance=45284.85
     )
     jerry = User(
         username="jerry.maguire",
@@ -64,6 +64,24 @@ def seed_users():
         profile_pic="https://m.media-amazon.com/images/M/MV5BMzA5ZWM5ZjctNTNiZi00NjJkLTkwY2QtZDhhZWUzZWUyMTA0XkEyXkFqcGdeQXVyOTExNDkxMjk@._V1_.jpg",
         balance=959.35
     )
+    cush = User(
+        username="the.cush1",
+        email="the.cush1@gmail.com",
+        password="password",
+        first_name="Frank",
+        last_name="Cushman",
+        profile_pic="https://upload.wikimedia.org/wikipedia/commons/d/d6/Jerry_O%27Connell_by_Gage_Skidmore.jpg",
+        balance=179.35
+    )
+    bob = User(
+        username="bob.sugar",
+        email="bob.sugar@gmail.com",
+        password="password",
+        first_name="Bob",
+        last_name="Sugar",
+        profile_pic="https://upload.wikimedia.org/wikipedia/commons/d/d6/Jerry_O%27Connell_by_Gage_Skidmore.jpg",
+        balance=79.54
+    )
 
     rod.following.append(jerry)
     rod.following.append(marcee)
@@ -87,6 +105,8 @@ def seed_users():
     db.session.add(dorothy)
     db.session.add(ray)
     db.session.add(tyson)
+    db.session.add(cush)
+    db.session.add(bob)
 
     db.session.commit()
 

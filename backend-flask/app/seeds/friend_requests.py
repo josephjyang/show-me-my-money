@@ -42,6 +42,16 @@ def seed_friend_requests():
         recipient_id=7
     )
 
+    cush_rod = FriendRequest(
+        sender_id=8,
+        recipient_id=2
+    )
+
+    bob_rod = FriendRequest(
+        sender_id=9,
+        recipient_id=2
+    )
+
     db.session.add(rod_ray)
     db.session.add(rod_tyson)
     db.session.add(jerry_ray)
@@ -50,6 +60,8 @@ def seed_friend_requests():
     db.session.add(marcee_tyson)
     db.session.add(dorothy_ray)
     db.session.add(dorothy_tyson)
+    db.session.add(cush_rod)
+    db.session.add(bob_rod)
 
     db.session.commit()
 
