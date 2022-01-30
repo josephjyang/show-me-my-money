@@ -10,7 +10,7 @@ class Transaction(db.Model):
     payee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     creator_id = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    amount = db.Column(db.Float(), nullable=False)
+    amount = db.Column(db.Float(asdecimal=True), nullable=False)
     details = db.Column(db.Text, nullable=False)
     paid = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -46,7 +46,7 @@ class Transaction(db.Model):
             'payer_id': self.payer_id,
             'payee_id': self.payee_id,
             'creator_id': self.creator_id,
-            'amount': self.amount,
+            'amount': str(self.amount),
             'details': self.details,
             'paid': self.paid,
             'created_at': self.created_at,
@@ -67,7 +67,7 @@ class Transaction(db.Model):
             'payer_id': self.payer_id,
             'payee_id': self.payee_id,
             'creator_id': self.creator_id,
-            'amount': self.amount,
+            'amount': str(self.amount),
             'details': self.details,
             'paid': self.paid,
             'created_at': self.created_at,

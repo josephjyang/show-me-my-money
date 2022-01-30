@@ -124,7 +124,7 @@ function PendingTransactions() {
                                     <div className="pending-content">
                                         <div className="content-header">
                                             <div className="content-header-names">
-                                                <NavLink to={`/users/${transaction.creator.id}`} className="user-name">{transaction.creator.first_name}</NavLink>requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
+                                                <NavLink to={`/users/${transaction.creator.id}`} className="user-name">{transaction.creator.first_name}</NavLink> requests ${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}
                                             </div>
                                         </div>
                                         <div className="transaction-details">

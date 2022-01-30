@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(1000), nullable=True)
-    balance = db.Column(db.Float(), nullable=False)
+    balance = db.Column(db.Float(asdecimal=True), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())
@@ -80,7 +80,7 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'profile_pic': self.profile_pic,
-            'balance': self.balance,
+            'balance': str(self.balance),
             'transactions_sent': {transaction.to_dict_user()['id']: transaction.to_dict_user() 
                         for transaction in self.transactions_sent},
             'transactions_received': {transaction.to_dict_user()['id']: transaction.to_dict_user() 
@@ -107,5 +107,5 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'profile_pic': self.profile_pic,
-            'balance': self.balance
+            'balance': str(self.balance)
         }
