@@ -88,6 +88,9 @@ function App() {
                         <Route path='/sign-up' exact={true}>
                             <SignUpForm />
                         </Route>
+                        <Route path='/'>
+                            <Error />
+                        </Route>
                     </Switch>
                 )}
             </>
