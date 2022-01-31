@@ -1,4 +1,6 @@
 # Show Me My Money
+![Splash Page](/visuals/splash.png)
+![App Page](/visuals/app.png)
 
 ## Summary
 [Show Me My Money](https://show-me-my-money.herokuapp.com/) is a web application inspired by Venmo built using the following technologies:
