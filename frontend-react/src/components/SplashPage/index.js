@@ -16,7 +16,7 @@ const SplashPage = () => {
                 <div className="left-panel">
                     <h1 className='homepage-header'>Fast, safe, social payments</h1>
                     <h3 className="homepage-tagline">When you need to see your money, come to Show Me My Money!</h3>
-                    <a href="/sign-up" id='homepage-signup-button'>Get $MMM</a>
+                    <NavLink to="/sign-up" id='homepage-signup-button'>Get $MMM</NavLink>
                 </div>
                 <div className="right-panel">
                     <img src={transfermoney} alt="social payment"/>

@@ -107,7 +107,7 @@ def seed_transactions():
     )
 
     rod_tyson3 = Transaction(
-        payer_id=3,
+        payer_id=2,
         payee_id=7,
         creator_id=7,
         amount=1500.00,
