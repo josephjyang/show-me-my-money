@@ -28,7 +28,6 @@ const UserSearchBar = () => {
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
     const filteredUsers = filterUsers(users, searchQuery);
-    const [friend, setFriend] = useState();
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -63,7 +62,7 @@ const UserSearchBar = () => {
                 />
             </form>
             <div id="users-search-results" className={dark}>
-                {searchQuery && !friend && filteredUsers.map(user => (
+                {searchQuery && filteredUsers.map(user => (
                     <NavLink className="search-links" to={`/users/${user.id}`} key={user.id} >
                         <div className="user-card">
                             {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}

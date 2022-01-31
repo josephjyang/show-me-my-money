@@ -14,7 +14,7 @@ def seed_comments():
         content="Thanks Dad!"
     )
 
-    rod_tyson2 = Comment(
+    jerry_tyson = Comment(
         user_id=3,
         transaction_id=2,
         content="Happy birthday Tyson!"
@@ -46,7 +46,7 @@ def seed_comments():
 
     db.session.add(rod_jerry)
     db.session.add(rod_tyson)
-    db.session.add(rod_tyson2)
+    db.session.add(jerry_tyson)
     db.session.add(jerry_rod)
     db.session.add(jerry_rod2)
     db.session.add(marcee_dorothy)

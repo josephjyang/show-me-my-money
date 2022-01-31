@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import onlinepayment from '../images/onlinepayment.png'
 import transfermoney from '../images/transfermoney.svg'
 import online_friends from '../images/online_friends.svg'
 import './SplashPage.css'

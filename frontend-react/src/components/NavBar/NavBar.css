@@ -9,7 +9,7 @@
 }
 
 .nav-container.dark {
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(103, 103, 103);
 }
 
 #smmm-text-logo {
@@ -76,7 +76,7 @@
 #user-at {
     font-weight: 700;
     font-size: 13px;
-    color:#194738;
+    color:#2a745b;
 }
 
 #user-at.dark {
@@ -116,7 +116,7 @@
 }
 
 .navbar-link:hover {
-    background-color: #46C79C;
+    background-color: rgba(70, 199, 156);
     color: rgb(245, 245, 245);
 }
 

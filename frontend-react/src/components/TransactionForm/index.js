@@ -59,7 +59,7 @@ const TransactionForm = () => {
         if (data.errors) setBackErrors(data.errors)
         else {
             user.balance -= Number(amount);
-            friend.balance += Number(amount);
+            friend.balance = Number(friend.balance) + Number(amount);
             await dispatch(updateUser(user))
             await dispatch(updateUser(friend))
             dispatch(authenticate())
@@ -105,8 +105,9 @@ const TransactionForm = () => {
 
     const updateAmount = (e) => {
         setAmount(e.target.value);
-        if (isNaN(parseInt(e.target.value)) || e.target.value <= 0) errors.amount = "Enter a value greater than 0!"
-        else if (e.target.value > user.balance) errors.amount = "You do not have sufficient funds for this payment"
+        if (isNaN(Number(e.target.value)) || e.target.value <= 0) errors.amount = "Enter a value greater than 0!"
+        else if (Number(e.target.value) > Number(user.balance)) errors.amount = "You do not have sufficient funds for this payment"
+        else if (e.target.value.split(".").length > 1 && e.target.value.split(".")[1]?.length > 2) errors.amount = "Invalid dollar amount"
         else delete errors.amount
     };
 

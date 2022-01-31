@@ -68,7 +68,7 @@ def seed_users():
         username="the.cush1",
         email="the.cush1@gmail.com",
         password="password",
-        first_name="Frank",
+        first_name="Cush (Frank)",
         last_name="Cushman",
         profile_pic="https://upload.wikimedia.org/wikipedia/commons/d/d6/Jerry_O%27Connell_by_Gage_Skidmore.jpg",
         balance=179.35

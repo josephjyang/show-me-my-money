@@ -41,7 +41,6 @@ const SignUpForm = () => {
             const data = await dispatch(signUp(newUser));
             if (data) {
                 setBackErrors(data);
-                console.log(data)
             } else history.push("/")
         } else return
     }

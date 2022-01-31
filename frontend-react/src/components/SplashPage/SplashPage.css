@@ -13,8 +13,8 @@
 }
 
 .splash-panel.one {
+    background-color: rgb(245, 245, 245);
     margin-top: 126px;
-    background-color: #A2E0CB;
 }
 
 .left-panel {
@@ -41,7 +41,7 @@
 }
 
 .splash-panel.two {
-    background-color: white;
+    background-color: #A2E0CB;
 }
 
 .homepage-header {

@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getTransactions } from '../../store/transactions';
-import { getUsers } from '../../store/users';
 import { getFriends } from '../../store/friends';
-import { createLike, deleteLike } from '../../store/likes';
-import './Friend.css'
 import { useMode } from '../../context/AppContext';
+import './Friend.css'
 
 function Friends() {
     const user = useSelector(state => state.session.user);

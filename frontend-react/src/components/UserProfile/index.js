@@ -54,14 +54,17 @@ const UserProfile = () => {
     }
 
     const removeFriend = async friend => {
-        await dispatch(deleteFriend(friend, sessionUser))
+        await dispatch(deleteFriend(friend, sessionUser));
+        dispatch(getUsers());
+        dispatch(authenticate());
     }
 
     const acceptFriend = async invite => {
         await dispatch(createFriend(invite))
-        await dispatch(deleteFriendRequest(invite, user));
+        await dispatch(deleteFriendRequest(invite, sessionUser));
         dispatch(authenticate());
         dispatch(getFriendRequests(sessionUser));
+        dispatch(getUsers());
     }
 
     if (user) return (
@@ -78,7 +81,7 @@ const UserProfile = () => {
                 </div>
                 <div id="profile-row">
                     <p id="profile-username" className={dark}>@{user.username}</p>
-                    <i className="fas fa-circle"></i>
+                    <i className={`fas fa-circle ${dark}`}></i>
                     <p id="profile-friends">
                         {user.following && Object.keys(user.following).length + Object.keys(user.followed).length} friends
                     </p>

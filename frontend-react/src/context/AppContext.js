@@ -8,7 +8,7 @@ export const useMode = () => {
 
 
 export default function AppProvider({ children }) {
-    const [dark, setDark] = useState(false);
+    const [dark, setDark] = useState("");
 
     return (
         <AppContext.Provider value={{ dark, setDark }}>

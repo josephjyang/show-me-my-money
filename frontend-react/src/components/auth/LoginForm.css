@@ -14,7 +14,7 @@
     flex-direction: column;
     margin-bottom: 20px;
     height: 50px;
-    width: 250px;
+    width: 75%;
     position: relative;
 }
 
@@ -32,8 +32,9 @@
 #log-in-header {
     font-family: 'Raleway';
     font-weight: normal;
+    font-size: 24px;
     margin: 0 0 40px;
-    width: 200px;
+    width: 75%;
     text-align: center;
     position: relative;
 }
@@ -69,4 +70,5 @@
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 11px 32px 12px;
+    margin-top: 25px;
 }

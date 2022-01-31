@@ -13,7 +13,7 @@
 }
 
 #newsfeed-container.dark {
-    background-color: rgb(140, 140, 140);
+    background-color: rgb(80, 80, 80);
 }
 
 #newsfeed::-webkit-scrollbar {
@@ -118,12 +118,6 @@
     text-decoration: none;
 }
 
-/* .user-name.dark,
-.user-name.dark a,
-.user-name.dark:visited {
-    color: rgb(245, 245, 245);
-} */
-
 .user-name:visited {
     color: black;
 }
@@ -152,7 +146,7 @@
 }
 
 .elapsed-time.dark {
-    color: rgb(80, 80, 80);
+    color: rgb(169, 169, 169);
 }
 
 .icon-container {
@@ -166,7 +160,12 @@
 }
 
 .likes-container {
+    position: relative;
     margin-right: 25px;
+}
+
+.num-likes {
+    position: absolute;
 }
 
 .icon-container a:visited,
@@ -178,7 +177,7 @@
 .icon-container.dark a:visited,
 .icon-container.dark a,
 .icon-container.dark .fa-heart {
-    color: rgb(96, 96, 96);
+    color: rgb(155, 155, 155);
 }
 
 .fa-heart.liked {
@@ -186,7 +185,7 @@
 }
 
 .icon-container.dark .fa-heart.liked {
-    color: #5fffca;
+    color: #4ed7a9;
 }
 
 .fa-heart:hover,

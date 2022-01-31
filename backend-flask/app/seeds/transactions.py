@@ -106,16 +106,26 @@ def seed_transactions():
         paid=False
     )
 
+    rod_tyson3 = Transaction(
+        payer_id=3,
+        payee_id=7,
+        creator_id=7,
+        amount=1500.00,
+        details="I found a guy on eBay selling his PS5 for $1,500. Can I get it, please?",
+        paid=False
+    )
+
     db.session.add(rod_jerry)
-    db.session.add(rod_jerry2)
-    db.session.add(rod_jerry3)
     db.session.add(rod_tyson)
-    db.session.add(rod_tyson2)
     db.session.add(jerry_rod)
     db.session.add(marcee_dorothy)
     db.session.add(rod_ray)
     db.session.add(marcee_jerry)
     db.session.add(marcee_rod)
+    db.session.add(rod_tyson2)
+    db.session.add(rod_jerry2)
+    db.session.add(rod_jerry3)
+    db.session.add(rod_tyson3)
 
     db.session.commit()
 

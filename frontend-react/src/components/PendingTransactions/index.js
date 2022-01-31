@@ -27,15 +27,6 @@ function PendingTransactions() {
 
     const history = useHistory()
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     if (user) {
-    //         dispatch(authenticate());
-    //         dispatch(getFriends(user));
-    //         dispatch(getTransactions(user));
-    //         dispatch(getUsers());
-    //         dispatch(getComments());
-    //     }
-    // }, [dispatch, user])
 
     if (!user) {
         return null;
@@ -50,11 +41,12 @@ function PendingTransactions() {
         if (transaction) {
             transaction.paid = true;
             user.balance -= Number(transaction.amount);
-            transaction.creator.balance += Number(transaction.amount);
+            transaction.creator.balance = Number(transaction.creator.balance) + Number(transaction.amount);
             await dispatch(updateTransaction(transaction));
-            await dispatch(updateUser(user))
-            await dispatch(updateUser(transaction.creator))
+            await dispatch(updateUser(user));
+            await dispatch(updateUser(transaction.creator));
             dispatch(getTransactions(user));
+            dispatch(authenticate());
             history.push("/");
             return
         }

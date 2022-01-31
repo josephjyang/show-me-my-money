@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMode } from '../../context/AppContext';
 import { getUsers } from '../../store/users';
@@ -59,15 +59,16 @@ const SearchBar = ({ setFriend, friend, errors }) => {
                 />
             </form>
             <div id="search-results" className={dark}>
-                {searchQuery && !friend && filteredUsers.map(user => (
+                {searchQuery && !friend && filteredUsers.map(friend => (
                     <div onClick={() => {
-                        setFriend(user);
+                        setFriend(friend);
                         delete errors.friend;
-                    }} key={user.id} className="user-card">
-                        {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}
+                        if (friend.id === user.id) errors.friend = "You cannot pay yourself. Please select another user."
+                    }} key={friend.id} className="user-card">
+                        {friend?.profile_pic ? <img className="creator-picture" src={friend.profile_pic} alt="creator" /> : <div className="replacement-photo">{friend?.first_name[0]}-{friend?.last_name[0]}</div>}
                         <div className="user-card-info">
-                            <div>{user.first_name} {user.last_name}</div>
-                            <div>@{user.username}</div>
+                            <div>{friend.first_name} {friend.last_name}</div>
+                            <div>@{friend.username}</div>
                         </div>
                     </div>
                 ))}

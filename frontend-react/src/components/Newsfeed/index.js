@@ -5,6 +5,7 @@ import { getTransactions } from '../../store/transactions';
 import { getUsers } from '../../store/users';
 import { createLike, deleteLike } from '../../store/likes';
 import { useMode } from '../../context/AppContext';
+import { passedTime } from './utils';
 import './Newsfeed.css'
 
 function Newsfeed({ person }) {
@@ -27,48 +28,6 @@ function Newsfeed({ person }) {
         }
         else return transaction.paid
     })
-
-    const passedTime = (transaction) => {
-        let startTime = new Date(transaction.updated_at);
-        let endTime = new Date();
-        
-        // time difference in ms
-        let timeDiff = endTime.getTime() - startTime.getTime();
-        // strip the ms
-        timeDiff /= 1000;
-
-        // get seconds
-        let seconds = Math.round(timeDiff % 60);
-
-        // remove seconds from the date
-        timeDiff = Math.floor(timeDiff / 60);
-
-        // get minutes
-        let minutes = Math.round(timeDiff % 60);
-
-        // remove minutes from the date
-        timeDiff = Math.floor(timeDiff / 60);
-
-        // get hours
-        let hours = Math.round(timeDiff % 24);
-
-        // remove hours from the date
-        timeDiff = Math.floor(timeDiff / 24);
-
-        let days = timeDiff;
-        let totalHours = hours + (days * 24); // add days to hours
-        if (minutes === 0) {
-            return seconds + "s"
-        } else if (totalHours === 0) {
-            return minutes + "m";
-        } else if (days === 0) {
-            return totalHours + "h";
-        } else if (days < 7) {
-            return days + "d"
-        } else if (days < 365) {
-            return Math.floor(days / 7) + "w";
-        } else return Math.floor(days / 365) + "y";
-    }
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -115,17 +74,17 @@ function Newsfeed({ person }) {
                                     <div className="content-header">
                                         <div className="content-header-names">
                                             <NavLink to={`/users/${transaction.creator.id}`} className={`user-name ${dark}`} activeClassName='active'>
-                                                {transaction.creator.first_name}
+                                                {transaction.creator.id === user.id ? "You" : transaction.creator.first_name}
                                             </NavLink>
                                             {transaction.payer_id === transaction.creator_id ?
                                                 <span>{" paid "}
                                                     <NavLink to={`/users/${transaction.payee.id}`} className={`user-name ${dark}`} activeClassName='active'>
-                                                        {transaction.payee.first_name}
+                                                        {transaction.payee.id === user.id ? "You" : transaction.payee.first_name}
                                                     </NavLink>
                                                 </span>
                                                 : <span>{" charged "}
                                                     <NavLink to={`/users/${transaction.payer.id}`} className={`user-name ${dark}`} activeClassName='active'>
-                                                        {transaction.payer.first_name}
+                                                        {transaction.payer.id === user.id ? "You" : transaction.payer.first_name}
                                                     </NavLink>
                                                 </span>}
                                         </div>
@@ -141,7 +100,7 @@ function Newsfeed({ person }) {
                                     <div className={`icon-container ${dark}`}>
                                         <div className="likes-container">
                                             {transaction.likes[user.id] ? <i className="fas fa-heart liked" onClick={() => removeLike(transaction.likes[user.id])} /> : <i className="fas fa-heart" onClick={() => addLike(transaction)} />}
-                                            {Object.keys(transaction.likes).length > 0 && Object.keys(transaction.likes).length}
+                                            {Object.keys(transaction.likes).length > 0 && <span className="num-likes">{Object.keys(transaction.likes).length}</span>}
                                         </div>
                                         <div className="comments-container">
                                             <NavLink to={`/transactions/${transaction.id}`} activeClassName='active'>
