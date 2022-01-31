@@ -20,7 +20,7 @@ const TransactionForm = () => {
     const [backErrors, setBackErrors] = useState([]);
     const [errors, setErrors] = useState({});
     const [friend, setFriend] = useState(userId ? users[userId] : transactionId ? transaction.creator_id === transaction.payer_id ? transaction.payee : transaction.payer : '');
-    const [amount, setAmount] = useState(transactionId ? transaction.amount : '');
+    const [amount, setAmount] = useState(transactionId ? Intl.NumberFormat('en-US').format(transaction.amount) : '');
     const [details, setDetails] = useState(transactionId ? transaction.details : '');
     const dispatch = useDispatch();
     const history = useHistory();
