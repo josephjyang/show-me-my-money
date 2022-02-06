@@ -110,8 +110,7 @@ const UserProfile = () => {
                 (
                     <NavLink to={`/users/${user.id}/pay`} activeClassName='active'>
                         <div id="profile-pay-button">
-                            <img src="/smmm-sign.png" alt="smmm sign" id="smmm-sign" />
-                            <p id="pay-button-text">Pay or Request</p>
+                            <span id="dollar-sign">$ </span>Pay or Request
                         </div>
                     </NavLink>
                 )
