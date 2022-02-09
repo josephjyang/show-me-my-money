@@ -5,3 +5,5 @@ from .transaction_form import TransactionForm
 from .like_form import LikeForm
 from .friend_request_form import FriendRequestForm
 from .user_update_form import UserUpdateForm
+from .message_form import MessageForm
+from .chat_form import ChatForm

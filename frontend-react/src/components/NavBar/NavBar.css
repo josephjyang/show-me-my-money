@@ -97,7 +97,9 @@
     font-weight: bold;
 }
 
-#home-nav .fas {
+#home-nav .fas,
+#home-nav .fa-solid,
+#home-nav .fa-regular {
     width: 50px;
     text-align: center;
 }
