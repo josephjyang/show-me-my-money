@@ -10,12 +10,14 @@ def seed_messages():
 
     marcee_rod = Message(
         user_id=4,
-        friend_id=2
+        chat_id=2,
+        content="Hi Honey"
     )
 
     rod_dorothy = Message(
         user_id=2,
-        friend_id=5
+        chat_id=3,
+        content="Hi Dorothy"
     )
 
     db.session.add(rod_jerry)
