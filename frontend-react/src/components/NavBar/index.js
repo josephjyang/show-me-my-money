@@ -47,7 +47,7 @@ const NavBar = () => {
                     Friends
                 </NavLink>
                 <NavLink to='/messages' activeClassName='active' className={`navbar-link ${dark}`}>
-                    <i class="fa-solid fa-comments"></i>
+                    <i className="fa-solid fa-comments"></i>
                     Messages
                 </NavLink>
                 <LogoutButton />

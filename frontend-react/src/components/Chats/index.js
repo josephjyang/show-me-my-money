@@ -11,7 +11,7 @@ const Chats = () => {
 
     useEffect(() => {
         dispatch(getChats(user));
-    }, [dispatch, user])
+    }, [dispatch, user, chatroom])
 
     return (user && (
         <div id="chats-container">

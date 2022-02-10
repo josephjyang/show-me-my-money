@@ -29,7 +29,7 @@ const Chat = ({chatroom}) => {
     const sendChat = e => {
         e.preventDefault()
         // emit a message
-        socket.emit("chat", { user: user, content: chatInput });
+        socket.emit("chat", { user: user, content: chatInput, chat_id: chatroom.id });
         // clear the input field after the message is sent
         setChatInput("")
     }
@@ -42,8 +42,8 @@ const Chat = ({chatroom}) => {
     return (user && (
         <div>
             <div>
-                {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user.username}: ${message.content}`}</div>
+                {messages?.map((message, ind) => (
+                    <div key={ind}>{`${message.user.first_name} ${message.user.last_name}: ${message.content}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
