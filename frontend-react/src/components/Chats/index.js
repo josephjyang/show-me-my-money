@@ -7,16 +7,17 @@ const Chats = () => {
     const user = useSelector(state => state.session.user);
     const chats = Object.values(useSelector(state => state.chats))
     const dispatch = useDispatch();
+    const [chatroom, setChatroom] = useState("");
 
     useEffect(() => {
         dispatch(getChats(user));
     }, [dispatch, user])
 
     return (user && (
-        <div>
-            <div>
+        <div id="chats-container">
+            <div id="chats-list">
                 {chats.map((chat, ind) => (
-                    <div key={ind}>
+                    <div key={ind} onClick={() => setChatroom(chat)}>
                         <div className="message-name">
                             {`${chat.user.id === user.id ? `${chat.friend.first_name} ${chat.friend.last_name}`: `${chat.user.first_name} ${chat.user.last_name}`}`}
                         </div>
@@ -26,7 +27,7 @@ const Chats = () => {
                     </div>
                 ))}
             </div>
-            <Chat />
+            <Chat chatroom={chatroom}/>
         </div>
     )
     )

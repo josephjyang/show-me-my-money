@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
-import { getChats } from '../../store/chats';
 
 let socket;
 
-const Chat = () => {
+const Chat = ({chatroom}) => {
     const user = useSelector(state => state.session.user);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(chatroom ? [...chatroom.messages] : []);
     const [chatInput, setChatInput] = useState('');
-    const dispatch = useDispatch();
 
     useEffect(() => {
+        setMessages(chatroom.messages)
         // create websocket/connect
         socket = io();
 
@@ -25,12 +24,12 @@ const Chat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [dispatch, user])
+    }, [chatroom])
 
     const sendChat = e => {
         e.preventDefault()
         // emit a message
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        socket.emit("chat", { user: user, content: chatInput });
         // clear the input field after the message is sent
         setChatInput("")
     }
@@ -44,7 +43,7 @@ const Chat = () => {
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind}>{`${message.user.username}: ${message.content}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
