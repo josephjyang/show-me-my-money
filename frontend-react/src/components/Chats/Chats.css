@@ -1,0 +1,37 @@
+#chats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#chats-list {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px rgb(210, 210, 210) solid;
+}
+
+.chat-container {
+    padding: 10px;
+    background-color: rgb(228, 228, 228);
+    border-bottom: 1px black solid;
+}
+
+.chat-container:hover {
+    cursor:pointer;
+    background-color: rgb(213, 213, 213);
+}
+
+.message-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#chats-list h2 {
+    padding: 10px;
+    margin: 0;
+    border-bottom: black solid 1px;
+}
+
+.message-recent {
+    color: gray;
+    font-size: 12px;
+}
