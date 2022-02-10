@@ -35,8 +35,8 @@ class Chat(db.Model):
             'updated_at': self.updated_at,
             'user': self.user.to_dict(),
             'friend': self.friend.to_dict(),
-            'messages': {message.to_dict_chats()['id']: message.to_dict_chats()
-                         for message in self.messages},
+            'messages': [message.to_dict_chats()
+                         for message in self.messages],
         }
 
     def to_dict_user(self):
@@ -46,6 +46,6 @@ class Chat(db.Model):
             'friend_id': self.friend_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'messages': {message.to_dict_chats()['id']: message.to_dict_chats()
-                         for message in self.messages},
+            'messages': [message.to_dict_chats()
+                         for message in self.messages],
         }

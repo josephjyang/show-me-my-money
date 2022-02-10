@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
+import { getChats } from '../../store/chats';
 
 let socket;
 
 const Chat = () => {
-    const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.session.user);
     const [messages, setMessages] = useState([]);
     const [chatInput, setChatInput] = useState('');
+    const dispatch = useDispatch();
 
     useEffect(() => {
-
         // create websocket/connect
         socket = io();
 
@@ -24,7 +25,7 @@ const Chat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [dispatch, user])
 
     const sendChat = e => {
         e.preventDefault()

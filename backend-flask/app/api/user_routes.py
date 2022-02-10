@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Transaction, FriendRequest, db
+from app.models import User, Transaction, FriendRequest, Chat, db
 from app.forms import FriendRequestForm, UserUpdateForm
 from sqlalchemy import or_
 
@@ -103,3 +103,13 @@ def get_all_friend_requests(id):
         FriendRequest.recipient_id == id
         ))
     return {'friend_requests': [request.to_dict() for request in friend_requests]}
+
+
+@user_routes.route('/<int:id>/chats')
+@login_required
+def get_all_chats(id):
+    user = User.query.get(id)
+    chats = Chat.query.filter(or_(Chat.user_id == user.id,
+                                Chat.friend_id == user.id))
+    print(chats)
+    return {'chats': [chat.to_dict() for chat in chats]}
