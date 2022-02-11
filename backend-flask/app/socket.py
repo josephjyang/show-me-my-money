@@ -2,10 +2,10 @@ from flask_socketio import SocketIO, emit
 from app.models import db, Message
 import os
 
-if os.environ.get("FLASK_ENV") == "production":
+if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        "http://show-me-my-money.herokuapp.com",
-        "https://show-me-my-money.herokuapp.com"
+        "http://show-me-my-money.herokuapp.com/",
+        "https://show-me-my-money.herokuapp.com/"
     ]
 else:
     origins = "*"
