@@ -13,6 +13,11 @@
     flex-direction: column;
 }
 
+.message-container2 {
+    display: flex;
+    align-items: center;
+}
+
 .message {
     padding: 10px;
     margin: 10px;

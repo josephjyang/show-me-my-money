@@ -45,8 +45,13 @@ const Chat = ({ chatroom }) => {
             <div id="messages">
                 {messages?.map((message, ind) => (
                     <div key={ind} className="message-container">
-                        {message.user.id !== user.id && <img src={message.user.profile_pic} className="chat-pic" alt="friend"></img>}
-                        <div className={message.user.id === user.id ? "message user" : "message friend"}>{message.content}</div>
+                        {message.user.id !== user.id ? (
+                        <div className="message-container2">
+                            <img src={message.user.profile_pic} className="chat-pic" alt="friend" />
+                            <div className="message friend">{message.content}</div>
+                        </div>
+                        ) : <div className="message user">{message.content}</div>
+                        }
                     </div>
                 ))}
             </div>
