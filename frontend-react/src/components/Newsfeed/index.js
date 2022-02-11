@@ -88,8 +88,12 @@ function Newsfeed({ person }) {
                                                     </NavLink>
                                                 </span>}
                                         </div>
-                                        {transaction.payer_id === user.id && <div className={`neg-amount ${dark}`}> -${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
-                                        {transaction.payee_id === user.id && <div className={`pos-amount ${dark}`}> +${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                        {transaction.payer_id === user.id && 
+                                            <div className={`neg-amount ${dark}`}> -${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : 
+                                                                                                                        Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
+                                        {transaction.payee_id === user.id && 
+                                            <div className={`pos-amount ${dark}`}> +${transaction.amount % 1 !== 0 ? Intl.NumberFormat('en-US').format(transaction.amount) : 
+                                                                                                                        Intl.NumberFormat('en-US').format(transaction.amount) + ".00"}</div>}
                                     </div>
                                     <p className={`elapsed-time ${dark}`}>
                                         {passedTime(transaction)}

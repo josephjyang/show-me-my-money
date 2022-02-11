@@ -47,6 +47,11 @@ class User(db.Model, UserMixin):
         back_populates="user",
         cascade="all, delete"
     )
+    messages = db.relationship(
+        "Message",
+        back_populates="user",
+        cascade="all, delete"
+    )
 
     @property
     def password(self):

@@ -14,6 +14,7 @@ import Transaction from './components/Transaction';
 import MainPage from './components/MainPage';
 import UserProfile from './components/UserProfile';
 import Friends from './components/Friends';
+import Chats from './components/Chats';
 import Error from './components/Error';
 import { authenticate } from './store/session';
 
@@ -62,6 +63,9 @@ function App() {
                         </ProtectedRoute>
                         <ProtectedRoute path='/transactions/:transactionId'>
                             <Transaction />
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/messages'>
+                            <Chats />
                         </ProtectedRoute>
                         <ProtectedRoute path='/'>
                             <Error />

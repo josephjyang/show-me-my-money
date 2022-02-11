@@ -9,7 +9,7 @@
 }
 
 .nav-container.dark {
-    background-color: rgb(103, 103, 103);
+    background-color: rgb(50, 50, 50);
 }
 
 #smmm-text-logo {
@@ -97,7 +97,9 @@
     font-weight: bold;
 }
 
-#home-nav .fas {
+#home-nav .fas,
+#home-nav .fa-solid,
+#home-nav .fa-regular {
     width: 50px;
     text-align: center;
 }

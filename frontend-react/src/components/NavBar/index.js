@@ -43,8 +43,12 @@ const NavBar = () => {
                     Profile
                 </NavLink>
                 <NavLink to='/friends' activeClassName='active' className={`navbar-link ${dark}`}>
-                    <i className="fas fa-users"></i>
+                    <i className="fa-solid fa-users"></i>
                     Friends
+                </NavLink>
+                <NavLink to='/messages' activeClassName='active' className={`navbar-link ${dark}`}>
+                    <i className="fa-solid fa-comments"></i>
+                    Messages
                 </NavLink>
                 <LogoutButton />
                 <NavLink to='/pay' exact={true} activeClassName='active'>

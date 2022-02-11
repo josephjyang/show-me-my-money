@@ -23,4 +23,4 @@ COPY --from=build-stage /frontend-react/build/* app/static/
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
-CMD gunicorn app:app
+CMD gunicorn --worker-class eventlet -w 1 app:app

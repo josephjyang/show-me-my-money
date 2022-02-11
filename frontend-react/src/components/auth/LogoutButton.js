@@ -8,6 +8,7 @@ import { clearLikes } from '../../store/likes';
 import { clearTransactions } from '../../store/transactions';
 import { clearUsers } from '../../store/users';
 import { clearFriendRequests } from '../../store/friendRequests';
+import { clearChats } from '../../store/chats';
 import { useMode } from '../../context/AppContext';
 
 const LogoutButton = () => {
@@ -22,6 +23,7 @@ const LogoutButton = () => {
         await dispatch(clearTransactions());
         await dispatch(clearUsers());
         await dispatch(clearFriendRequests());
+        await dispatch(clearChats());
         history.push("/")
     }
 
