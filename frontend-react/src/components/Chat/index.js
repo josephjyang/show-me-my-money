@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
+import './Chat.css'
 
 let socket;
 
-const Chat = ({chatroom}) => {
+const Chat = ({ chatroom }) => {
     const user = useSelector(state => state.session.user);
     const [messages, setMessages] = useState(chatroom ? [...chatroom.messages] : []);
     const [chatInput, setChatInput] = useState('');
@@ -39,14 +40,17 @@ const Chat = ({chatroom}) => {
     };
 
     // additional code to be added
-    return (user && (
-        <div>
-            <div>
+    return (user && chatroom && (
+        <div id="messages-container">
+            <div id="messages">
                 {messages?.map((message, ind) => (
-                    <div key={ind}>{`${message.user.first_name} ${message.user.last_name}: ${message.content}`}</div>
+                    <div key={ind} className="message-container">
+                        {message.user.id !== user.id && <img src={message.user.profile_pic} className="chat-pic" alt="friend"></img>}
+                        <div className={message.user.id === user.id ? "message user" : "message friend"}>{message.content}</div>
+                    </div>
                 ))}
             </div>
-            <form onSubmit={sendChat}>
+            <form onSubmit={sendChat} id="send-message">
                 <input
                     value={chatInput}
                     onChange={updateChatInput}

@@ -3,9 +3,10 @@ const ADD_CHAT = 'chats/ADD_CHAT';
 const REMOVE_CHAT = 'chats/REMOVE_CHAT';
 const CLEAR_CHATS = 'chats/CLEAR_CHATS';
 
-const loadChats = (chats) => ({
+const loadChats = (chats, user) => ({
     type: LOAD_CHATS,
-    chats
+    chats,
+    user
 });
 
 const addChat = chat => {
@@ -27,7 +28,7 @@ const initialState = {};
 export const getChats = user => async dispatch => {
     const res = await fetch(`/api/users/${user.id}/chats`)
     const chats = await res.json();
-    dispatch(loadChats(chats));
+    dispatch(loadChats(chats, user));
     return chats;
 }
 
@@ -80,11 +81,12 @@ export default function reducer(state = initialState, action) {
         case LOAD_CHATS:
             const chats = {}
             action.chats.chats.forEach(chat => {
-                chats[chat.id] = chat
+                if (chat.friend_id === action.user.id) chats[chat.user_id] = chat
+                else chats[chat.friend_id] = chat
             })
             return { ...state, ...chats }
         case ADD_CHAT:
-            newState[action.chat.id] = action.chat
+            newState[action.chat.friend_id] = action.chat
             return newState;
         case REMOVE_CHAT:
             delete newState[action.chat.id]

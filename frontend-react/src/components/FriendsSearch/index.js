@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { useMode } from '../../context/AppContext';
 import { getFriends } from '../../store/friends';
+import { getChats, createChat } from '../../store/chats';
 
 const filterFriends = (users, query) => {
     if (!query) {
@@ -18,22 +18,30 @@ const filterFriends = (users, query) => {
     });
 };
 
-const FriendsSearchBar = () => {
+const FriendsSearchBar = ({ stateChats }) => {
     const user = useSelector(state => state.session.user);
     const stateFriends = useSelector(state => state.friends);
-    const friends = Object.values(stateFriends);
+    const friends = Object.values(stateFriends).filter(friend => !stateChats[friend.id]);
     const { dark } = useMode();
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
     const filteredFriends = filterFriends(friends, searchQuery);
-
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
             dispatch(getFriends(user));
         }
-    }, [dispatch, user])
+    }, [dispatch, user]);
+
+    const addChat = async friend => {
+        const newChat = {
+            user_id: user.id,
+            friend_id: friend.id
+        }
+        await dispatch(createChat(newChat));
+        dispatch(getChats(user));
+    }
 
 
     return (
@@ -62,7 +70,7 @@ const FriendsSearchBar = () => {
             </form>
             <div id="users-search-results" className={dark}>
                 {searchQuery && filteredFriends.map(user => (
-                    <NavLink className="search-links" to={`/users/${user.id}`} key={user.id} >
+                    <div className="search-links" key={user.id} onClick={() => addChat(user)} >
                         <div className="user-card">
                             {user?.profile_pic ? <img className="creator-picture" src={user.profile_pic} alt="creator" /> : <div className="replacement-photo">{user?.first_name[0]}-{user?.last_name[0]}</div>}
                             <div className="user-card-info">
@@ -70,7 +78,7 @@ const FriendsSearchBar = () => {
                                 <div className="user-card-name">@{user.username}</div>
                             </div>
                         </div>
-                    </NavLink>
+                    </div>
                 ))}
             </div>
         </div>

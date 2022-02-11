@@ -1,0 +1,34 @@
+#messages-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+}
+
+.message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 10px;
+    margin: 10px;
+    width: fit-content;
+    max-width: 50%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.message.friend {
+    background-color: rgb(215, 215, 215);
+    border-bottom-left-radius: 0px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #46C79C;
+    border-bottom-right-radius: 0px;   
+}

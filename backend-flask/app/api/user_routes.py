@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Transaction, FriendRequest, Chat, db
-from app.forms import FriendRequestForm, UserUpdateForm
+from app.forms import FriendRequestForm, UserUpdateForm, ChatForm
 from sqlalchemy import or_
 
 
@@ -113,3 +113,17 @@ def get_all_chats(id):
                                 Chat.friend_id == user.id))
     print(chats)
     return {'chats': [chat.to_dict() for chat in chats]}
+
+
+@user_routes.route('/<int:id>/chats', methods=["POST"])
+@login_required
+def new_chat(id):
+    form = ChatForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        chat = Chat()
+        form.populate_obj(chat)
+        db.session.add(chat)
+        db.session.commit()
+        return chat.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
