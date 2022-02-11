@@ -1,0 +1,21 @@
+#friends-search-ctr {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#friends-search-results {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-width: 23vw;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0;
+    top: 55px;
+    left: 20px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 2;
+    overflow: show;
+}

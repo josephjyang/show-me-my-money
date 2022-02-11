@@ -8,7 +8,8 @@
 }
 
 #user-profile-ctr.dark {
-    background-color: rgb(80, 80, 80);
+    background-color: rgb(50, 50, 50);
+    color: white;
 }
 
 #user-profile-ctr #newsfeed-container {
@@ -53,7 +54,7 @@
 }
 
 #profile-row .fa-circle.dark {
-    color: rgb(45, 45, 45);
+    color: white;
 }
 
 #profile-pay-button {

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useMode } from '../../context/AppContext';
 import { getFriends } from '../../store/friends';
 import { getChats, createChat } from '../../store/chats';
+import './FriendsSearch.css'
 
 const filterFriends = (users, query) => {
     if (!query) {
@@ -45,7 +46,7 @@ const FriendsSearchBar = ({ stateChats }) => {
 
 
     return (
-        <div id="users-search-ctr">
+        <div id="friends-search-ctr">
             <form
                 action="/"
                 method="get"
@@ -68,7 +69,7 @@ const FriendsSearchBar = ({ stateChats }) => {
                     placeholder="Search for friends"
                 />
             </form>
-            <div id="users-search-results" className={dark}>
+            <div id="friends-search-results" className={dark}>
                 {searchQuery && filteredFriends.map(user => (
                     <div className="search-links" key={user.id} onClick={() => addChat(user)} >
                         <div className="user-card">

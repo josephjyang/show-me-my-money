@@ -66,7 +66,7 @@
 }
 
 #user-header-search.dark {
-    background-color: rgb(101, 101, 101);
+    background-color: rgb(50, 50, 50);
     color: rgb(235, 235, 235);
 }
 
@@ -95,5 +95,14 @@
 }
 
 #users-search-results.dark {
-    background-color: rgb(160, 160, 160);
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+
+#users-search-results.dark .user-card-name {
+    color: white;
+}
+
+#users-search-results.dark .user-card:hover {
+    background-color: #445c54;
 }

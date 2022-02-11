@@ -3,6 +3,11 @@
     grid-template-columns: 1fr 1fr;
 }
 
+#chats-container.dark {
+    background-color: rgb(50, 50, 50);
+    color: white;
+}
+
 #chats-list {
     display: flex;
     flex-direction: column;
@@ -11,18 +16,16 @@
 
 .chat-container {
     padding: 10px;
-    background-color: rgb(228, 228, 228);
-    border-bottom: 1px black solid;
     display: flex;
     align-items: center;
     position: relative;
     width: 100%;
-    height: 70px;
+    height: 80px;
 }
 
 .chat-container:hover {
     cursor:pointer;
-    background-color: rgb(213, 213, 213);
+    background-color: #46C79C;
 }
 
 .chat-date {
@@ -30,7 +33,7 @@
     right: 10px;
     top: 15px;
     color: gray;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .chat-details {
@@ -38,13 +41,22 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 15px;
-    height: 100%;
+    height: 85%;
     padding: 3px 0;
 }
 
 .message-name {
     font-size: 16px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.message-username {
+    margin-left: 10px;
+    font-weight: 400;
+    color: rgb(99, 99, 99);
+    font-size: 14px;
 }
 
 #chats-list h2 {
@@ -55,7 +67,7 @@
 
 .message-recent {
     color: gray;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .chat-pic {

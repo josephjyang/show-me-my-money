@@ -13,7 +13,8 @@
 }
 
 #newsfeed-container.dark {
-    background-color: rgb(80, 80, 80);
+    background-color: rgb(50, 50, 50);
+    color: white;
 }
 
 #newsfeed::-webkit-scrollbar {
@@ -58,7 +59,7 @@
 }
 
 .transaction-content.dark {
-    color: black;
+    color: white;
 }
 
 .content-header {
@@ -116,6 +117,14 @@
     font-weight: bold;
     color: black;
     text-decoration: none;
+}
+
+.user-name.dark {
+    color: white;
+}
+
+a.user-name.dark {
+    color: white;
 }
 
 .user-name:visited {

@@ -86,10 +86,10 @@ const Transaction = () => {
                         <div className="transaction-information">
                             {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                             <div className="transaction-info">
-                                <span className="user-name">{transaction.creator.first_name} </span>
+                                <span className={`user-name ${dark}`}>{transaction.creator.first_name} </span>
                                 {transaction.payer_id === transaction.creator_id ?
-                                    <span>paid <span className="user-name">{transaction.payee.first_name}</span></span>
-                                    : <span>charged <span className="user-name">{transaction.payer.first_name}</span></span>}
+                                    <span>paid <span className={`user-name ${dark}`}>{transaction.payee.first_name}</span></span>
+                                    : <span>charged <span className={`user-name ${dark}`}>{transaction.payer.first_name}</span></span>}
                                 {(transaction.payer_id === user.id || transaction.payee_id === user.id) && <span> ${Intl.NumberFormat('en-US').format(transaction.amount)}</span>}
                                 <div className="transaction-details">
                                     {transaction.details}
