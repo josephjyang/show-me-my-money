@@ -87,6 +87,6 @@
 }
 
 #input-ctr input:focus-visible {
-    border: none;
+    /* border: none; */
     outline: none;
 }
