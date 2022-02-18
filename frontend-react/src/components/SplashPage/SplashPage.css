@@ -1,6 +1,6 @@
 #splash-page {
     background-color: #A2E0CB;
-    height: 1000px;
+    height: 100vh;
     margin-top: 0;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,6 @@
 
 .splash-panel.one {
     background-color: rgb(245, 245, 245);
-    margin-top: 126px;
 }
 
 .left-panel {
@@ -35,17 +34,12 @@
     align-items: center;
 }
 
-.fa-comments-dollar,
-.fa-money-bill-wave {
-    font-size: 350px;
-}
-
 .splash-panel.two {
     background-color: #A2E0CB;
 }
 
 .homepage-header {
-    font-size: 70px;
+    font-size: 7vh;
     font-weight: 700;
     margin: 55px 0 10px 0;
     width: 350px;
