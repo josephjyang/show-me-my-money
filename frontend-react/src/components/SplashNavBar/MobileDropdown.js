@@ -33,15 +33,15 @@ function MobileDropdown() {
             </div>
             {showMenu && (
                 <div id="mobile-dropdown">
-                    <div>
+                    <div className="mobile-link">
                         <DemoLoginButton />
                     </div>
-                    <div>
+                    <div className="mobile-link">
                         <NavLink to='/login' exact={true} activeClassName='active'>
-                            Login
+                            Log In
                         </NavLink>
                     </div>
-                    <div>
+                    <div className="mobile-link">
                         <NavLink to='/sign-up' exact={true} activeClassName='active'>
                             Create an Account
                         </NavLink>

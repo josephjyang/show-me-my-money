@@ -48,3 +48,48 @@ button {
 #error-home:hover {
     background-color: #3cac87;
 }
+
+@media screen and (max-width: 1000px) {
+    #main-content {
+        max-height: 100vh;
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr 60px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "content"
+            "nav"
+    }
+
+    #newsfeed-container,
+    #user-profile-ctr {
+        max-height: 100%;
+        width: 100vw;
+    }
+
+    #pending {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+
+    #content,
+    #user-profile-ctr,
+    #friends-container,
+    #chats-container {
+        display: flex;
+        grid-area: content;
+        overflow-y: scroll;
+    }
+
+    #user-profile-ctr,
+    #friends-container,
+    #chats-container {
+        height: 100%;
+    }
+
+    #friends-container {
+        display: flex;
+        justify-content: center;
+    }
+}

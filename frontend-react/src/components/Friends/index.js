@@ -25,6 +25,7 @@ function Friends() {
 
     return (
         <div id="friends-container" className={dark}>
+            <h3 id="friends-title">My Friends</h3>
             {userFriends.map((user) => {
                 return (
                     <div className={`friend-box ${dark}`} key={user.id}>

@@ -30,6 +30,7 @@
 
 .right-panel {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -85,9 +86,8 @@ a:hover{
 }
 
 #homepage-footer {
-    position: fixed;
+    position: sticky;
     bottom: 0px;
-    left: 0px;
     min-height: 50px;
     height: 7vh;
     width: 100%;
@@ -109,4 +109,44 @@ a:hover{
 #about:hover {
     color: #A2E0CB;
     cursor:pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .splash-panel {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        height: fit-content;
+        align-items: center;
+    }
+
+    .homepage-header {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 40px;
+        width: 85%;
+    }
+
+    .homepage-tagline {
+        width: 85%;
+        padding: 25px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    #homepage-signup-button {
+        width: 60%;
+    }
+
+    .right-panel img,
+    .left-panel img {
+        max-width: 50vw;
+        margin-bottom: 50px;
+    }
+
+    .splash-panel.two {
+        flex-direction: column-reverse;
+    }
 }
