@@ -66,7 +66,7 @@ const FriendsSearchBar = ({ stateChats }) => {
                     id="user-header-search"
                     name="s"
                     className={dark}
-                    placeholder="Search for friends"
+                    placeholder="Start a new chat"
                 />
             </form>
             <div id="friends-search-results" className={dark}>

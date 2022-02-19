@@ -9,7 +9,7 @@ import { authenticate } from '../../store/session';
 import './UserProfile.css'
 import { useMode } from "../../context/AppContext";
 
-const UserProfile = () => {
+const UserProfile = ({ loaded }) => {
     const sessionUser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users);
     const friends = useSelector(state => state.friends);
@@ -67,6 +67,8 @@ const UserProfile = () => {
         dispatch(getUsers());
     }
 
+    console.log(user);
+
     if (user) return (
         <div id="user-profile-ctr" className={dark}>
             {errors?.map((error, ind) => (
@@ -116,7 +118,7 @@ const UserProfile = () => {
                 )
                 }
             </div>
-            <Newsfeed person={user} />
+            <Newsfeed person={user} loaded={loaded} />
         </div>
     );
 

@@ -279,25 +279,13 @@
         width: 100vw;
     }
 
-    #pay-button {
-        margin-top: 0px;
-        padding: 5px 10px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-    }
-
-    #dollar-sign {
-        font-size: 16px;
-        margin: 0;
-    }
-
     #nav-user-greeting,
     #nav-user-balance,
     .nav-span,
     #dark-mode,
     #light-mode,
-    #smmm-text-logo {
+    #smmm-text-logo,
+    #mobile-pay {
         display: none;
         visibility: hidden;
         position: absolute;
@@ -307,5 +295,20 @@
     #log-out-button {
         padding: 0;
         margin: 0;
+    }
+
+    a#pay-mobile {
+        display: flex;
+        visibility: visible;
+        position: relative;
+        width: 225px;
+    }
+    
+    #mobile-pay-ctr {
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
     }
 }

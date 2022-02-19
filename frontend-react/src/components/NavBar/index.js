@@ -6,9 +6,13 @@ import LogoutButton from '../auth/LogoutButton';
 import { useMode } from '../../context/AppContext';
 import './NavBar.css'
 
-const NavBar = () => {
+const NavBar = ({ loaded }) => {
     const user = useSelector(state => state.session.user);
-    const { dark, setDark } = useMode();
+    const { dark, setDark, setChatroom } = useMode();
+
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <div className={`nav-container ${dark}`}>
@@ -38,6 +42,10 @@ const NavBar = () => {
                     </div>
                     <span className="nav-span">Home</span>
                 </NavLink>
+                <NavLink to='/notifications' exact={true} id="pending-link" activeClassName='active' className={`navbar-link ${dark}`}>
+                    <i class="fa-solid fa-bell" /> 
+                    <span className="nav-span">Notifications</span>
+                </NavLink>
                 <NavLink to={`/users/${user.id}`} activeClassName='active' className={`navbar-link ${dark}`}>
                     <i className="fas fa-user-circle"></i>
                     <span className="nav-span">Profile</span>
@@ -46,12 +54,12 @@ const NavBar = () => {
                     <i className="fa-solid fa-users"></i>
                     <span className="nav-span">Friends</span>
                 </NavLink>
-                <NavLink to='/messages' activeClassName='active' className={`navbar-link ${dark}`}>
+                <NavLink to='/messages' activeClassName='active' className={`navbar-link ${dark}`} onClick={() => setChatroom("")}>
                     <i className="fa-solid fa-comments"></i>
                     <span className="nav-span">Messages</span>
                 </NavLink>
                 <LogoutButton />
-                <NavLink to='/pay' exact={true} activeClassName='active'>
+                <NavLink to='/pay' exact={true} activeClassName='active' id="mobile-pay">
                     <div id="pay-button">
                         <span id="dollar-sign">$ </span>
                         <span className="nav-span">Pay or Request</span>

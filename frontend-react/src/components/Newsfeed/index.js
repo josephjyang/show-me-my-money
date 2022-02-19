@@ -8,7 +8,7 @@ import { useMode } from '../../context/AppContext';
 import { passedTime } from './utils';
 import './Newsfeed.css'
 
-function Newsfeed({ person }) {
+function Newsfeed({ person, loaded }) {
     const user = useSelector(state => state.session.user);
     const transactions = useSelector(state => state.transactions);
     const [me, setMe] = useState(false);
@@ -55,6 +55,9 @@ function Newsfeed({ person }) {
         dispatch(getTransactions(user));
     }
 
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <div id="newsfeed-container" className={dark}>
@@ -118,6 +121,14 @@ function Newsfeed({ person }) {
                         </div>
                     )
                 })}
+            </div>
+            <div id="mobile-pay-ctr">
+                <NavLink to='/pay' exact={true} activeClassName='active' id="pay-mobile">
+                    <div id="pay-button">
+                        <span id="dollar-sign">$ </span>
+                        <span>Pay or Request</span>
+                    </div>
+                </NavLink>
             </div>
         </div>
     );

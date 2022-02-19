@@ -16,6 +16,7 @@ import UserProfile from './components/UserProfile';
 import Friends from './components/Friends';
 import Chats from './components/Chats';
 import Error from './components/Error';
+import PendingTransactions from './components/PendingTransactions';
 import { authenticate } from './store/session';
 
 function App() {
@@ -37,35 +38,38 @@ function App() {
     if (user) {
         return (
             <div id="main-content">
-                <NavBar />
+                <NavBar loaded={loaded}/>
                 {loaded && (
                     <Switch>
-                        <ProtectedRoute path='/users' exact={true}>
-                            <UsersList />
+                        <ProtectedRoute path='/users' exact={true} >
+                            <UsersList loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/friends' exact={true}>
-                            <Friends />
+                        <ProtectedRoute path='/friends' exact={true} >
+                            <Friends loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/users/:userId' exact={true}>
-                            <UserProfile />
+                        <ProtectedRoute path='/users/:userId' exact={true} >
+                            <UserProfile loaded={loaded}/>
                         </ProtectedRoute>
                         <ProtectedRoute path='/users/:userId/pay' exact={true}>
-                            <TransactionForm />
+                            <TransactionForm loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/' exact={true}>
-                            <MainPage />
+                        <ProtectedRoute path='/' exact={true} >
+                            <MainPage loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/pay'>
-                            <TransactionForm />
+                        <ProtectedRoute path='/pay' >
+                            <TransactionForm loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/transactions/:transactionId/edit'>
-                            <TransactionForm />
+                        <ProtectedRoute path='/transactions/:transactionId/edit' >
+                            <TransactionForm loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/transactions/:transactionId'>
-                            <Transaction />
+                        <ProtectedRoute path='/transactions/:transactionId' >
+                            <Transaction loaded={loaded}/>
                         </ProtectedRoute>
-                        <ProtectedRoute path='/messages'>
-                            <Chats />
+                        <ProtectedRoute path='/messages' >
+                            <Chats loaded={loaded}/>
+                        </ProtectedRoute>
+                        <ProtectedRoute path='/notifications' >
+                            <PendingTransactions loaded={loaded} />
                         </ProtectedRoute>
                         <ProtectedRoute path='/'>
                             <Error />

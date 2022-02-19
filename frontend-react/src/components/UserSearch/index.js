@@ -19,7 +19,7 @@ const filterUsers = (users, query) => {
     });
 };
 
-const UserSearchBar = () => {
+const UserSearchBar = ({ loaded }) => {
     const user = useSelector(state => state.session.user);
     const stateUsers = useSelector(state => state.users);
     const users = Object.values(stateUsers);
@@ -36,7 +36,10 @@ const UserSearchBar = () => {
         }
     }, [dispatch, user])
 
-
+    if (!loaded) {
+        return null;
+    }
+    
     return (
         <div id="users-search-ctr">
             <form
