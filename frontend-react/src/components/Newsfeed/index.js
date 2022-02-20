@@ -6,6 +6,7 @@ import { getUsers } from '../../store/users';
 import { createLike, deleteLike } from '../../store/likes';
 import { useMode } from '../../context/AppContext';
 import { passedTime } from './utils';
+import UserSearchBar from '../UserSearch';
 import './Newsfeed.css'
 
 function Newsfeed({ person, loaded }) {
@@ -61,6 +62,7 @@ function Newsfeed({ person, loaded }) {
 
     return (
         <div id="newsfeed-container" className={dark}>
+            <UserSearchBar loaded={loaded} />
             {person?.id !== user.id && (<div id="newsfeed-filter">
                 <button onClick={() => setMe(false)} id={me ? "filter" : "filter-active"} className="filter-button"><i className="fas fa-user-friends"></i></button>
                 <button onClick={() => setMe(true)} id={me ? "filter-active" : "filter"} className="filter-button"><i className="fas fa-user"></i></button>

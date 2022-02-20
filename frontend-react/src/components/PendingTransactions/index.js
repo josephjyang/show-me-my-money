@@ -71,10 +71,6 @@ function PendingTransactions({ loaded }) {
         dispatch(authenticate());
     }
 
-    // if (!loaded) {
-    //     return null;
-    // }
-
     return (
         <div id="pending" className={dark}>
             <UserSearchBar loaded={loaded}/>

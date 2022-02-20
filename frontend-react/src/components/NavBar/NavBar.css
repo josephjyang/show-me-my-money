@@ -267,7 +267,7 @@
         height: 60px;
         grid-area: nav;
         box-sizing: border-box;
-        background-color: rgb(242, 242, 242);
+        background-color: rgb(250, 250, 250);
     }
 
     #home-nav {
@@ -301,14 +301,31 @@
         display: flex;
         visibility: visible;
         position: relative;
-        width: 225px;
+        width: fit-content;
+    }
+
+    #pay-button {
+        margin: 0;
     }
     
     #mobile-pay-ctr {
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.5);
         width: 100%;
         position: relative;
         display: flex;
+        justify-content: center;
+    }
+
+    #home-nav .active {
+        color:#46C79C;
+    }
+
+    #home-nav i {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 }
