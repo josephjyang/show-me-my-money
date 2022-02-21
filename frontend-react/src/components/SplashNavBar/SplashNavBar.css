@@ -109,7 +109,7 @@ nav a:hover {
     font-size: 40px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 750px) {
     #splash-nav-right,
     #about-link {
         display: none;
