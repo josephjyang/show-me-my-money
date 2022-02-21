@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LoginFormModal from './auth/LoginFormModal';
-import DemoLoginButton from './DemoLoginButton';
+import LoginFormModal from '../auth/LoginFormModal';
+import DemoLoginButton from '../DemoLoginButton';
+import MobileDropdown from './MobileDropdown';
 import './SplashNavBar.css'
 
 const SplashNavBar = () => {
@@ -20,6 +21,9 @@ const SplashNavBar = () => {
                         About SMMM
                     </div>
                 </NavLink>
+            </div>
+            <div id="mobile-menu">
+                <MobileDropdown />
             </div>
             <ul id="splash-nav-right">
                 <li>

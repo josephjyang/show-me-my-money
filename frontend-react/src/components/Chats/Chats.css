@@ -1,6 +1,6 @@
 #chats-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40% 60%;
 }
 
 #chats-container.dark {
@@ -21,6 +21,12 @@
     position: relative;
     width: 100%;
     height: 80px;
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.chat-container.active {
+    background-color: #A2E0CB;
 }
 
 .chat-container:hover {
@@ -28,10 +34,12 @@
     background-color: #46C79C;
 }
 
+.chat-content {
+    display: flex;
+    align-items: center;
+}
+
 .chat-date {
-    position: absolute;
-    right: 10px;
-    top: 15px;
     color: gray;
     font-size: 14px;
 }
@@ -41,7 +49,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 15px;
-    height: 85%;
+    height: 48px;
     padding: 3px 0;
 }
 
@@ -87,4 +95,24 @@
     height: 40px;
     width: 40px;
     font-size: 16px;
+}
+
+@media screen and (max-width: 750px) {
+    #chats-list.selected {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+
+    #chats-list {
+        width: 100%;
+    }
+
+    #chats-container {
+        grid-template-columns: 1fr;
+    }
+
+    #messages-container {
+        height: 100%;
+    }
 }

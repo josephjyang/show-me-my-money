@@ -9,9 +9,10 @@ export const useMode = () => {
 
 export default function AppProvider({ children }) {
     const [dark, setDark] = useState("");
+    const [chatroom, setChatroom] = useState("");
 
     return (
-        <AppContext.Provider value={{ dark, setDark }}>
+        <AppContext.Provider value={{ dark, setDark, chatroom, setChatroom }}>
             {children}
         </AppContext.Provider>
     );

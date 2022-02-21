@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { createFriend } from '../../store/friends';
@@ -6,12 +6,12 @@ import { getTransactions } from '../../store/transactions';
 import { authenticate } from '../../store/session';
 import { deleteFriendRequest } from '../../store/friendRequests';
 import { deleteTransaction, updateTransaction } from '../../store/transactions';
-import { updateUser } from '../../store/users';
+import { getUsers, updateUser } from '../../store/users';
 import UserSearchBar from '../UserSearch';
 import './PendingTransactions.css'
 import { useMode } from '../../context/AppContext';
 
-function PendingTransactions() {
+function PendingTransactions({ loaded }) {
     const user = useSelector(state => state.session.user);
     const users = useSelector(state => state.users);
     const transactions = useSelector(state => state.transactions);
@@ -27,6 +27,13 @@ function PendingTransactions() {
 
     const history = useHistory()
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getTransactions(user));
+            dispatch(getUsers());
+        }
+    }, [dispatch, user])
 
     if (!user) {
         return null;
@@ -64,10 +71,9 @@ function PendingTransactions() {
         dispatch(authenticate());
     }
 
-
     return (
         <div id="pending" className={dark}>
-            <UserSearchBar />
+            <UserSearchBar loaded={loaded}/>
             {requests.length > 0 && (<div className={`pending-box ${dark}`}>
                 <h2 className='pending-header'>Pending Requests</h2>
                 {requests.map(transaction => {
@@ -140,7 +146,7 @@ function PendingTransactions() {
                 <div className={`pending-box ${dark}`}>
                     <h2 className='pending-header'>Pending Friend Invites</h2>
                     {friendInvites?.map(invite => {
-                        return (
+                        return users[invite.sender_id]?.first_name && (
                             <div className="friend-request-box" key={invite.id}>
                                 <div className="friend-request-details">
                                     <div className="transaction-picture">
@@ -160,7 +166,7 @@ function PendingTransactions() {
                 <div className={`pending-box ${dark}`}>
                     <h2 className='pending-header'>Pending Friend Requests</h2>
                     {friendRequests?.map(request => {
-                        return (
+                        return users[request.recipient_id]?.first_name && (
                             <div className="friend-request-box" key={request.id}>
                                 <div className="friend-request-details">
                                     <div className="transaction-picture">

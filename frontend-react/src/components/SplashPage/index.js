@@ -26,7 +26,7 @@ const SplashPage = () => {
                 <div className="left-panel">
                     <img src={online_friends} alt="friend payment"/> 
                 </div>
-                <div id="right-panel">
+                <div className="right-panel">
                     <h1 className='homepage-header'>Pay friends</h1>
                     <h3 className="homepage-tagline">Whether you're settling bills, splitting up the check, or sending a gift, Show Me My Money helps you get your funds where they need to go.</h3>
                 </div>

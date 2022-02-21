@@ -6,9 +6,10 @@ import { getUsers } from '../../store/users';
 import { createLike, deleteLike } from '../../store/likes';
 import { useMode } from '../../context/AppContext';
 import { passedTime } from './utils';
+import UserSearchBar from '../UserSearch';
 import './Newsfeed.css'
 
-function Newsfeed({ person }) {
+function Newsfeed({ person, loaded }) {
     const user = useSelector(state => state.session.user);
     const transactions = useSelector(state => state.transactions);
     const [me, setMe] = useState(false);
@@ -55,9 +56,13 @@ function Newsfeed({ person }) {
         dispatch(getTransactions(user));
     }
 
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <div id="newsfeed-container" className={dark}>
+            <UserSearchBar loaded={loaded} />
             {person?.id !== user.id && (<div id="newsfeed-filter">
                 <button onClick={() => setMe(false)} id={me ? "filter" : "filter-active"} className="filter-button"><i className="fas fa-user-friends"></i></button>
                 <button onClick={() => setMe(true)} id={me ? "filter-active" : "filter"} className="filter-button"><i className="fas fa-user"></i></button>
@@ -118,6 +123,14 @@ function Newsfeed({ person }) {
                         </div>
                     )
                 })}
+            </div>
+            <div id="mobile-pay-ctr">
+                <NavLink to='/pay' exact={true} activeClassName='active' id="pay-mobile">
+                    <div id="pay-button">
+                        <span id="dollar-sign">$ </span>
+                        <span>Pay or Request</span>
+                    </div>
+                </NavLink>
             </div>
         </div>
     );

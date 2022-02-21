@@ -3,11 +3,15 @@ import Newsfeed from '../Newsfeed';
 import PendingTransactions from '../PendingTransactions';
 
 
-function MainPage() {
+function MainPage({ loaded }) {
+    if (!loaded) {
+        return null;
+    }
+
     return (
         <div id="content">
-            <Newsfeed />
-            <PendingTransactions />
+            <Newsfeed loaded={loaded} />
+            <PendingTransactions loaded={loaded} />
         </div>
     );
 }

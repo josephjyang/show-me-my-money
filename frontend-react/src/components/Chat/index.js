@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { getChats } from '../../store/chats';
 import './Chat.css'
 
 let socket;
 
-const Chat = ({ chatroom }) => {
+const Chat = ({ chatroom, setChatroom }) => {
     const user = useSelector(state => state.session.user);
     const [messages, setMessages] = useState(chatroom ? [...chatroom.messages] : []);
     const [chatInput, setChatInput] = useState('');
@@ -48,11 +49,16 @@ const Chat = ({ chatroom }) => {
     return (user && chatroom && (
         <div id="messages-container">
             <div id="messages-header">
-                {myFriend.profile_pic ? <img src={myFriend.profile_pic} alt="user profile" className="chat-pic" /> : <div className="chat-pro-replace">{myFriend.first_name[0]}-{myFriend.last_name[0]}</div>}
-                <div id="messages-header-name">
-                    <h3>{`${myFriend.first_name} ${myFriend.last_name}`}</h3>
-                    <p>@{myFriend.username}</p>
+                <div id="message-title">
+                    {myFriend.profile_pic ? <img src={myFriend.profile_pic} alt="user profile" className="chat-pic" /> : <div className="chat-pro-replace">{myFriend.first_name[0]}-{myFriend.last_name[0]}</div>}
+                    <div id="messages-header-name">
+                        <h3>{`${myFriend.first_name} ${myFriend.last_name}`}</h3>
+                        <p>@{myFriend.username}</p>
+                    </div>
                 </div>
+                <NavLink to="/messages" id="close-message">
+                    <i class="fa-solid fa-x" onClick={() => setChatroom("")}/>
+                </NavLink>
             </div>
             <div id="messages-content">
                 <div id="messages">

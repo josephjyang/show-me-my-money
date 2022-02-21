@@ -5,11 +5,13 @@
 
 #newsfeed-container {
     max-height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     border-right: 1px solid rgb(210, 210, 210);
+    overflow-y: auto;
 }
 
 #newsfeed-container.dark {
@@ -203,4 +205,19 @@ a.user-name.dark {
 .fa-trash:hover {
     cursor: pointer;
     color: rgb(65, 65, 65);
+}
+
+#pay-mobile {
+    text-decoration: none;
+    margin: 10px;
+    display: none;
+    visibility: hidden;
+    position: absolute;
+}
+
+@media screen and (max-width: 1200px) {
+    #content {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
 }
