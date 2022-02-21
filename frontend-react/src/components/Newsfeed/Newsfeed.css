@@ -215,9 +215,30 @@ a.user-name.dark {
     position: absolute;
 }
 
+#newsfeed-container > #users-search-ctr {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+}
+
+
+
 @media screen and (max-width: 1200px) {
     #content {
         grid-template-columns: 1fr;
         width: 100%;
+    }
+
+    #content > #newsfeed-container > #users-search-ctr {
+        display: flex;
+        visibility: visible;
+        position: relative;
+        width: 100%;
+    }
+
+    #pending > #users-search-ctr {
+        display: none;
+        visibility: hidden;
+        position: absolute;
     }
 }
