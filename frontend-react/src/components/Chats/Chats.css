@@ -53,11 +53,12 @@
     padding: 3px 0;
 }
 
-.message-name {
+a .message-name {
     font-size: 16px;
     font-weight: 600;
     display: flex;
     align-items: center;
+    color: black;
 }
 
 .message-username {
