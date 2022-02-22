@@ -42,10 +42,6 @@ const NavBar = ({ loaded }) => {
                     </div>
                     <span className="nav-span">Home</span>
                 </NavLink>
-                <NavLink to='/notifications' exact={true} id="pending-link" activeClassName='active' className={`navbar-link ${dark}`}>
-                    <i class="fa-solid fa-bell" /> 
-                    <span className="nav-span">Notifications</span>
-                </NavLink>
                 <NavLink to={`/users/${user.id}`} activeClassName='active' className={`navbar-link ${dark}`}>
                     <i className="fas fa-user-circle"></i>
                     <span className="nav-span">Profile</span>
@@ -57,6 +53,10 @@ const NavBar = ({ loaded }) => {
                 <NavLink to='/messages' activeClassName='active' className={`navbar-link ${dark}`} onClick={() => setChatroom("")}>
                     <i className="fa-solid fa-comments"></i>
                     <span className="nav-span">Messages</span>
+                </NavLink>
+                <NavLink to='/notifications' exact={true} id="pending-link" activeClassName='active' className={`navbar-link ${dark}`}>
+                    <i class="fa-solid fa-bell" /> 
+                    <span className="nav-span">Notifications</span>
                 </NavLink>
                 <LogoutButton />
                 <NavLink to='/pay' exact={true} activeClassName='active' id="mobile-pay">

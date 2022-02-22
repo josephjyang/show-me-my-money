@@ -128,7 +128,6 @@
     object-fit: cover;
     text-align: center;
     border-radius: 50%;
-    margin-right: 20px;
 }
 
 #user-pro-pic {
@@ -208,4 +207,30 @@
     background-color: #A2E0CB;;
     border-radius: 10px;
     padding: 10px 10px 0px;
+}
+
+@media screen and (min-width: 751px) {
+    #profile-user-balance {
+        visibility: hidden;
+        display: none;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    #profile-user-balance {
+        visibility: visible;
+        display: flex;
+        position: relative;
+        margin-bottom: 16px;
+        font-size: 18px;
+        text-align: center;
+        background-color: #A2E0CB;
+        border-radius: 10px;
+        padding: 3px 20px;
+    }
+
+    #profile-name {
+        margin: 10px 0;
+    }
 }

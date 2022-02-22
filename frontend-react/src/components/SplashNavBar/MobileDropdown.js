@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import DemoLoginButton from "../DemoLoginButton";
-import LoginFormModal from "../auth/LoginFormModal";
 
 function MobileDropdown() {
     const [showMenu, setShowMenu] = useState(false);

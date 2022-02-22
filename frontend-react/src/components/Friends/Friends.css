@@ -81,6 +81,7 @@
 @media screen and (max-width: 750px) {
     .friend-box {
         width: 150px;
+        height: 240px;
     }
 
     .friend-box h3 {

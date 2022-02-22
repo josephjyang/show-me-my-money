@@ -109,22 +109,32 @@ nav a:hover {
     font-size: 40px;
 }
 
-@media screen and (max-width: 750px) {
+#mobile-menu {
+    display: none;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+    #mobile-menu {
+        display: block;
+        position: relative;
+        visibility: visible;
+    }
+    
     #splash-nav-right,
     #about-link {
         display: none;
         visibility: hidden;
         position: absolute;
     }
+}
+
+@media screen and (max-width: 750px) {
 
     #splash-nav-left {
         justify-self: center;
     }
 
-    #mobile-menu {
-        display: block;
-        position: relative;
-    }
     
     .fa-bars {
         color: rgb(72, 72, 72);

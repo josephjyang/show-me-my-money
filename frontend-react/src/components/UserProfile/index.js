@@ -81,6 +81,10 @@ const UserProfile = ({ loaded }) => {
                 <div>
                     <p id="profile-name">{user.first_name} {user.last_name}</p>
                 </div>
+                {sessionUser.id === user.id && <div id="profile-user-balance">
+                    Balance: ${Intl.NumberFormat('en-US').format(user.balance)}
+                </div>
+                }
                 <div id="profile-row">
                     <p id="profile-username" className={dark}>@{user.username}</p>
                     <i className={`fas fa-circle ${dark}`}></i>
