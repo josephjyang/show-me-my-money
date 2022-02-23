@@ -2,13 +2,15 @@
 
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     width: 100vw;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 #root {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     width: 100vw;
     position: relative;
 }
@@ -52,6 +54,7 @@ button {
 @media screen and (max-width: 750px) {
     #main-content {
         max-height: 100vh;
+        min-height: -webkit-fill-available;
         height: 100vh;
         display: grid;
         grid-template-rows: 1fr 60px;

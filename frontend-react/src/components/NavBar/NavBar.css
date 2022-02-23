@@ -5,6 +5,7 @@
     position: relative;
     border-right: 1px rgb(210, 210, 210) solid;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     height: 100%;
 }
 
@@ -144,6 +145,7 @@
     font-size: 20px;
     font-weight: 500;
     height: 100vh;
+    height: -webkit-fill-available;
     position: fixed;
 }
 

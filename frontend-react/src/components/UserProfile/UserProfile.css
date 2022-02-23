@@ -4,6 +4,7 @@
     align-items: center;
     padding-top: 25px;
     height: 100vh;
+    height: -webkit-fill-available;
     overflow-y:scroll;
 }
 
@@ -232,5 +233,11 @@
 
     #profile-name {
         margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #user-info {
+        width: 100vw;
     }
 }

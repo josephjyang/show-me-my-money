@@ -5,6 +5,7 @@
 
 #newsfeed-container {
     max-height: 100vh;
+    max-height: -webkit-fill-available;
     height: 100%;
     display: flex;
     justify-content: flex-start;

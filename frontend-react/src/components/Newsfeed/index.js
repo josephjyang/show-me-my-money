@@ -124,14 +124,14 @@ function Newsfeed({ person, loaded }) {
                     )
                 })}
             </div>
-            <div id="mobile-pay-ctr">
+            {!person && <div id="mobile-pay-ctr">
                 <NavLink to='/pay' exact={true} activeClassName='active' id="pay-mobile">
                     <div id="pay-button">
                         <span id="dollar-sign">$ </span>
                         <span>Pay or Request</span>
                     </div>
                 </NavLink>
-            </div>
+            </div>}
         </div>
     );
 }
