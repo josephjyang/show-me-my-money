@@ -6,10 +6,12 @@
     font-weight: 500;
     background-color: #A2E0CB;
     padding: 0 30px;
-    width: 100vw;
-    position:sticky;
-    top: 0;
+    width: 100%;
+    position:fixed;
+    top: 0px;
     z-index: 10;
+    height: 129px;
+    box-sizing: border-box;
 }
 
 #splash-nav-left {

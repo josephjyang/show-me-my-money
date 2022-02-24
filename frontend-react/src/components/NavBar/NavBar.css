@@ -4,7 +4,7 @@
     justify-content: center;
     position: relative;
     border-right: 1px rgb(210, 210, 210) solid;
-    height: 100vh;
+    height: 100%;
 }
 
 .nav-container.dark {

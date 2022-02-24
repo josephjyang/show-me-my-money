@@ -9,10 +9,11 @@ function MainPage({ loaded }) {
     }
 
     return (
-        <div id="content">
+        <div id="home-content">
             <Newsfeed loaded={loaded} />
             <PendingTransactions loaded={loaded} />
         </div>
+
     );
 }
 export default MainPage;

@@ -7,7 +7,6 @@ import { ModalProvider } from './context/Modal';
 import App from './App'
 import configureStore from './store';
 import './index.css'
-import Div100vh from 'react-div-100vh';
 
 const store = configureStore();
 
@@ -17,9 +16,7 @@ ReactDOM.render(
             <Provider store={store}>
                 <ModalProvider>
                     <BrowserRouter>
-                        <Div100vh>
-                            <App />
-                        </Div100vh>
+                        <App />
                     </BrowserRouter>
                 </ModalProvider>
             </Provider>

@@ -1,6 +1,5 @@
 #pending {
-    height: 100vh;
-    height: -webkit-fill-available;
+    height: 100%;
     overflow-y: scroll;  
 }
 

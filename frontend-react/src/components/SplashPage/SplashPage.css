@@ -1,10 +1,11 @@
 #splash-page {
     background-color: #A2E0CB;
-    height: 100vh;
+    height: 100%;
     height: -webkit-fill-available;
-    margin-top: 0;
+    margin-top: 129px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .splash-panel {
