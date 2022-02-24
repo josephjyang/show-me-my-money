@@ -18,6 +18,7 @@ import Chats from './components/Chats';
 import Error from './components/Error';
 import PendingTransactions from './components/PendingTransactions';
 import { authenticate } from './store/session';
+import Div100vh from 'react-div-100vh'
 
 function App() {
     const [loaded, setLoaded] = useState(false);
