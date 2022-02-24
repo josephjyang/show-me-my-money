@@ -1,7 +1,6 @@
 #splash-page {
     background-color: #A2E0CB;
     height: 100%;
-    height: -webkit-fill-available;
     margin-top: 129px;
     display: flex;
     flex-direction: column;
