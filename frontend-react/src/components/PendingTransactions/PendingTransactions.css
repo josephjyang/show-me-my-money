@@ -125,7 +125,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-    #content > #pending {
+    #home-content > #pending {
         display: none;
         visibility: hidden;
         position: absolute;

@@ -226,12 +226,12 @@ a.user-name.dark {
 
 
 @media screen and (max-width: 1200px) {
-    #content {
+    #home-content {
         grid-template-columns: 1fr;
         width: 100%;
     }
 
-    #content > #newsfeed-container > #users-search-ctr {
+    #home-content > #newsfeed-container > #users-search-ctr {
         display: flex;
         visibility: visible;
         position: relative;
