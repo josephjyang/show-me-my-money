@@ -6,8 +6,8 @@ html {
 
 body {
     margin: 0;
-    height: 100vh;
-    max-height: -webkit-fill-available;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     width: 100vw;
     font-family: 'Source Sans Pro', sans-serif;
 }
