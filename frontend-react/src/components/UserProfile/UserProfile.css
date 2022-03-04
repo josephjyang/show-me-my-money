@@ -237,6 +237,6 @@
 
 @media screen and (max-width: 375px) {
     #user-info {
-        width: 100vw;
+        width: 100%;
     }
 }

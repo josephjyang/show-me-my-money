@@ -274,7 +274,7 @@
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        width: 100vw;
+        width: 100%;
     }
 
     #nav-user-greeting,
