@@ -126,6 +126,11 @@ def seed_users():
     rod.following.append(jerry)
     rod.following.append(marcee)
     rod.following.append(dorothy)
+    rod.followed.append(boomer)
+    rod.followed.append(leshon)
+    rod.followed.append(robmoore)
+    rod.followed.append(vince)
+
 
     boomer.following.append(rod)
     leshon.following.append(rod)
