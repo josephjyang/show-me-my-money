@@ -126,16 +126,6 @@ def seed_users():
     rod.following.append(jerry)
     rod.following.append(marcee)
     rod.following.append(dorothy)
-    rod.followed.append(boomer)
-    rod.followed.append(leshon)
-    rod.followed.append(robmoore)
-    rod.followed.append(vince)
-
-
-    boomer.following.append(rod)
-    leshon.following.append(rod)
-    robmoore.following.append(rod)
-    vince.following.append(rod)
 
     jerry.following.append(marcee)
     jerry.following.append(dorothy)
@@ -147,6 +137,15 @@ def seed_users():
 
     ray.following.append(tyson)
     tyson.followed.append(ray)
+
+    rod.followed.append(boomer)
+    rod.followed.append(leshon)
+    rod.followed.append(robmoore)
+    rod.followed.append(vince)
+    boomer.following.append(rod)
+    leshon.following.append(rod)
+    robmoore.following.append(rod)
+    vince.following.append(rod)
 
     db.session.add(demo)
     db.session.add(rod)
