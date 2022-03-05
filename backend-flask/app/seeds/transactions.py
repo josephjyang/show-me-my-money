@@ -24,7 +24,7 @@ def seed_transactions():
 
     rod_tyson = Transaction(
         payer_id=2,
-        payee_id=7,
+        payee_id=11,
         creator_id=2,
         amount=500.00,
         details="Happy Birthday son! 🥳 Buy yourself something nice",
@@ -35,8 +35,8 @@ def seed_transactions():
 
     rod_tyson2 = Transaction(
         payer_id=2,
-        payee_id=7,
-        creator_id=7,
+        payee_id=11,
+        creator_id=11,
         amount=400.00,
         details="I need some money for 📚. Thanks for supporting my education, Dad!",
         paid=True,
@@ -68,7 +68,7 @@ def seed_transactions():
 
     rod_ray = Transaction(
         payer_id=2,
-        payee_id=6,
+        payee_id=10,
         creator_id=2,
         amount=250.00,
         details="Merry Christmas Ray! 🎄 I still remember when you were just a little kid.",
@@ -108,8 +108,8 @@ def seed_transactions():
 
     rod_tyson3 = Transaction(
         payer_id=2,
-        payee_id=7,
-        creator_id=7,
+        payee_id=11,
+        creator_id=11,
         amount=1500.00,
         details="I found a guy on eBay selling his PS5 for $1,500. Can I get it, please?",
         paid=False

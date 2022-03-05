@@ -4,51 +4,51 @@ from app.models import db, FriendRequest
 def seed_friend_requests():
     rod_ray = FriendRequest(
         sender_id=2,
-        recipient_id=6
+        recipient_id=10
     )
 
     rod_tyson = FriendRequest(
         sender_id=2,
-        recipient_id=7
+        recipient_id=11
     )
 
     jerry_ray = FriendRequest(
         sender_id=3,
-        recipient_id=6
+        recipient_id=10
     )
 
     jerry_tyson = FriendRequest(
         sender_id=3,
-        recipient_id=7
+        recipient_id=11
     )
 
     marcee_ray = FriendRequest(
         sender_id=4,
-        recipient_id=6
+        recipient_id=10
     )
 
     marcee_tyson = FriendRequest(
         sender_id=4,
-        recipient_id=7
+        recipient_id=11
     )
 
     dorothy_ray = FriendRequest(
         sender_id=5,
-        recipient_id=6
+        recipient_id=10
     )
 
     dorothy_tyson = FriendRequest(
         sender_id=5,
-        recipient_id=7
+        recipient_id=11
     )
 
     cush_rod = FriendRequest(
-        sender_id=8,
+        sender_id=12,
         recipient_id=2
     )
 
     bob_rod = FriendRequest(
-        sender_id=9,
+        sender_id=13,
         recipient_id=2
     )
 
