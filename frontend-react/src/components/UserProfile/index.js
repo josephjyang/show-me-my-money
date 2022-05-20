@@ -67,8 +67,6 @@ const UserProfile = ({ loaded }) => {
         dispatch(getUsers());
     }
 
-    console.log(user);
-
     if (user) return (
         <div id="user-profile-ctr" className={dark}>
             {errors?.map((error, ind) => (
