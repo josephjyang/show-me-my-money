@@ -83,7 +83,7 @@ const Transaction = () => {
             {transaction && (
                 <div id="transaction-page" className={dark}>
                     <div id="transaction-container">
-                        <div className="transaction-information">
+                        <div className="trans-information">
                             {transaction.creator?.profile_pic ? <img className="creator-picture" src={transaction.creator?.profile_pic} alt="creator" /> : <div className="replacement-photo">{transaction.creator?.first_name[0]}-{transaction.creator?.last_name[0]}</div>}
                             <div className="transaction-info">
                                 <span className={`user-name ${dark}`}>{transaction.creator.first_name} </span>

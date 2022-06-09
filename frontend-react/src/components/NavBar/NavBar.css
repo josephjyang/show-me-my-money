@@ -112,6 +112,10 @@
     padding: 5px 20px 5px 0px;
 }
 
+#home-nav a:link.navbar-link.dark {
+    color: rgb(245, 245, 245);
+}
+
 .navbar-link.dark {
     color: rgb(245, 245, 245);
 }
