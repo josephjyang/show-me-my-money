@@ -3,7 +3,7 @@ FROM node:12 AS build-stage
 WORKDIR /frontend-react
 COPY frontend-react/. .
 
-ENV REACT_APP_BASE_URL=https://show-me-my-money.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://show-me-my-money-726123aee4fc.herokuapp.com/
 
 RUN npm install
 RUN npm run build
